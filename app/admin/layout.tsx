@@ -1,0 +1,201 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import {
+  LayoutDashboard,
+  AlertCircle,
+  Building2,
+  Users,
+  Compass,
+  HardHat,
+  Bell,
+  FileSpreadsheet,
+  Briefcase,
+  FileText,
+  DollarSign,
+  Scale,
+  ShieldAlert,
+  BarChart3,
+  Settings,
+  LogOut,
+  ExternalLink,
+  Menu,
+  X,
+  ChevronRight,
+} from "lucide-react";
+
+const ADMIN_MENU = [
+  { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+  { name: "Grievances", href: "/admin/grievances", icon: AlertCircle, badge: "3 New" },
+  { name: "Departments", href: "/admin/departments", icon: Building2 },
+  { name: "Projects", href: "/admin/projects", icon: HardHat },
+  { name: "Notices & CMS", href: "/admin/notices", icon: Bell },
+  { name: "Users & Roles", href: "/admin/users", icon: Users },
+  { name: "Reports & Analytics", href: "/admin/reports", icon: BarChart3 },
+  { name: "Portal Settings", href: "/admin/settings", icon: Settings },
+];
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
+  // If on login page, render children without sidebar
+  if (pathname === "/admin/login") {
+    return <>{children}</>;
+  }
+
+  return (
+    <div className="min-h-screen bg-[#F8FCF9] text-[#1F2937] flex flex-col md:flex-row">
+      {/* Mobile Top Header */}
+      <div className="md:hidden bg-white border-b border-[#D9E8DD] px-4 py-3 flex items-center justify-between sticky top-0 z-40">
+        <div className="flex items-center gap-2">
+          <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+            <Image
+              src="/images/logo.png"
+              alt="LMC Admin"
+              width={32}
+              height={32}
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span className="font-bold text-sm text-[#1F2937]">LMC Admin</span>
+        </div>
+        <button
+          onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+          className="p-1.5 rounded-lg border border-gray-200 text-gray-700"
+        >
+          {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Sidebar (Desktop + Mobile Drawer) */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-[#D9E8DD] flex flex-col justify-between transition-transform duration-300 md:static md:translate-x-0 ${
+          mobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div>
+          {/* Admin Header */}
+          <div className="p-5 border-b border-[#D9E8DD] flex items-center justify-between">
+            <Link href="/admin/dashboard" className="flex items-center gap-3">
+              <div className="relative w-10 h-10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/logo.png"
+                  alt="LMC Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain drop-shadow-sm"
+                />
+              </div>
+              <div>
+                <div className="font-extrabold text-sm text-[#1F2937] leading-tight">
+                  LMC Admin Console
+                </div>
+                <div className="text-[10px] font-semibold text-[#2E8B57]">Govt of Maharashtra</div>
+              </div>
+            </Link>
+            <button
+              onClick={() => setMobileSidebarOpen(false)}
+              className="md:hidden p-1 text-gray-400 hover:text-gray-700"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-180px)]">
+            <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+              Navigation
+            </div>
+            {ADMIN_MENU.map((item) => {
+              const isActive = pathname === item.href;
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileSidebarOpen(false)}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors ${
+                    isActive
+                      ? "bg-[#2E8B57] text-white shadow-xs"
+                      : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon className="w-4 h-4" />
+                    <span>{item.name}</span>
+                  </div>
+                  {item.badge && (
+                    <span
+                      className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
+                        isActive
+                          ? "bg-white text-[#2E8B57]"
+                          : "bg-red-100 text-red-600 animate-pulse"
+                      }`}
+                    >
+                      {item.badge}
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Sidebar Footer */}
+        <div className="p-4 border-t border-[#D9E8DD] space-y-2 bg-[#F8FCF9]">
+          <Link
+            href="/"
+            target="_blank"
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-gray-600 hover:bg-white border border-transparent hover:border-[#D9E8DD] transition-all"
+          >
+            <span className="flex items-center gap-2">
+              <ExternalLink className="w-3.5 h-3.5 text-[#2E8B57]" />
+              <span>Public Citizen Portal</span>
+            </span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
+
+          <Link
+            href="/admin/login"
+            className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span>Sign Out</span>
+          </Link>
+        </div>
+      </aside>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        {/* Top Navbar */}
+        <header className="bg-white border-b border-[#D9E8DD] px-6 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+              Control Desk:
+            </span>
+            <span className="text-xs font-bold text-[#2E8B57] bg-[#E8F5E9] px-2.5 py-1 rounded-lg border border-[#D9E8DD]">
+              Municipal Headquarters, Lonavala
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="text-right hidden sm:block">
+              <div className="text-xs font-bold text-[#1F2937]">Shri. Pandit Patil (IAS)</div>
+              <div className="text-[10px] text-gray-500">Chief Officer & Commissioner</div>
+            </div>
+            <div className="w-9 h-9 rounded-full bg-[#2E8B57] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+              CO
+            </div>
+          </div>
+        </header>
+
+        {/* Dynamic Admin Body */}
+        <main className="p-4 sm:p-6 lg:p-8 flex-1">{children}</main>
+      </div>
+    </div>
+  );
+}

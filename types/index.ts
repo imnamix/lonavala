@@ -93,10 +93,13 @@ export interface CouncilMember {
   ward?: string;
   phone: string;
   email: string;
+  address?: string;
   image: string;
   tenure: string;
   committee?: string;
   message?: string;
+  active?: boolean;
+  roleCategory?: "President" | "Vice President" | "Corporator" | "Officer" | "Nominated";
 }
 
 export interface Project {
@@ -163,3 +166,13 @@ export interface DownloadDocument {
   department: string;
   downloadCount: number;
 }
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  active?: boolean;
+}
+
+
+

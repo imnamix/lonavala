@@ -25,14 +25,48 @@ import {
   Menu,
   X,
   ChevronRight,
+  ChevronDown,
+  Layers,
+  Home,
+  Info,
+  Phone,
+  Landmark,
+  HelpCircle,
 } from "lucide-react";
 
-const ADMIN_MENU = [
+interface AdminSubMenuItem {
+  name: string;
+  href: string;
+  icon: any;
+}
+
+interface AdminMenuItem {
+  name: string;
+  href: string;
+  icon: any;
+  badge?: string;
+  children?: AdminSubMenuItem[];
+}
+
+const ADMIN_MENU: AdminMenuItem[] = [
   { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
   { name: "Grievances", href: "/admin/grievances", icon: AlertCircle, badge: "3 New" },
+  { name: "Councils", href: "/admin/council", icon: Landmark },
+  {
+    name: "Content",
+    href: "/admin/content",
+    icon: Layers,
+    children: [
+      { name: "Homepage", href: "/admin/content/homepage", icon: Home },
+      { name: "About Us", href: "/admin/content/about", icon: Info },
+      { name: "Contacts", href: "/admin/content/contacts", icon: Phone },
+      { name: "Tourism", href: "/admin/content/tourism", icon: Compass },
+      { name: "FAQ", href: "/admin/content/faq", icon: HelpCircle },
+    ],
+  },
   { name: "Departments", href: "/admin/departments", icon: Building2 },
   { name: "Projects", href: "/admin/projects", icon: HardHat },
-  { name: "Notices & CMS", href: "/admin/notices", icon: Bell },
+  { name: "Notices & Gazettes", href: "/admin/notices", icon: Bell },
   { name: "Users & Roles", href: "/admin/users", icon: Users },
   { name: "Reports & Analytics", href: "/admin/reports", icon: BarChart3 },
   { name: "Portal Settings", href: "/admin/settings", icon: Settings },
@@ -41,6 +75,18 @@ const ADMIN_MENU = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({
+    Content: true,
+  });
+
+  const toggleSubMenu = (menuName: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setExpandedMenus((prev) => ({
+      ...prev,
+      [menuName]: !prev[menuName],
+    }));
+  };
 
   // If on login page, render children without sidebar
   if (pathname === "/admin/login") {
@@ -111,35 +157,94 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               Navigation
             </div>
             {ADMIN_MENU.map((item) => {
-              const isActive = pathname === item.href;
+              const isDirectActive = pathname === item.href;
+              const isChildActive =
+                item.children &&
+                item.children.some(
+                  (child) =>
+                    pathname === child.href ||
+                    pathname.startsWith(child.href + "/")
+                );
+              const isActive = isDirectActive || isChildActive;
+              const hasChildren = Boolean(item.children && item.children.length > 0);
+              const isExpanded = expandedMenus[item.name] ?? isActive;
               const Icon = item.icon;
+
               return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileSidebarOpen(false)}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors ${
-                    isActive
-                      ? "bg-[#2E8B57] text-white shadow-xs"
-                      : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <Icon className="w-4 h-4" />
-                    <span>{item.name}</span>
-                  </div>
-                  {item.badge && (
-                    <span
-                      className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
-                        isActive
-                          ? "bg-white text-[#2E8B57]"
-                          : "bg-red-100 text-red-600 animate-pulse"
-                      }`}
+                <div key={item.name} className="space-y-1">
+                  <div
+                    className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors ${
+                      isActive
+                        ? "bg-[#2E8B57] text-white shadow-xs"
+                        : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                    }`}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className="flex items-center gap-3 flex-1"
                     >
-                      {item.badge}
-                    </span>
+                      <Icon className="w-4 h-4 shrink-0" />
+                      <span>{item.name}</span>
+                    </Link>
+
+                    {item.badge && (
+                      <span
+                        className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
+                          isActive
+                            ? "bg-white text-[#2E8B57]"
+                            : "bg-red-100 text-red-600 animate-pulse"
+                        }`}
+                      >
+                        {item.badge}
+                      </span>
+                    )}
+
+                    {hasChildren && (
+                      <button
+                        type="button"
+                        onClick={(e) => toggleSubMenu(item.name, e)}
+                        className={`p-1 rounded-md transition-transform ${
+                          isActive ? "text-white hover:bg-white/20" : "text-gray-400 hover:text-gray-700"
+                        }`}
+                        title="Toggle section"
+                      >
+                        {isExpanded ? (
+                          <ChevronDown className="w-3.5 h-3.5" />
+                        ) : (
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Submenu Accordion */}
+                  {hasChildren && isExpanded && (
+                    <div className="pl-4 pr-1 py-1 space-y-1 border-l-2 border-[#D9E8DD] ml-4 my-1">
+                      {item.children!.map((child) => {
+                        const ChildIcon = child.icon;
+                        const isSubActive =
+                          pathname === child.href ||
+                          pathname.startsWith(child.href + "/");
+                        return (
+                          <Link
+                            key={child.name}
+                            href={child.href}
+                            onClick={() => setMobileSidebarOpen(false)}
+                            className={`flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                              isSubActive
+                                ? "bg-[#E8F5E9] text-[#2E8B57] font-bold"
+                                : "text-gray-600 hover:bg-gray-100 hover:text-[#2E8B57]"
+                            }`}
+                          >
+                            <ChildIcon className="w-3.5 h-3.5 shrink-0" />
+                            <span>{child.name}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   )}
-                </Link>
+                </div>
               );
             })}
           </nav>

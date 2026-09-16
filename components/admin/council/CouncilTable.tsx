@@ -87,22 +87,22 @@ export function CouncilTable() {
     <div className="space-y-6">
       {/* Toast notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#1F2937] text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 border border-white/10 animate-fade-in">
+        <div className="fixed bottom-6 right-6 z-50 bg-surface-dark text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 border border-white/10 animate-fade-in">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Main Table Card */}
-      <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-5">
+      <div className="bg-white p-5 sm:p-7 rounded-3xl border border-border shadow-xs space-y-5">
         {/* Header & Controls: Search, Ward Filter & Add Member */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-gray-100 pb-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold shrink-0">
               <Landmark className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-bold text-base text-[#1F2937]">Councils</h2>
+              <h2 className="font-bold text-base text-text-primary">Councils</h2>
               <p className="text-xs text-gray-500">
                 {members.length} members configured. Click any row or edit button to manage.
               </p>
@@ -118,7 +118,7 @@ export function CouncilTable() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by name, ward, phone..."
-                className="w-full pl-9 pr-3 py-2 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs text-gray-800 placeholder-gray-400 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden transition-all"
+                className="w-full pl-9 pr-3 py-2 bg-primary-surface border border-border rounded-xl text-xs text-gray-800 placeholder-gray-400 focus:bg-white focus:border-primary focus:outline-hidden transition-all"
               />
               {searchQuery && (
                 <button
@@ -135,7 +135,7 @@ export function CouncilTable() {
             <select
               value={wardFilter}
               onChange={(e) => setWardFilter(e.target.value)}
-              className="px-3 py-2 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs text-gray-700 font-semibold focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+              className="px-3 py-2 bg-primary-surface border border-border rounded-xl text-xs text-gray-700 font-semibold focus:bg-white focus:border-primary focus:outline-hidden"
             >
               <option value="ALL">All Wards (1 to 5)</option>
               <option value="Ward 1">Ward 1 - Bangarwadi</option>
@@ -162,7 +162,7 @@ export function CouncilTable() {
 
             <Link
               href="/admin/council/new"
-              className="px-4 py-2 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors shrink-0"
+              className="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>+ Add Council</span>
@@ -171,10 +171,10 @@ export function CouncilTable() {
         </div>
 
         {/* Council Table */}
-        <div className="overflow-x-auto rounded-2xl border border-[#D9E8DD]">
+        <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-[#F8FCF9] border-b border-[#D9E8DD] text-gray-700 font-bold uppercase text-[10px] tracking-wider">
+              <tr className="bg-primary-surface border-b border-border text-gray-700 font-bold uppercase text-[10px] tracking-wider">
                 <th className="py-3.5 px-4"># / Official</th>
                 <th className="py-3.5 px-4">Designation & Role</th>
                 <th className="py-3.5 px-4">Ward Demarcation</th>
@@ -198,7 +198,7 @@ export function CouncilTable() {
                     <tr
                       key={member.id}
                       onClick={() => router.push(`/admin/council/${member.id}`)}
-                      className="hover:bg-[#E8F5E9]/40 transition-colors cursor-pointer group"
+                      className="hover:bg-primary-light/40 transition-colors cursor-pointer group"
                     >
                       {/* Photo + Name */}
                       <td className="py-3.5 px-4 whitespace-nowrap">
@@ -206,7 +206,7 @@ export function CouncilTable() {
                           <span className="w-5 h-5 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center text-[10px] font-bold shrink-0">
                             {index + 1}
                           </span>
-                          <div className="relative w-10 h-10 rounded-full overflow-hidden bg-[#E8F5E9] border-2 border-[#D9E8DD] shrink-0 group-hover:border-[#2E8B57] transition-all">
+                          <div className="relative w-10 h-10 rounded-full overflow-hidden bg-primary-light border-2 border-border shrink-0 group-hover:border-primary transition-all">
                             {member.image ? (
                               // eslint-disable-next-line @next/next/no-img-element
                               <img
@@ -215,16 +215,16 @@ export function CouncilTable() {
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                               />
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center text-[#2E8B57] font-bold text-xs">
+                              <div className="w-full h-full flex items-center justify-center text-primary font-bold text-xs">
                                 {member.name.slice(0, 2).toUpperCase()}
                               </div>
                             )}
                           </div>
                           <div>
-                            <div className="font-bold text-[#1F2937] text-xs leading-tight group-hover:text-[#2E8B57] transition-colors">
+                            <div className="font-bold text-text-primary text-xs leading-tight group-hover:text-primary transition-colors">
                               {member.name}
                             </div>
-                            <div className="text-[11px] text-[#2E8B57] font-semibold mt-0.5">
+                            <div className="text-[11px] text-primary font-semibold mt-0.5">
                               {member.marathiName}
                             </div>
                           </div>
@@ -233,8 +233,8 @@ export function CouncilTable() {
 
                       {/* Designation */}
                       <td className="py-3.5 px-4 whitespace-nowrap">
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#E8F5E9] text-[#2E8B57] font-bold text-[11px] border border-emerald-200">
-                          <Award className="w-3 h-3 text-[#2E8B57]" />
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-light text-primary font-bold text-[11px] border border-emerald-200">
+                          <Award className="w-3 h-3 text-primary" />
                           <span>{member.designation}</span>
                         </span>
                       </td>
@@ -258,7 +258,7 @@ export function CouncilTable() {
                           onClick={(e) => handleToggleActive(member.id, e)}
                           className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${
                             isActive
-                              ? "bg-[#2E8B57] text-white hover:bg-[#246E45]"
+                              ? "bg-primary text-white hover:bg-primary-hover"
                               : "bg-gray-100 text-gray-400 hover:bg-gray-200"
                           }`}
                           title="Click to toggle member active status on public portal"
@@ -276,7 +276,7 @@ export function CouncilTable() {
                           <button
                             type="button"
                             onClick={() => setSelectedMember(member)}
-                            className="p-1.5 rounded-lg bg-white border border-gray-200 hover:border-[#2E8B57] hover:bg-[#E8F5E9] text-gray-600 hover:text-[#2E8B57] transition-colors"
+                            className="p-1.5 rounded-lg bg-white border border-gray-200 hover:border-primary hover:bg-primary-light text-gray-600 hover:text-primary transition-colors"
                             title="Quick View Details"
                           >
                             <Eye className="w-3.5 h-3.5" />
@@ -284,7 +284,7 @@ export function CouncilTable() {
 
                           <Link
                             href={`/admin/council/${member.id}`}
-                            className="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-[#2E8B57] hover:bg-[#E8F5E9] text-gray-700 hover:text-[#2E8B57] text-xs font-semibold flex items-center gap-1 transition-colors"
+                            className="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-primary hover:bg-primary-light text-gray-700 hover:text-primary text-xs font-semibold flex items-center gap-1 transition-colors"
                             title="Edit member profile"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
@@ -313,11 +313,11 @@ export function CouncilTable() {
       {/* Quick View Profile Modal */}
       {selectedMember && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-lg w-full border border-[#D9E8DD] shadow-2xl overflow-hidden animate-scale-up">
-            <div className="bg-[#E8F5E9] p-6 border-b border-[#D9E8DD] flex items-center justify-between">
+          <div className="bg-white rounded-3xl max-w-lg w-full border border-border shadow-2xl overflow-hidden animate-scale-up">
+            <div className="bg-primary-light p-6 border-b border-border flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Landmark className="w-5 h-5 text-[#2E8B57]" />
-                <h3 className="font-bold text-sm text-[#1F2937]">Council Member Profile Card</h3>
+                <Landmark className="w-5 h-5 text-primary" />
+                <h3 className="font-bold text-sm text-text-primary">Council Member Profile Card</h3>
               </div>
               <button
                 type="button"
@@ -331,7 +331,7 @@ export function CouncilTable() {
             <div className="p-6 space-y-6">
               {/* Member Card */}
               <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start text-center sm:text-left">
-                <div className="relative w-28 h-36 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-[#E8F5E9]">
+                <div className="relative w-28 h-36 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-primary-light">
                   {selectedMember.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -340,22 +340,22 @@ export function CouncilTable() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold text-xl">
+                    <div className="w-full h-full bg-primary-light text-primary flex items-center justify-center font-bold text-xl">
                       {selectedMember.name.slice(0, 2).toUpperCase()}
                     </div>
                   )}
                 </div>
 
                 <div className="space-y-2 flex-1">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-[#E8F5E9] text-[#2E8B57] px-2.5 py-1 rounded-full inline-block">
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-primary-light text-primary px-2.5 py-1 rounded-full inline-block">
                     {selectedMember.designation}
                   </span>
-                  <h4 className="text-lg font-bold text-[#1F2937]">{selectedMember.name}</h4>
-                  <p className="text-xs text-[#2E8B57] font-semibold">{selectedMember.marathiName}</p>
+                  <h4 className="text-lg font-bold text-text-primary">{selectedMember.name}</h4>
+                  <p className="text-xs text-primary font-semibold">{selectedMember.marathiName}</p>
                   
                   {selectedMember.ward && (
                     <p className="text-xs text-gray-600 flex items-center justify-center sm:justify-start gap-1">
-                      <MapPin className="w-3 h-3 text-[#2E8B57]" />
+                      <MapPin className="w-3 h-3 text-primary" />
                       <span>{selectedMember.ward}</span>
                     </p>
                   )}
@@ -371,7 +371,7 @@ export function CouncilTable() {
 
               {/* Message / Bio Quote */}
               {selectedMember.message && (
-                <div className="p-3.5 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] text-xs text-gray-700 italic">
+                <div className="p-3.5 rounded-2xl bg-primary-surface border border-border text-xs text-gray-700 italic">
                   &ldquo;{selectedMember.message}&rdquo;
                 </div>
               )}
@@ -415,7 +415,7 @@ export function CouncilTable() {
                 </button>
                 <Link
                   href={`/admin/council/${selectedMember.id}`}
-                  className="px-4 py-2 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5"
                 >
                   <Edit2 className="w-3.5 h-3.5" />
                   <span>Edit Full Profile</span>

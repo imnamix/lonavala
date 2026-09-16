@@ -168,10 +168,10 @@ function IconSelectDropdown({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-[#2E8B57] focus:outline-hidden transition-colors cursor-pointer"
+        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-primary focus:outline-hidden transition-colors cursor-pointer"
       >
         <span className="flex items-center gap-2 truncate">
-          <SelectedIcon className="w-4 h-4 text-[#2E8B57] shrink-0" />
+          <SelectedIcon className="w-4 h-4 text-primary shrink-0" />
           <span className="font-semibold text-gray-800 truncate">{selectedObj.name}</span>
         </span>
         <ChevronDown className="w-3.5 h-3.5 text-gray-400 shrink-0 ml-1" />
@@ -195,7 +195,7 @@ function IconSelectDropdown({
                   }}
                   className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
-                      ? "bg-[#E8F5E9] text-[#2E8B57] font-bold"
+                      ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
@@ -203,7 +203,7 @@ function IconSelectDropdown({
                     <IconComp className="w-4 h-4 shrink-0" />
                     <span>{item.name}</span>
                   </span>
-                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-[#2E8B57]" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-primary" />}
                 </button>
               );
             })}
@@ -232,7 +232,7 @@ function ColorSelectDropdown({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-[#2E8B57] focus:outline-hidden transition-colors cursor-pointer"
+        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-primary focus:outline-hidden transition-colors cursor-pointer"
       >
         <span className="flex items-center gap-2 truncate">
           <span className={`w-3.5 h-3.5 rounded-full ${selectedObj.dot} shrink-0`} />
@@ -258,7 +258,7 @@ function ColorSelectDropdown({
                   }}
                   className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
-                      ? "bg-[#E8F5E9] text-[#2E8B57] font-bold"
+                      ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
@@ -266,7 +266,7 @@ function ColorSelectDropdown({
                     <span className={`w-3.5 h-3.5 rounded-full ${item.dot} shrink-0`} />
                     <span>{item.label}</span>
                   </span>
-                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-[#2E8B57]" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-primary" />}
                 </button>
               );
             })}
@@ -300,10 +300,10 @@ function AlignmentDropdown({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl text-xs font-bold text-gray-800 flex items-center justify-between hover:border-[#2E8B57] focus:outline-hidden transition-colors cursor-pointer"
+        className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl text-xs font-bold text-gray-800 flex items-center justify-between hover:border-primary focus:outline-hidden transition-colors cursor-pointer"
       >
         <span className="flex items-center gap-2">
-          <SelectedIcon className="w-4 h-4 text-[#2E8B57] shrink-0" />
+          <SelectedIcon className="w-4 h-4 text-primary shrink-0" />
           <span>{selected.label}</span>
         </span>
         <ChevronDown className="w-3.5 h-3.5 text-gray-400 shrink-0 ml-1" />
@@ -326,15 +326,15 @@ function AlignmentDropdown({
                   }}
                   className={`w-full px-3 py-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
-                      ? "bg-[#E8F5E9] text-[#2E8B57] font-bold"
+                      ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
                   <span className="flex items-center gap-2.5">
-                    <IconComp className="w-4 h-4 shrink-0 text-[#2E8B57]" />
+                    <IconComp className="w-4 h-4 shrink-0 text-primary" />
                     <span className="font-semibold">{opt.label}</span>
                   </span>
-                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-[#2E8B57]" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-primary" />}
                 </button>
               );
             })}
@@ -597,15 +597,15 @@ export function HomepageContentEditor() {
   return (
     <form onSubmit={handleSave} className="space-y-8">
       {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-[#D9E8DD] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-border shadow-xs">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-lg bg-[#E8F5E9] text-[#2E8B57] font-bold text-xs">
+            <span className="px-2.5 py-1 rounded-lg bg-primary-light text-primary font-bold text-xs">
               Live Section Editor
             </span>
             <span className="text-xs text-gray-500">• Route: / (Homepage)</span>
           </div>
-          <h2 className="text-xl font-extrabold text-[#1F2937] mt-1">
+          <h2 className="text-xl font-extrabold text-text-primary mt-1">
             Homepage Content & Hero Carousel
           </h2>
           <p className="text-xs text-gray-500">
@@ -624,7 +624,7 @@ export function HomepageContentEditor() {
           </Link>
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Publish Changes</span>
@@ -634,20 +634,20 @@ export function HomepageContentEditor() {
 
       {saved && (
         <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 flex items-center gap-3 text-xs font-bold animate-in fade-in duration-300">
-          <CheckCircle2 className="w-5 h-5 text-[#2E8B57] shrink-0" />
+          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
           <span>Homepage hero content saved and published successfully!</span>
         </div>
       )}
 
       {/* SECTION 1: HERO MULTI-SLIDE CAROUSEL */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
               1
             </div>
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">Hero Carousel Slides</h3>
+              <h3 className="font-bold text-base text-text-primary">Hero Carousel Slides</h3>
               <p className="text-xs text-gray-500">
                 Manage hero slides ({slides.length} slides configured). Click on any slide card to edit its content.
               </p>
@@ -657,7 +657,7 @@ export function HomepageContentEditor() {
           <button
             type="button"
             onClick={handleAddSlide}
-            className="px-4 py-2.5 rounded-xl bg-[#2E8B57] text-white hover:bg-[#246E45] font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer shrink-0 shadow-xs"
+            className="px-4 py-2.5 rounded-xl bg-primary text-white hover:bg-primary-hover font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer shrink-0 shadow-xs"
           >
             <Plus className="w-4 h-4" />
             <span>Add New Slide</span>
@@ -675,22 +675,22 @@ export function HomepageContentEditor() {
                 onClick={() => setActiveSlideIndex(index)}
                 className={`p-2.5 rounded-xl text-left border transition-all relative flex items-center justify-between gap-2 cursor-pointer ${
                   isCurrent
-                    ? "bg-[#E8F5E9] border-[#2E8B57] ring-1 ring-[#2E8B57] shadow-xs"
-                    : "bg-[#F8FCF9] border-[#D9E8DD] hover:bg-white hover:border-emerald-300"
+                    ? "bg-primary-light border-primary ring-1 ring-primary shadow-xs"
+                    : "bg-primary-surface border-border hover:bg-white hover:border-emerald-300"
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <span
                     className={`w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-black shrink-0 ${
                       isCurrent
-                        ? "bg-[#2E8B57] text-white"
+                        ? "bg-primary text-white"
                         : "bg-white border border-gray-300 text-gray-700"
                     }`}
                   >
                     {index + 1}
                   </span>
                   <div className="min-w-0">
-                    <div className="font-bold text-[11px] text-[#1F2937] truncate">
+                    <div className="font-bold text-[11px] text-text-primary truncate">
                       {slide.slideTitle || `Slide ${index + 1}`}
                     </div>
                     <div className="text-[9px] text-gray-500 font-medium capitalize flex items-center gap-1">
@@ -708,7 +708,7 @@ export function HomepageContentEditor() {
                   className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md shrink-0 ${
                     slide.active
                       ? isCurrent
-                        ? "bg-[#2E8B57] text-white"
+                        ? "bg-primary text-white"
                         : "bg-emerald-50 text-emerald-700 border border-emerald-200"
                       : "bg-gray-100 text-gray-400 border border-gray-200"
                   }`}
@@ -722,18 +722,18 @@ export function HomepageContentEditor() {
 
         {/* Active Slide Form Editor */}
         {currentSlide && (
-          <div className="p-6 sm:p-7 rounded-3xl bg-[#F8FCF9] border-2 border-[#D9E8DD] space-y-6 text-xs">
+          <div className="p-6 sm:p-7 rounded-3xl bg-primary-surface border-2 border-border space-y-6 text-xs">
             {/* Slide Header Toolbar */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex-1 space-y-1">
-                <div className="text-[11px] font-bold text-[#2E8B57] uppercase tracking-wider">
+                <div className="text-[11px] font-bold text-primary uppercase tracking-wider">
                   Active Slide Editor
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="font-black text-base text-[#1F2937]">
+                  <span className="font-black text-base text-text-primary">
                     Editing Slide #{activeSlideIndex + 1}:
                   </span>
-                  <span className="font-extrabold text-base text-[#2E8B57]">
+                  <span className="font-extrabold text-base text-primary">
                     {currentSlide.slideTitle}
                   </span>
                 </div>
@@ -746,7 +746,7 @@ export function HomepageContentEditor() {
                     type="checkbox"
                     checked={currentSlide.active}
                     onChange={(e) => handleSlideUpdate("active", e.target.checked)}
-                    className="w-4 h-4 rounded text-[#2E8B57] focus:ring-[#2E8B57]"
+                    className="w-4 h-4 rounded text-primary focus:ring-primary"
                   />
                 </label>
 
@@ -775,7 +775,7 @@ export function HomepageContentEditor() {
                   value={currentSlide.slideTitle}
                   onChange={(e) => handleSlideUpdate("slideTitle", e.target.value)}
                   placeholder="e.g. Main Welcome & Eco-Governance"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold text-sm text-[#1F2937] focus:border-[#2E8B57] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold text-sm text-text-primary focus:border-primary focus:outline-hidden"
                 />
               </div>
 
@@ -800,7 +800,7 @@ export function HomepageContentEditor() {
                   type="text"
                   value={currentSlide.badge}
                   onChange={(e) => handleSlideUpdate("badge", e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
                 />
               </div>
               <div>
@@ -811,7 +811,7 @@ export function HomepageContentEditor() {
                   type="text"
                   value={currentSlide.badgeMr}
                   onChange={(e) => handleSlideUpdate("badgeMr", e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
                 />
               </div>
             </div>
@@ -827,7 +827,7 @@ export function HomepageContentEditor() {
                   value={currentSlide.headline}
                   onChange={(e) => handleSlideUpdate("headline", e.target.value)}
                   placeholder="Welcome to Lonavala Municipal Council"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold text-sm text-[#1F2937] focus:border-[#2E8B57] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold text-sm text-text-primary focus:border-primary focus:outline-hidden"
                 />
               </div>
               <div>
@@ -839,7 +839,7 @@ export function HomepageContentEditor() {
                   value={currentSlide.headlineMr}
                   onChange={(e) => handleSlideUpdate("headlineMr", e.target.value)}
                   placeholder="लोणावळा नगरपरिषद आपले सहर्ष स्वागत करत आहे"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold text-sm text-[#1F2937] focus:border-[#2E8B57] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold text-sm text-text-primary focus:border-primary focus:outline-hidden"
                 />
               </div>
             </div>
@@ -854,7 +854,7 @@ export function HomepageContentEditor() {
                   rows={3}
                   value={currentSlide.tagline}
                   onChange={(e) => handleSlideUpdate("tagline", e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
                 />
               </div>
               <div>
@@ -865,7 +865,7 @@ export function HomepageContentEditor() {
                   rows={3}
                   value={currentSlide.taglineMr}
                   onChange={(e) => handleSlideUpdate("taglineMr", e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
                 />
               </div>
             </div>
@@ -874,7 +874,7 @@ export function HomepageContentEditor() {
             <div className="p-5 rounded-2xl bg-white border border-gray-200 space-y-3">
               <div className="flex items-center justify-between">
                 <label className="font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2">
-                  <Video className="w-4 h-4 text-[#2E8B57]" />
+                  <Video className="w-4 h-4 text-primary" />
                   <span>
                     Slide #{activeSlideIndex + 1} Background Media (Video / Image Upload)
                   </span>
@@ -896,18 +896,18 @@ export function HomepageContentEditor() {
                 <button
                   type="button"
                   onClick={() => slideFileInputRef.current?.click()}
-                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border-2 border-dashed border-[#2E8B57] text-[#2E8B57] hover:bg-[#E8F5E9] font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border-2 border-dashed border-primary text-primary hover:bg-primary-light font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <Upload className="w-4 h-4" />
                   <span>Upload Media for Slide {activeSlideIndex + 1}</span>
                 </button>
 
-                <div className="flex-1 w-full bg-[#F8FCF9] px-3.5 py-2 rounded-xl border border-gray-200 flex items-center justify-between">
+                <div className="flex-1 w-full bg-primary-surface px-3.5 py-2 rounded-xl border border-gray-200 flex items-center justify-between">
                   <div className="flex items-center gap-2 overflow-hidden">
                     {currentSlide.mediaType === "image" ? (
-                      <FileImage className="w-4 h-4 text-[#2E8B57] shrink-0" />
+                      <FileImage className="w-4 h-4 text-primary shrink-0" />
                     ) : (
-                      <FileVideo className="w-4 h-4 text-[#2E8B57] shrink-0" />
+                      <FileVideo className="w-4 h-4 text-primary shrink-0" />
                     )}
                     <span className="font-mono text-gray-700 truncate text-[11px]">
                       {currentSlide.mediaFileName || currentSlide.mediaUrl}
@@ -923,11 +923,11 @@ export function HomepageContentEditor() {
         )}
 
         {/* Action Buttons Section */}
-        <div className="p-5 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-4">
+        <div className="p-5 rounded-2xl bg-primary-surface border border-border space-y-4">
           <div className="flex items-center justify-between border-b border-gray-200/60 pb-3">
             <div className="flex items-center gap-2">
-              <Sliders className="w-4 h-4 text-[#2E8B57]" />
-              <span className="font-bold text-sm text-[#1F2937]">Hero Action Buttons</span>
+              <Sliders className="w-4 h-4 text-primary" />
+              <span className="font-bold text-sm text-text-primary">Hero Action Buttons</span>
               <span className="text-[11px] text-gray-500">({buttons.length} configured)</span>
             </div>
 
@@ -940,7 +940,7 @@ export function HomepageContentEditor() {
                 onChange={(e) =>
                   setGlobalSettings({ ...globalSettings, showButtons: e.target.checked })
                 }
-                className="w-4 h-4 rounded text-[#2E8B57] focus:ring-[#2E8B57]"
+                className="w-4 h-4 rounded text-primary focus:ring-primary"
               />
             </label>
           </div>
@@ -959,10 +959,10 @@ export function HomepageContentEditor() {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#E8F5E9] text-[#2E8B57] text-[10px] font-bold flex items-center justify-center">
+                        <span className="w-5 h-5 rounded-full bg-primary-light text-primary text-[10px] font-bold flex items-center justify-center">
                           {index + 1}
                         </span>
-                        <span className="font-bold text-xs text-[#1F2937]">
+                        <span className="font-bold text-xs text-text-primary">
                           Button: {btn.name || "Untitled"}
                         </span>
                       </div>
@@ -974,7 +974,7 @@ export function HomepageContentEditor() {
                             type="checkbox"
                             checked={btn.active}
                             onChange={(e) => handleUpdateButton(btn.id, "active", e.target.checked)}
-                            className="rounded text-[#2E8B57] focus:ring-[#2E8B57]"
+                            className="rounded text-primary focus:ring-primary"
                           />
                         </label>
 
@@ -1000,7 +1000,7 @@ export function HomepageContentEditor() {
                           value={btn.name}
                           onChange={(e) => handleUpdateButton(btn.id, "name", e.target.value)}
                           placeholder="e.g. Report Grievance"
-                          className="w-full px-3 py-2 bg-[#F8FCF9] border border-gray-200 rounded-xl text-xs font-semibold focus:border-[#2E8B57] focus:outline-hidden"
+                          className="w-full px-3 py-2 bg-primary-surface border border-gray-200 rounded-xl text-xs font-semibold focus:border-primary focus:outline-hidden"
                         />
                       </div>
 
@@ -1014,7 +1014,7 @@ export function HomepageContentEditor() {
                           value={btn.url}
                           onChange={(e) => handleUpdateButton(btn.id, "url", e.target.value)}
                           placeholder="/services"
-                          className="w-full px-3 py-2 bg-[#F8FCF9] border border-gray-200 rounded-xl text-xs font-mono focus:border-[#2E8B57] focus:outline-hidden"
+                          className="w-full px-3 py-2 bg-primary-surface border border-gray-200 rounded-xl text-xs font-mono focus:border-primary focus:outline-hidden"
                         />
                       </div>
 
@@ -1062,7 +1062,7 @@ export function HomepageContentEditor() {
               <button
                 type="button"
                 onClick={handleAddButton}
-                className="w-full py-2.5 rounded-xl border-2 border-dashed border-[#2E8B57] text-[#2E8B57] hover:bg-[#E8F5E9] font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="w-full py-2.5 rounded-xl border-2 border-dashed border-primary text-primary hover:bg-primary-light font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add More Buttons</span>
@@ -1076,11 +1076,11 @@ export function HomepageContentEditor() {
         </div>
 
         {/* Hero Tags / Feature Highlights Section */}
-        <div className="p-5 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-4">
+        <div className="p-5 rounded-2xl bg-primary-surface border border-border space-y-4">
           <div className="flex items-center justify-between border-b border-gray-200/60 pb-3">
             <div className="flex items-center gap-2">
-              <TagIcon className="w-4 h-4 text-[#2E8B57]" />
-              <span className="font-bold text-sm text-[#1F2937]">Hero Tags / Feature Highlights</span>
+              <TagIcon className="w-4 h-4 text-primary" />
+              <span className="font-bold text-sm text-text-primary">Hero Tags / Feature Highlights</span>
               <span className="text-[11px] text-gray-500">({tags.length} tags)</span>
             </div>
 
@@ -1093,7 +1093,7 @@ export function HomepageContentEditor() {
                 onChange={(e) =>
                   setGlobalSettings({ ...globalSettings, showTags: e.target.checked })
                 }
-                className="w-4 h-4 rounded text-[#2E8B57] focus:ring-[#2E8B57]"
+                className="w-4 h-4 rounded text-primary focus:ring-primary"
               />
             </label>
           </div>
@@ -1111,10 +1111,10 @@ export function HomepageContentEditor() {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#E8F5E9] text-[#2E8B57] text-[10px] font-bold flex items-center justify-center">
+                        <span className="w-5 h-5 rounded-full bg-primary-light text-primary text-[10px] font-bold flex items-center justify-center">
                           {index + 1}
                         </span>
-                        <span className="font-bold text-xs text-[#1F2937]">
+                        <span className="font-bold text-xs text-text-primary">
                           Tag: {tag.name || "Untitled Tag"}
                         </span>
                       </div>
@@ -1126,7 +1126,7 @@ export function HomepageContentEditor() {
                             type="checkbox"
                             checked={tag.active}
                             onChange={(e) => handleUpdateTag(tag.id, "active", e.target.checked)}
-                            className="rounded text-[#2E8B57] focus:ring-[#2E8B57]"
+                            className="rounded text-primary focus:ring-primary"
                           />
                         </label>
 
@@ -1152,7 +1152,7 @@ export function HomepageContentEditor() {
                           value={tag.name}
                           onChange={(e) => handleUpdateTag(tag.id, "name", e.target.value)}
                           placeholder="e.g. Eco-Tourism Hill Station"
-                          className="w-full px-3 py-2 bg-[#F8FCF9] border border-gray-200 rounded-xl text-xs font-semibold focus:border-[#2E8B57] focus:outline-hidden"
+                          className="w-full px-3 py-2 bg-primary-surface border border-gray-200 rounded-xl text-xs font-semibold focus:border-primary focus:outline-hidden"
                         />
                       </div>
 
@@ -1171,7 +1171,7 @@ export function HomepageContentEditor() {
                     {/* Live Tag Preview Chip */}
                     <div className="pt-1 flex items-center gap-2">
                       <span className="text-[10px] font-bold text-gray-400 uppercase">Live Preview:</span>
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#E8F5E9] text-[#2E8B57] border border-[#D9E8DD]">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary-light text-primary border border-border">
                         <TagIconComp className="w-3.5 h-3.5" />
                         <span>{tag.name || "Tag Text"}</span>
                       </div>
@@ -1184,7 +1184,7 @@ export function HomepageContentEditor() {
               <button
                 type="button"
                 onClick={handleAddTag}
-                className="w-full py-2.5 rounded-xl border-2 border-dashed border-[#2E8B57] text-[#2E8B57] hover:bg-[#E8F5E9] font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="w-full py-2.5 rounded-xl border-2 border-dashed border-primary text-primary hover:bg-primary-light font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add More Tags</span>
@@ -1206,7 +1206,7 @@ export function HomepageContentEditor() {
               <Bell className="w-5 h-5 text-amber-700" />
             </div>
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">
+              <h3 className="font-bold text-base text-text-primary">
                 Live Emergency Announcement Ticker & Public Alert
               </h3>
               <p className="text-xs text-gray-500">
@@ -1244,14 +1244,14 @@ export function HomepageContentEditor() {
                 setGlobalSettings({ ...globalSettings, emergencyTicker: e.target.value })
               }
               placeholder="e.g. 24x7 Control Room: 1800-233-0101 | Monsoon Advisory Active"
-              className="w-full px-4 py-3 bg-[#FFFDF5] border border-amber-300 rounded-xl text-xs font-semibold text-gray-800 focus:border-amber-500 focus:outline-hidden"
+              className="w-full px-4 py-3 bg-accent-gold-surface border border-amber-300 rounded-xl text-xs font-semibold text-gray-800 focus:border-amber-500 focus:outline-hidden"
             />
           </div>
         </div>
       </div>
 
       {/* Sticky Bottom Save Bar */}
-      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-[#D9E8DD] shadow-lg flex items-center justify-between">
+      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-border shadow-lg flex items-center justify-between">
         <div className="text-xs text-gray-500">
           Last updated: <span className="font-semibold text-gray-800">Just now</span>
         </div>
@@ -1265,7 +1265,7 @@ export function HomepageContentEditor() {
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save & Publish Homepage</span>

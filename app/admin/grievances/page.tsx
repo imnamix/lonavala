@@ -121,26 +121,26 @@ export default function AdminGrievancesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#1F2937]">Grievance Redressal Desk</h1>
+          <h1 className="text-2xl font-extrabold text-text-primary">Grievance Redressal Desk</h1>
           <p className="text-xs text-gray-500 mt-0.5">
             Assign officers, update field status, add technical remarks, and close complaints.
           </p>
         </div>
 
         <div className="text-xs font-semibold text-gray-500">
-          Showing <strong className="text-[#2E8B57]">{filteredGrievances.length}</strong> Complaints
+          Showing <strong className="text-primary">{filteredGrievances.length}</strong> Complaints
         </div>
       </div>
 
       {/* Filters Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-[#D9E8DD] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="bg-white p-4 rounded-2xl border border-border shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="w-full sm:max-w-md relative">
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by ID, Citizen, Category, Dept..."
-            className="w-full pl-9 pr-3.5 py-2 text-xs bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+            className="w-full pl-9 pr-3.5 py-2 text-xs bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
           />
           <Search className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
         </div>
@@ -150,7 +150,7 @@ export default function AdminGrievancesPage() {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-3 py-2 text-xs bg-white border border-[#D9E8DD] rounded-xl font-semibold text-gray-700 focus:outline-hidden"
+            className="px-3 py-2 text-xs bg-white border border-border rounded-xl font-semibold text-gray-700 focus:outline-hidden"
           >
             <option value="All">All Statuses</option>
             {STATUS_LIST.map((s) => (
@@ -163,11 +163,11 @@ export default function AdminGrievancesPage() {
       </div>
 
       {/* Grievance Table */}
-      <div className="bg-white rounded-2xl border border-[#D9E8DD] overflow-hidden shadow-xs">
+      <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#F8FCF9] border-b border-[#D9E8DD] text-[11px] font-bold text-gray-600 uppercase tracking-wider">
+              <tr className="bg-primary-surface border-b border-border text-[11px] font-bold text-gray-600 uppercase tracking-wider">
                 <th className="py-4 px-6">ID & Ref</th>
                 <th className="py-4 px-6">Citizen</th>
                 <th className="py-4 px-6">Category & Title</th>
@@ -182,17 +182,17 @@ export default function AdminGrievancesPage() {
                 <tr
                   key={g.id}
                   onClick={() => handleOpenDrawer(g)}
-                  className="hover:bg-[#E8F5E9]/40 cursor-pointer transition-colors"
+                  className="hover:bg-primary-light/40 cursor-pointer transition-colors"
                 >
-                  <td className="py-4 px-6 font-mono font-bold text-[#2E8B57] whitespace-nowrap">
+                  <td className="py-4 px-6 font-mono font-bold text-primary whitespace-nowrap">
                     {g.refNumber}
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap">
-                    <div className="font-bold text-[#1F2937]">{g.citizenName}</div>
+                    <div className="font-bold text-text-primary">{g.citizenName}</div>
                     <div className="text-[10px] text-gray-400">{g.citizenMobile}</div>
                   </td>
                   <td className="py-4 px-6 max-w-xs">
-                    <div className="text-[10px] font-bold text-[#2E8B57] uppercase tracking-wider">
+                    <div className="text-[10px] font-bold text-primary uppercase tracking-wider">
                       {g.category}
                     </div>
                     <div className="font-semibold text-gray-900 truncate">{g.title}</div>
@@ -221,7 +221,7 @@ export default function AdminGrievancesPage() {
                   <td className="py-4 px-6 text-center whitespace-nowrap">
                     <button
                       type="button"
-                      className="px-3 py-1.5 rounded-lg bg-[#E8F5E9] text-[#2E8B57] hover:bg-[#2E8B57] hover:text-white font-bold text-xs transition-colors"
+                      className="px-3 py-1.5 rounded-lg bg-primary-light text-primary hover:bg-primary hover:text-white font-bold text-xs transition-colors"
                     >
                       Inspect / Edit
                     </button>
@@ -243,13 +243,13 @@ export default function AdminGrievancesPage() {
           />
 
           {/* Drawer Panel */}
-          <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-white shadow-2xl border-l border-[#D9E8DD] flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-200">
+          <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-white shadow-2xl border-l border-border flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-200">
             <div>
               {/* Drawer Header */}
-              <div className="p-5 border-b border-[#D9E8DD] flex items-center justify-between bg-[#F8FCF9]">
+              <div className="p-5 border-b border-border flex items-center justify-between bg-primary-surface">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-sm font-extrabold text-[#2E8B57]">
+                    <span className="font-mono text-sm font-extrabold text-primary">
                       {selectedGrievance.refNumber}
                     </span>
                     <span
@@ -260,7 +260,7 @@ export default function AdminGrievancesPage() {
                       {selectedGrievance.status}
                     </span>
                   </div>
-                  <h3 className="font-bold text-base text-[#1F2937] mt-1 leading-snug">
+                  <h3 className="font-bold text-base text-text-primary mt-1 leading-snug">
                     {selectedGrievance.title}
                   </h3>
                 </div>
@@ -276,13 +276,13 @@ export default function AdminGrievancesPage() {
               <div className="p-6 space-y-6 text-xs text-gray-700">
                 {resolutionSuccess && (
                   <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-300 text-emerald-800 font-bold flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#2E8B57]" />
+                    <CheckCircle2 className="w-4 h-4 text-primary" />
                     <span>Grievance updated successfully! Changes saved to live tracker.</span>
                   </div>
                 )}
 
                 {/* Citizen Details */}
-                <div className="bg-[#F8FCF9] p-4 rounded-xl border border-[#D9E8DD] space-y-2">
+                <div className="bg-primary-surface p-4 rounded-xl border border-border space-y-2">
                   <div className="font-bold uppercase tracking-wider text-gray-500 text-[10px]">
                     Citizen Information
                   </div>
@@ -332,7 +332,7 @@ export default function AdminGrievancesPage() {
 
                 {/* Action Form */}
                 <form onSubmit={handleUpdateStatus} className="space-y-4 pt-4 border-t border-gray-100">
-                  <h4 className="font-bold text-sm text-[#1F2937] uppercase tracking-wider">
+                  <h4 className="font-bold text-sm text-text-primary uppercase tracking-wider">
                     Administrative Actions
                   </h4>
 
@@ -344,7 +344,7 @@ export default function AdminGrievancesPage() {
                     <select
                       value={assignedOfficer}
                       onChange={(e) => setAssignedOfficer(e.target.value)}
-                      className="w-full px-3 py-2 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                      className="w-full px-3 py-2 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                     >
                       {OFFICERS.map((off) => (
                         <option key={off} value={off}>
@@ -362,7 +362,7 @@ export default function AdminGrievancesPage() {
                     <select
                       value={newStatus}
                       onChange={(e) => setNewStatus(e.target.value as GrievanceStatus)}
-                      className="w-full px-3 py-2 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                      className="w-full px-3 py-2 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                     >
                       {STATUS_LIST.map((s) => (
                         <option key={s} value={s}>
@@ -382,7 +382,7 @@ export default function AdminGrievancesPage() {
                       value={newRemarks}
                       onChange={(e) => setNewRemarks(e.target.value)}
                       placeholder="e.g. Excavation complete. 100mm joint replaced. Illumination restored..."
-                      className="w-full px-3 py-2 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                      className="w-full px-3 py-2 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                     />
                   </div>
 
@@ -390,7 +390,7 @@ export default function AdminGrievancesPage() {
                   <div className="flex gap-2 pt-2">
                     <button
                       type="submit"
-                      className="flex-1 py-2.5 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold rounded-xl transition-colors shadow-xs"
+                      className="flex-1 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-colors shadow-xs"
                     >
                       Save Status & Remarks
                     </button>

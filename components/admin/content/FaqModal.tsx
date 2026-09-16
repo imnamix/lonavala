@@ -146,7 +146,7 @@ export function FaqModal({
               className={`w-full px-4 py-3 rounded-2xl text-xs sm:text-sm bg-gray-50 border transition-all focus:bg-white focus:outline-hidden ${
                 errors.question
                   ? "border-rose-400 ring-2 ring-rose-100 bg-rose-50/20"
-                  : "border-gray-200 focus:border-[#2E8B57] focus:ring-2 focus:ring-emerald-100"
+                  : "border-gray-200 focus:border-primary focus:ring-2 focus:ring-emerald-100"
               }`}
             />
             {errors.question && (
@@ -176,7 +176,7 @@ export function FaqModal({
               className={`w-full px-4 py-3 rounded-2xl text-xs sm:text-sm bg-gray-50 border transition-all focus:bg-white focus:outline-hidden resize-y ${
                 errors.answer
                   ? "border-rose-400 ring-2 ring-rose-100 bg-rose-50/20"
-                  : "border-gray-200 focus:border-[#2E8B57] focus:ring-2 focus:ring-emerald-100"
+                  : "border-gray-200 focus:border-primary focus:ring-2 focus:ring-emerald-100"
               }`}
             />
             {errors.answer && (
@@ -201,7 +201,7 @@ export function FaqModal({
               type="button"
               onClick={() => setActive(!active)}
               className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
-                active ? "bg-[#2E8B57]" : "bg-gray-300"
+                active ? "bg-primary" : "bg-gray-300"
               }`}
             >
               <span
@@ -225,7 +225,7 @@ export function FaqModal({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2.5 rounded-2xl bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold flex items-center gap-2 shadow-xs hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
+              className="px-5 py-2.5 rounded-2xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-2 shadow-xs hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
               <span>{isEditing ? "Update FAQ" : "Save FAQ"}</span>

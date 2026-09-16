@@ -98,23 +98,23 @@ export function FaqTable() {
     <div className="space-y-6">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#1F2937] text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 border border-white/10 animate-in fade-in slide-in-from-bottom-3">
+        <div className="fixed bottom-6 right-6 z-50 bg-surface-dark text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 border border-white/10 animate-in fade-in slide-in-from-bottom-3">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Main Table Card */}
-      <div className="bg-white p-5 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-6">
+      <div className="bg-white p-5 sm:p-8 rounded-3xl border border-border shadow-xs space-y-6">
         {/* Card Header & Controls */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-5">
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold shadow-2xs">
+            <div className="w-11 h-11 rounded-2xl bg-primary-light text-primary flex items-center justify-center font-bold shadow-2xs">
               <HelpCircle className="w-6 h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-base text-[#1F2937]">
+                <h3 className="font-bold text-base text-text-primary">
                   Frequently Asked Questions (FAQ)
                 </h3>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">
@@ -136,7 +136,7 @@ export function FaqTable() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search questions & answers..."
-                className="pl-8 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs w-48 sm:w-64 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden transition-all"
+                className="pl-8 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs w-48 sm:w-64 focus:bg-white focus:border-primary focus:outline-hidden transition-all"
               />
             </div>
 
@@ -144,7 +144,7 @@ export function FaqTable() {
             <button
               type="button"
               onClick={handleOpenCreateModal}
-              className="px-4 py-2 rounded-xl bg-[#2E8B57] text-white hover:bg-[#246E45] font-bold text-xs flex items-center gap-1.5 transition-colors shrink-0 shadow-xs cursor-pointer hover:shadow-md"
+              className="px-4 py-2 rounded-xl bg-primary text-white hover:bg-primary-hover font-bold text-xs flex items-center gap-1.5 transition-colors shrink-0 shadow-xs cursor-pointer hover:shadow-md"
             >
               <Plus className="w-4 h-4" />
               <span>+ Add FAQ</span>
@@ -179,17 +179,17 @@ export function FaqTable() {
               <button
                 type="button"
                 onClick={handleOpenCreateModal}
-                className="px-3.5 py-1.5 rounded-xl bg-[#2E8B57] text-white text-xs font-bold hover:bg-[#246E45] cursor-pointer"
+                className="px-3.5 py-1.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-hover cursor-pointer"
               >
                 + Add FAQ
               </button>
             </div>
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-2xl border border-[#D9E8DD]">
+          <div className="overflow-x-auto rounded-2xl border border-border">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-[#F8FCF9] border-b border-[#D9E8DD] text-gray-700 font-bold uppercase text-[10px] tracking-wider">
+                <tr className="bg-primary-surface border-b border-border text-gray-700 font-bold uppercase text-[10px] tracking-wider">
                   <th className="py-3.5 px-4 w-12 text-center">#</th>
                   <th className="py-3.5 px-4 min-w-[280px]">Question</th>
                   <th className="py-3.5 px-4 min-w-[340px]">Answer</th>
@@ -206,7 +206,7 @@ export function FaqTable() {
                     <tr
                       key={faq.id}
                       onClick={() => handleOpenEditModal(faq)}
-                      className="hover:bg-[#E8F5E9]/50 transition-colors cursor-pointer group"
+                      className="hover:bg-primary-light/50 transition-colors cursor-pointer group"
                     >
                       {/* Index */}
                       <td className="py-3.5 px-4 text-center whitespace-nowrap">
@@ -217,7 +217,7 @@ export function FaqTable() {
 
                       {/* Question */}
                       <td className="py-3.5 px-4">
-                        <div className="font-bold text-[#1F2937] text-xs leading-relaxed group-hover:text-[#2E8B57] transition-colors">
+                        <div className="font-bold text-text-primary text-xs leading-relaxed group-hover:text-primary transition-colors">
                           {faq.question}
                         </div>
                       </td>
@@ -235,7 +235,7 @@ export function FaqTable() {
                                 e.stopPropagation();
                                 setExpandedFaqId(isExpanded ? null : faq.id);
                               }}
-                              className="text-[10px] font-bold text-[#2E8B57] hover:underline mt-0.5 inline-block cursor-pointer"
+                              className="text-[10px] font-bold text-primary hover:underline mt-0.5 inline-block cursor-pointer"
                             >
                               {isExpanded ? "Show Less" : "Show Full Answer..."}
                             </button>
@@ -250,7 +250,7 @@ export function FaqTable() {
                           onClick={(e) => handleToggleActive(faq.id, e)}
                           className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors shadow-2xs ${
                             isActive
-                              ? "bg-[#2E8B57] text-white hover:bg-[#246E45]"
+                              ? "bg-primary text-white hover:bg-primary-hover"
                               : "bg-gray-100 text-gray-400 hover:bg-gray-200"
                           }`}
                         >
@@ -267,7 +267,7 @@ export function FaqTable() {
                           <button
                             type="button"
                             onClick={() => handleOpenEditModal(faq)}
-                            className="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-[#2E8B57] hover:bg-[#E8F5E9] text-gray-700 hover:text-[#2E8B57] text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer shadow-2xs"
+                            className="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-primary hover:bg-primary-light text-gray-700 hover:text-primary text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer shadow-2xs"
                             title="Edit Question & Answer"
                           >
                             <Edit2 className="w-3.5 h-3.5" />

@@ -18,7 +18,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1E5638] via-[#2E8B57] to-[#1F2937] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary-dark via-primary to-surface-dark flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* Card */}
         <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl border border-emerald-300/30 space-y-6 animate-in zoom-in-95 duration-200">
@@ -34,7 +34,7 @@ export default function AdminLoginPage() {
                 priority
               />
             </div>
-            <h1 className="text-2xl font-extrabold text-[#1F2937]">LMC Administrative Portal</h1>
+            <h1 className="text-2xl font-extrabold text-text-primary">LMC Administrative Portal</h1>
             <p className="text-xs text-gray-500 font-medium">
               Official Management Console • लोणावळा नगरपरिषद
             </p>
@@ -48,7 +48,7 @@ export default function AdminLoginPage() {
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-gray-50 border border-[#D9E8DD] rounded-xl font-semibold text-gray-800 focus:outline-hidden focus:border-[#2E8B57]"
+                className="w-full px-3.5 py-2.5 bg-gray-50 border border-border rounded-xl font-semibold text-gray-800 focus:outline-hidden focus:border-primary"
               >
                 <option value="Super Admin">Super Administrator (Chief Officer Desk)</option>
                 <option value="Grievance Officer">Grievance Redressal Officer (GRO)</option>
@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-9 pr-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-medium text-gray-800 focus:outline-hidden focus:border-[#2E8B57]"
+                  className="w-full pl-9 pr-3.5 py-2.5 bg-white border border-border rounded-xl font-medium text-gray-800 focus:outline-hidden focus:border-primary"
                 />
               </div>
             </div>
@@ -88,19 +88,19 @@ export default function AdminLoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-medium text-gray-800 focus:outline-hidden focus:border-[#2E8B57]"
+                  className="w-full pl-9 pr-3.5 py-2.5 bg-white border border-border rounded-xl font-medium text-gray-800 focus:outline-hidden focus:border-primary"
                 />
               </div>
             </div>
 
             <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-800 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-[#2E8B57] shrink-0" />
+              <Shield className="w-4 h-4 text-primary shrink-0" />
               <span>Demo mode enabled: Click Sign In to access the admin dashboard.</span>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-md transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-md transition-colors flex items-center justify-center gap-2"
             >
               <span>Authenticate & Enter Console</span>
               <ArrowRight className="w-4 h-4" />
@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
           </form>
 
           <div className="pt-2 border-t border-gray-100 text-center">
-            <Link href="/" className="text-xs text-gray-500 hover:text-[#2E8B57] font-semibold">
+            <Link href="/" className="text-xs text-gray-500 hover:text-primary font-semibold">
               ← Return to Public Citizen Website
             </Link>
           </div>

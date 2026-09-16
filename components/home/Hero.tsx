@@ -46,7 +46,7 @@ export function Hero() {
       </div>
 
       {/* Subtle Micro Dot Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(var(--color-status-success)_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">

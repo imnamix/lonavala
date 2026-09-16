@@ -74,7 +74,7 @@ Water Purity Index: 99.2%`;
       {/* Header & Export Triggers */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#1F2937]">Civic Reports & Analytics</h1>
+          <h1 className="text-2xl font-extrabold text-text-primary">Civic Reports & Analytics</h1>
           <p className="text-xs text-gray-500 mt-0.5">
             Real-time business intelligence on municipal efficiency, ward resolution SLAs, and public service charters.
           </p>
@@ -108,7 +108,7 @@ Water Purity Index: 99.2%`;
 
       {downloadMsg && (
         <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-xs font-bold text-emerald-800 flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-[#2E8B57]" />
+          <CheckCircle2 className="w-4 h-4 text-primary" />
           <span>{downloadMsg}</span>
         </div>
       )}
@@ -116,9 +116,9 @@ Water Purity Index: 99.2%`;
       {/* Analytics Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Turnaround speed area chart */}
-        <div className="lg:col-span-6 bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="lg:col-span-6 bg-white p-6 rounded-2xl border border-border shadow-xs space-y-4">
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">Average Turnaround Time (Days)</h3>
+            <h3 className="font-bold text-base text-text-primary">Average Turnaround Time (Days)</h3>
             <p className="text-xs text-gray-500">Days taken to resolve citizen issues vs monthly complaint volume</p>
           </div>
 
@@ -133,9 +133,9 @@ Water Purity Index: 99.2%`;
                     name === "resolutionDays" ? "Avg Days" : "Complaints",
                   ]}
                   contentStyle={{
-                    backgroundColor: "#fff",
+                    backgroundColor: "var(--color-surface)",
                     borderRadius: "10px",
-                    border: "1px solid #D9E8DD",
+                    border: "1px solid var(--color-border)",
                     fontSize: "12px",
                   }}
                 />
@@ -143,8 +143,8 @@ Water Purity Index: 99.2%`;
                   type="monotone"
                   dataKey="resolutionDays"
                   name="Resolution Turnaround"
-                  stroke="#2E8B57"
-                  fill="#E8F5E9"
+                  stroke="var(--color-primary)"
+                  fill="var(--color-primary-light)"
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -152,9 +152,9 @@ Water Purity Index: 99.2%`;
         </div>
 
         {/* Ward-wise performance bar chart */}
-        <div className="lg:col-span-6 bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="lg:col-span-6 bg-white p-6 rounded-2xl border border-border shadow-xs space-y-4">
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">Ward Performance Breakdown</h3>
+            <h3 className="font-bold text-base text-text-primary">Ward Performance Breakdown</h3>
             <p className="text-xs text-gray-500">Resolved vs active pending tickets across 5 wards</p>
           </div>
 
@@ -165,15 +165,15 @@ Water Purity Index: 99.2%`;
                 <YAxis tick={{ fontSize: 11 }} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#fff",
+                    backgroundColor: "var(--color-surface)",
                     borderRadius: "10px",
-                    border: "1px solid #D9E8DD",
+                    border: "1px solid var(--color-border)",
                     fontSize: "12px",
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: "11px" }} />
-                <Bar dataKey="resolved" name="Resolved" fill="#2E8B57" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="pending" name="In Progress" fill="#F59E0B" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="resolved" name="Resolved" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="pending" name="In Progress" fill="var(--color-status-warning)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

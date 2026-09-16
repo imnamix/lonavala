@@ -28,13 +28,13 @@ export default function NoticesPage() {
   return (
     <div className="py-10">
       {/* Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-12">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
               Official Gazettes
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3">
               Notices, Circulars & Announcements
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
@@ -47,7 +47,7 @@ export default function NoticesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Search & Tabs */}
         <div className="space-y-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-[#D9E8DD] shadow-xs">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-border shadow-xs">
             <div className="w-full sm:max-w-md">
               <SearchBar
                 value={search}
@@ -56,7 +56,7 @@ export default function NoticesPage() {
               />
             </div>
             <div className="text-xs font-semibold text-gray-500 shrink-0">
-              Showing <strong className="text-[#2E8B57]">{filteredNotices.length}</strong> Records
+              Showing <strong className="text-primary">{filteredNotices.length}</strong> Records
             </div>
           </div>
 
@@ -67,8 +67,8 @@ export default function NoticesPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                   activeTab === tab
-                    ? "bg-[#2E8B57] text-white shadow-xs"
-                    : "bg-white border border-[#D9E8DD] text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                    ? "bg-primary text-white shadow-xs"
+                    : "bg-white border border-border text-gray-700 hover:bg-primary-light hover:text-primary"
                 }`}
               >
                 {tab}

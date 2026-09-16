@@ -70,10 +70,10 @@ function EmergencyIconDropdown({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-[#2E8B57] focus:outline-hidden transition-colors cursor-pointer"
+        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-primary focus:outline-hidden transition-colors cursor-pointer"
       >
         <span className="flex items-center gap-2 truncate">
-          <SelectedIcon className="w-4 h-4 text-[#2E8B57] shrink-0" />
+          <SelectedIcon className="w-4 h-4 text-primary shrink-0" />
           <span className="font-semibold text-gray-800 truncate">{selectedObj.name}</span>
         </span>
         <ChevronDown className="w-3.5 h-3.5 text-gray-400 shrink-0 ml-1" />
@@ -97,15 +97,15 @@ function EmergencyIconDropdown({
                   }}
                   className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
-                      ? "bg-[#E8F5E9] text-[#2E8B57] font-bold"
+                      ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
                   <span className="flex items-center gap-2 truncate">
-                    <IconComp className="w-4 h-4 shrink-0 text-[#2E8B57]" />
+                    <IconComp className="w-4 h-4 shrink-0 text-primary" />
                     <span>{item.name}</span>
                   </span>
-                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-[#2E8B57]" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-primary" />}
                 </button>
               );
             })}
@@ -210,15 +210,15 @@ export function ContactsContentEditor() {
   return (
     <form onSubmit={handleSave} className="space-y-8">
       {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-[#D9E8DD] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-border shadow-xs">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-lg bg-[#E8F5E9] text-[#2E8B57] font-bold text-xs">
+            <span className="px-2.5 py-1 rounded-lg bg-primary-light text-primary font-bold text-xs">
               Live Section Editor
             </span>
             <span className="text-xs text-gray-500">• Route: /contact (Contacts)</span>
           </div>
-          <h2 className="text-xl font-extrabold text-[#1F2937] mt-1">Contacts & Helpdesk Content</h2>
+          <h2 className="text-xl font-extrabold text-text-primary mt-1">Contacts & Helpdesk Content</h2>
           <p className="text-xs text-gray-500">
             Manage dynamic 24x7 emergency contacts, WhatsApp helpline, municipal headquarters address, EPABX phone lines, office timings, and Google Maps embed.
           </p>
@@ -235,7 +235,7 @@ export function ContactsContentEditor() {
           </Link>
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Publish Changes</span>
@@ -245,20 +245,20 @@ export function ContactsContentEditor() {
 
       {saved && (
         <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 flex items-center gap-3 text-xs font-bold animate-in fade-in duration-300">
-          <CheckCircle2 className="w-5 h-5 text-[#2E8B57] shrink-0" />
+          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
           <span>Contact details and emergency helplines saved successfully!</span>
         </div>
       )}
 
       {/* SECTION 1: Dynamic Emergency 24x7 Helplines & WhatsApp */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
               1
             </div>
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">24x7 Emergency Numbers & Helplines</h3>
+              <h3 className="font-bold text-base text-text-primary">24x7 Emergency Numbers & Helplines</h3>
               <p className="text-xs text-gray-500">
                 Configure WhatsApp helpline and dynamic emergency hotline numbers ({emergencyContacts.length} numbers active).
               </p>
@@ -268,7 +268,7 @@ export function ContactsContentEditor() {
           <button
             type="button"
             onClick={handleAddEmergencyContact}
-            className="px-4 py-2.5 rounded-xl bg-[#2E8B57] text-white hover:bg-[#246E45] font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer shrink-0 shadow-xs"
+            className="px-4 py-2.5 rounded-xl bg-primary text-white hover:bg-primary-hover font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer shrink-0 shadow-xs"
           >
             <Plus className="w-4 h-4" />
             <span>Add Emergency Contact</span>
@@ -276,9 +276,9 @@ export function ContactsContentEditor() {
         </div>
 
         {/* WhatsApp Dedicated Helpline Field */}
-        <div className="p-4 rounded-2xl bg-[#E8F5E9]/60 border border-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs">
+        <div className="p-4 rounded-2xl bg-primary-light/60 border border-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#2E8B57] text-white flex items-center justify-center shrink-0 shadow-xs">
+            <div className="w-9 h-9 rounded-xl bg-primary text-white flex items-center justify-center shrink-0 shadow-xs">
               <MessageCircle className="w-5 h-5" />
             </div>
             <div>
@@ -297,7 +297,7 @@ export function ContactsContentEditor() {
               value={whatsappHelpline}
               onChange={(e) => setWhatsappHelpline(e.target.value)}
               placeholder="e.g. +91 94235 88990"
-              className="w-full px-3.5 py-2.5 bg-white border border-[#2E8B57] rounded-xl font-bold font-mono text-[#2E8B57] text-xs focus:ring-2 focus:ring-[#2E8B57]/20 focus:outline-hidden"
+              className="w-full px-3.5 py-2.5 bg-white border border-primary rounded-xl font-bold font-mono text-primary text-xs focus:ring-2 focus:ring-primary/20 focus:outline-hidden"
             />
           </div>
         </div>
@@ -311,10 +311,10 @@ export function ContactsContentEditor() {
           {emergencyContacts.map((contact, index) => (
             <div
               key={contact.id}
-              className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] hover:border-emerald-300 transition-colors space-y-3"
+              className="p-4 rounded-2xl bg-primary-surface border border-border hover:border-emerald-300 transition-colors space-y-3"
             >
               <div className="flex items-center justify-between">
-                <span className="font-bold text-xs text-[#2E8B57]">
+                <span className="font-bold text-xs text-primary">
                   Emergency Helpline #{index + 1}
                 </span>
 
@@ -327,7 +327,7 @@ export function ContactsContentEditor() {
                       onChange={(e) =>
                         handleUpdateEmergencyContact(contact.id, "active", e.target.checked)
                       }
-                      className="w-4 h-4 rounded text-[#2E8B57] focus:ring-[#2E8B57]"
+                      className="w-4 h-4 rounded text-primary focus:ring-primary"
                     />
                   </label>
 
@@ -368,7 +368,7 @@ export function ContactsContentEditor() {
                       handleUpdateEmergencyContact(contact.id, "name", e.target.value)
                     }
                     placeholder="e.g. 24x7 Control Room"
-                    className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold text-gray-800 focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold text-gray-800 focus:border-primary focus:outline-hidden"
                   />
                 </div>
 
@@ -384,7 +384,7 @@ export function ContactsContentEditor() {
                       handleUpdateEmergencyContact(contact.id, "number", e.target.value)
                     }
                     placeholder="e.g. 1800-233-0101"
-                    className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold font-mono text-emerald-800 focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold font-mono text-emerald-800 focus:border-primary focus:outline-hidden"
                   />
                 </div>
               </div>
@@ -395,7 +395,7 @@ export function ContactsContentEditor() {
           <button
             type="button"
             onClick={handleAddEmergencyContact}
-            className="w-full py-3 rounded-2xl border-2 border-dashed border-[#2E8B57]/50 hover:border-[#2E8B57] bg-[#E8F5E9]/40 hover:bg-[#E8F5E9] text-[#2E8B57] font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+            className="w-full py-3 rounded-2xl border-2 border-dashed border-primary/50 hover:border-primary bg-primary-light/40 hover:bg-primary-light text-primary font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>+ Add More Emergency Contacts</span>
@@ -404,13 +404,13 @@ export function ContactsContentEditor() {
       </div>
 
       {/* SECTION 2: Municipal Headquarters Details & Google Maps */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xs space-y-6">
         <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
             2
           </div>
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">Municipal Headquarters & Office Timings</h3>
+            <h3 className="font-bold text-base text-text-primary">Municipal Headquarters & Office Timings</h3>
             <p className="text-xs text-gray-500">
               Official address, EPABX phone lines, official emails, office timings, and Google Maps embed URL.
             </p>
@@ -421,26 +421,26 @@ export function ContactsContentEditor() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-[#2E8B57]" />
+                <Building2 className="w-3.5 h-3.5 text-primary" />
                 <span>Complex Name</span>
               </label>
               <input
                 type="text"
                 value={hq.complexName}
                 onChange={(e) => setHq({ ...hq, complexName: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
               <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[#2E8B57]" />
+                <MapPin className="w-3.5 h-3.5 text-primary" />
                 <span>Street Address</span>
               </label>
               <input
                 type="text"
                 value={hq.addressLine1}
                 onChange={(e) => setHq({ ...hq, addressLine1: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
@@ -454,7 +454,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.addressLine2}
                 onChange={(e) => setHq({ ...hq, addressLine2: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
@@ -465,7 +465,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.pinCode}
                 onChange={(e) => setHq({ ...hq, pinCode: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-mono focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
@@ -473,38 +473,38 @@ export function ContactsContentEditor() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-[#2E8B57]" />
+                <Phone className="w-3.5 h-3.5 text-primary" />
                 <span>EPABX Exchange Numbers</span>
               </label>
               <input
                 type="text"
                 value={hq.epabxPhones}
                 onChange={(e) => setHq({ ...hq, epabxPhones: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-mono focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
               <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#2E8B57]" />
+                <Mail className="w-3.5 h-3.5 text-primary" />
                 <span>Official Inquiries Email</span>
               </label>
               <input
                 type="email"
                 value={hq.officialEmail}
                 onChange={(e) => setHq({ ...hq, officialEmail: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-mono focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
               <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#2E8B57]" />
+                <Mail className="w-3.5 h-3.5 text-primary" />
                 <span>Chief Officer Email</span>
               </label>
               <input
                 type="email"
                 value={hq.coEmail}
                 onChange={(e) => setHq({ ...hq, coEmail: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-mono focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
@@ -512,14 +512,14 @@ export function ContactsContentEditor() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-[#2E8B57]" />
+                <Clock className="w-3.5 h-3.5 text-primary" />
                 <span>Office Working Hours</span>
               </label>
               <input
                 type="text"
                 value={hq.workingHours}
                 onChange={(e) => setHq({ ...hq, workingHours: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
@@ -530,7 +530,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.workingHoursNote}
                 onChange={(e) => setHq({ ...hq, workingHoursNote: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
@@ -538,7 +538,7 @@ export function ContactsContentEditor() {
           {/* Google Maps Embed URL */}
           <div>
             <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#2E8B57]" />
+              <MapPin className="w-3.5 h-3.5 text-primary" />
               <span>Google Maps Embed URL</span>
             </label>
             <input
@@ -546,14 +546,14 @@ export function ContactsContentEditor() {
               value={hq.mapEmbedUrl}
               onChange={(e) => setHq({ ...hq, mapEmbedUrl: e.target.value })}
               placeholder="https://maps.google.com/maps?q=..."
-              className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-mono text-[11px] text-gray-700 focus:border-[#2E8B57] focus:outline-hidden"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono text-[11px] text-gray-700 focus:border-primary focus:outline-hidden"
             />
           </div>
         </div>
       </div>
 
       {/* Sticky Bottom Save Bar */}
-      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-[#D9E8DD] shadow-lg flex items-center justify-between">
+      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-border shadow-lg flex items-center justify-between">
         <div className="text-xs text-gray-500">
           Last updated: <span className="font-semibold text-gray-800">Just now</span>
         </div>
@@ -567,7 +567,7 @@ export function ContactsContentEditor() {
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save & Publish Contacts</span>

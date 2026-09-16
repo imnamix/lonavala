@@ -149,24 +149,24 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
     <div className="space-y-6 max-w-5xl mx-auto pb-12">
       {/* Toast */}
       {savedToast && (
-        <div className="fixed top-6 right-6 z-50 bg-[#2E8B57] text-white text-xs font-bold px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2 animate-bounce">
+        <div className="fixed top-6 right-6 z-50 bg-primary text-white text-xs font-bold px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2 animate-bounce">
           <CheckCircle2 className="w-5 h-5 text-white" />
           <span>Council member successfully saved! Redirecting to table...</span>
         </div>
       )}
 
       {/* Top Breadcrumb & Action Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D9E8DD] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
         <div className="flex items-center gap-3">
           <Link
             href="/admin/council"
-            className="p-2 rounded-xl bg-white border border-gray-200 hover:border-[#2E8B57] text-gray-600 hover:text-[#2E8B57] transition-colors"
+            className="p-2 rounded-xl bg-white border border-gray-200 hover:border-primary text-gray-600 hover:text-primary transition-colors"
             title="Back to Councils list"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="text-xl sm:text-2xl font-black text-[#1F2937]">
+            <h1 className="text-xl sm:text-2xl font-black text-text-primary">
               {isNew ? "Add New Council Member" : `Edit Council Member: ${formData.name || "Loading..."}`}
             </h1>
             <p className="text-xs text-gray-500">
@@ -184,7 +184,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
               type="button"
               onClick={() => setActiveTab("form")}
               className={`px-3 py-1.5 rounded-lg transition-colors ${
-                activeTab === "form" ? "bg-white text-[#2E8B57] shadow-xs" : "text-gray-500"
+                activeTab === "form" ? "bg-white text-primary shadow-xs" : "text-gray-500"
               }`}
             >
               Form
@@ -193,7 +193,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
               type="button"
               onClick={() => setActiveTab("preview")}
               className={`px-3 py-1.5 rounded-lg transition-colors ${
-                activeTab === "preview" ? "bg-white text-[#2E8B57] shadow-xs" : "text-gray-500"
+                activeTab === "preview" ? "bg-white text-primary shadow-xs" : "text-gray-500"
               }`}
             >
               Preview
@@ -210,7 +210,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
           <button
             type="button"
             onClick={handleSave}
-            className="px-5 py-2 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+            className="px-5 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save Member</span>
@@ -243,16 +243,16 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
             )}
 
             {/* Section 1: Official Identity & Role (with Profile Image Upload) */}
-            <div className="bg-white p-6 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-5">
+            <div className="bg-white p-6 rounded-3xl border border-border shadow-xs space-y-5">
               <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
-                <Landmark className="w-4 h-4 text-[#2E8B57]" />
-                <h3 className="font-bold text-sm text-[#1F2937]">Official Identity & Role</h3>
+                <Landmark className="w-4 h-4 text-primary" />
+                <h3 className="font-bold text-sm text-text-primary">Official Identity & Role</h3>
               </div>
 
               {/* Profile Image Upload Field */}
-              <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] flex flex-col sm:flex-row items-center gap-4">
+              <div className="p-4 rounded-2xl bg-primary-surface border border-border flex flex-col sm:flex-row items-center gap-4">
                 {/* Photo Preview */}
-                <div className="relative w-20 h-24 rounded-2xl overflow-hidden bg-white border-2 border-[#D9E8DD] flex items-center justify-center shrink-0 shadow-2xs group">
+                <div className="relative w-20 h-24 rounded-2xl overflow-hidden bg-white border-2 border-border flex items-center justify-center shrink-0 shadow-2xs group">
                   {formData.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -274,7 +274,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="px-3.5 py-1.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+                      className="px-3.5 py-1.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
                     >
                       <Upload className="w-3.5 h-3.5" />
                       <span>{formData.image ? "Change Photo" : "Upload Profile Image"}</span>
@@ -318,8 +318,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Smt. Surekha Nitin Jadhav"
-                    className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.name ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                      errors.name ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                     }`}
                   />
                 </div>
@@ -335,8 +335,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.marathiName}
                     onChange={(e) => setFormData({ ...formData, marathiName: e.target.value })}
                     placeholder="e.g. श्रीमती सुरेखा नितीन जाधव"
-                    className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.marathiName ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                      errors.marathiName ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                     }`}
                   />
                 </div>
@@ -352,7 +352,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                         roleCategory: e.target.value as any,
                       })
                     }
-                    className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                   >
                     <option value="President">Council President (नगराध्यक्ष)</option>
                     <option value="Vice President">Council Vice President (उपनगराध्यक्ष)</option>
@@ -373,8 +373,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.designation}
                     onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
                     placeholder="e.g. President (नगराध्यक्ष) or Corporator - Ward 1"
-                    className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.designation ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                      errors.designation ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                     }`}
                   />
                 </div>
@@ -382,10 +382,10 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
             </div>
 
             {/* Section 2: Ward & Tenure */}
-            <div className="bg-white p-6 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-4">
+            <div className="bg-white p-6 rounded-3xl border border-border shadow-xs space-y-4">
               <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
-                <MapPin className="w-4 h-4 text-[#2E8B57]" />
-                <h3 className="font-bold text-sm text-[#1F2937]">Ward Demarcation & Term</h3>
+                <MapPin className="w-4 h-4 text-primary" />
+                <h3 className="font-bold text-sm text-text-primary">Ward Demarcation & Term</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -398,7 +398,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.ward || ""}
                     onChange={(e) => setFormData({ ...formData, ward: e.target.value })}
                     placeholder="Select or enter ward..."
-                    className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                   />
                   <datalist id="wards-list">
                     {COMMON_WARDS.map((w, idx) => (
@@ -415,7 +415,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.tenure}
                     onChange={(e) => setFormData({ ...formData, tenure: e.target.value })}
                     placeholder="e.g. 2022 - 2027"
-                    className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                   />
                 </div>
 
@@ -428,7 +428,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.committee || ""}
                     onChange={(e) => setFormData({ ...formData, committee: e.target.value })}
                     placeholder="e.g. Standing Committee Chairperson or Public Works Committee"
-                    className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                   />
                   <datalist id="committees-list">
                     {COMMON_COMMITTEES.map((c, idx) => (
@@ -440,10 +440,10 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
             </div>
 
             {/* Section 3: Citizen Contact Details (with Address) */}
-            <div className="bg-white p-6 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-4">
+            <div className="bg-white p-6 rounded-3xl border border-border shadow-xs space-y-4">
               <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
-                <Phone className="w-4 h-4 text-[#2E8B57]" />
-                <h3 className="font-bold text-sm text-[#1F2937]">Citizen Contact Details</h3>
+                <Phone className="w-4 h-4 text-primary" />
+                <h3 className="font-bold text-sm text-text-primary">Citizen Contact Details</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -458,8 +458,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="e.g. +91 98220 11221 or +91 2114 273030"
-                    className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.phone ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                      errors.phone ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                     }`}
                   />
                 </div>
@@ -472,7 +472,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="e.g. ward1@lonavalamc.gov.in"
-                    className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                   />
                 </div>
 
@@ -484,7 +484,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.address || ""}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     placeholder="e.g. Ward Office No. 1, Near Railway Station, Lonavala - 410401"
-                    className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                   />
                 </div>
               </div>
@@ -501,7 +501,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
 
               <button
                 type="submit"
-                className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer"
+                className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Council Member</span>
@@ -519,7 +519,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
           <div className="sticky top-20 space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
-                <Eye className="w-4 h-4 text-[#2E8B57]" />
+                <Eye className="w-4 h-4 text-primary" />
                 <span className="text-xs font-bold text-gray-700">Citizen Directory Card Preview</span>
               </div>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
@@ -528,10 +528,10 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
             </div>
 
             {/* Preview Card */}
-            <div className="bg-white rounded-3xl border-2 border-[#2E8B57]/30 shadow-lg p-6 space-y-4 overflow-hidden relative">
+            <div className="bg-white rounded-3xl border-2 border-primary/30 shadow-lg p-6 space-y-4 overflow-hidden relative">
               <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start text-center sm:text-left">
                 {/* Avatar Photo or Initial */}
-                <div className="relative w-20 h-24 rounded-2xl overflow-hidden bg-[#E8F5E9] text-[#2E8B57] border-2 border-[#D9E8DD] flex items-center justify-center font-bold text-xl shrink-0 shadow-2xs">
+                <div className="relative w-20 h-24 rounded-2xl overflow-hidden bg-primary-light text-primary border-2 border-border flex items-center justify-center font-bold text-xl shrink-0 shadow-2xs">
                   {formData.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -548,19 +548,19 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
 
                 {/* Details */}
                 <div className="space-y-1.5 flex-1 min-w-0">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-[#E8F5E9] text-[#2E8B57] px-2.5 py-0.5 rounded-full inline-block">
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-primary-light text-primary px-2.5 py-0.5 rounded-full inline-block">
                     {formData.designation || "Designation"}
                   </span>
-                  <h4 className="text-base font-extrabold text-[#1F2937] truncate">
+                  <h4 className="text-base font-extrabold text-text-primary truncate">
                     {formData.name || "Member Full Name"}
                   </h4>
-                  <p className="text-xs text-[#2E8B57] font-semibold">
+                  <p className="text-xs text-primary font-semibold">
                     {formData.marathiName || "नाव (मराठीत)"}
                   </p>
 
                   {formData.ward && (
                     <p className="text-[11px] text-gray-600 flex items-center justify-center sm:justify-start gap-1">
-                      <MapPin className="w-3 h-3 text-[#2E8B57] shrink-0" />
+                      <MapPin className="w-3 h-3 text-primary shrink-0" />
                       <span className="truncate">{formData.ward}</span>
                     </p>
                   )}
@@ -578,13 +578,13 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
               <div className="pt-3 border-t border-gray-100 text-[11px] text-gray-600 space-y-1.5">
                 {formData.phone && (
                   <p className="flex items-center justify-center sm:justify-start gap-2">
-                    <Phone className="w-3.5 h-3.5 text-[#2E8B57] shrink-0" />
+                    <Phone className="w-3.5 h-3.5 text-primary shrink-0" />
                     <span className="font-semibold">{formData.phone}</span>
                   </p>
                 )}
                 {formData.email && (
                   <p className="flex items-center justify-center sm:justify-start gap-2">
-                    <Mail className="w-3.5 h-3.5 text-[#2E8B57] shrink-0" />
+                    <Mail className="w-3.5 h-3.5 text-primary shrink-0" />
                     <span className="truncate">{formData.email}</span>
                   </p>
                 )}
@@ -597,7 +597,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
               </div>
 
               {/* Tenure footer banner in preview */}
-              <div className="bg-[#E8F5E9]/50 -mx-6 -mb-6 p-3 px-6 border-t border-[#D9E8DD] flex items-center justify-between text-[11px]">
+              <div className="bg-primary-light/50 -mx-6 -mb-6 p-3 px-6 border-t border-border flex items-center justify-between text-[11px]">
                 <span className="font-bold text-gray-600">Tenure: {formData.tenure || "2022 - 2027"}</span>
                 <span className="font-bold text-emerald-700">● Active Directory</span>
               </div>

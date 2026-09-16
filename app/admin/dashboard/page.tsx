@@ -114,11 +114,11 @@ export default function AdminDashboardPage() {
   ];
 
   const departmentPerformanceData = [
-    { name: "Water Supply", count: 42, color: "#2E8B57" },
-    { name: "Health & Sanitation", count: 35, color: "#4CAF50" },
-    { name: "PWD & Roads", count: 28, color: "#81C784" },
-    { name: "Town Planning", count: 14, color: "#A5D6A7" },
-    { name: "Revenue & Tax", count: 12, color: "#C8E6C9" },
+    { name: "Water Supply", count: 42, color: "var(--color-primary)" },
+    { name: "Health & Sanitation", count: 35, color: "var(--color-chart-2)" },
+    { name: "PWD & Roads", count: 28, color: "var(--color-chart-3)" },
+    { name: "Town Planning", count: 14, color: "var(--color-chart-4)" },
+    { name: "Revenue & Tax", count: 12, color: "var(--color-chart-5)" },
   ];
 
   return (
@@ -126,7 +126,7 @@ export default function AdminDashboardPage() {
       {/* Welcome Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F2937]">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-text-primary">
             Municipal Executive Dashboard
           </h1>
           <p className="text-xs text-gray-500 mt-1">
@@ -137,7 +137,7 @@ export default function AdminDashboardPage() {
         <div className="flex items-center gap-3">
           <Link
             href="/admin/grievances"
-            className="px-4 py-2.5 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
+            className="px-4 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
           >
             <AlertCircle className="w-4 h-4" />
             <span>Manage Grievances</span>
@@ -152,16 +152,16 @@ export default function AdminDashboardPage() {
           return (
             <div
               key={idx}
-              className="bg-white p-5 rounded-2xl border border-[#D9E8DD] shadow-xs hover:border-[#2E8B57] transition-all space-y-2"
+              className="bg-white p-5 rounded-2xl border border-border shadow-xs hover:border-primary transition-all space-y-2"
             >
               <div className="flex items-center justify-between">
                 <div className={`w-8 h-8 rounded-xl ${card.bg} ${card.color} flex items-center justify-center`}>
                   <Icon className="w-4 h-4" />
                 </div>
-                <span className="text-[10px] font-bold text-[#2E8B57]">Live</span>
+                <span className="text-[10px] font-bold text-primary">Live</span>
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-[#1F2937]">{card.value}</div>
+                <div className="text-xl sm:text-2xl font-black text-text-primary">{card.value}</div>
                 <div className="text-xs font-bold text-gray-700 truncate">{card.title}</div>
                 <div className="text-[10px] text-gray-400 mt-0.5">{card.sub}</div>
               </div>
@@ -173,17 +173,17 @@ export default function AdminDashboardPage() {
       {/* Recharts Analytics Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Monthly Grievances Bar Chart */}
-        <div className="lg:col-span-8 bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="lg:col-span-8 bg-white p-6 rounded-2xl border border-border shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">
+              <h3 className="font-bold text-base text-text-primary">
                 Monthly Grievance Volume & Redressal Rate
               </h3>
               <p className="text-xs text-gray-500">
                 Tracking ticket velocity during pre-monsoon and peak tourist influx months.
               </p>
             </div>
-            <span className="text-xs font-bold text-[#2E8B57] bg-[#E8F5E9] px-2.5 py-1 rounded-lg">
+            <span className="text-xs font-bold text-primary bg-primary-light px-2.5 py-1 rounded-lg">
               98.4% SLA Pass
             </span>
           </div>
@@ -195,24 +195,24 @@ export default function AdminDashboardPage() {
                 <YAxis tick={{ fontSize: 11 }} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#fff",
+                    backgroundColor: "var(--color-surface)",
                     borderRadius: "10px",
-                    border: "1px solid #D9E8DD",
+                    border: "1px solid var(--color-border)",
                     fontSize: "12px",
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: "11px", paddingTop: "8px" }} />
-                <Bar dataKey="received" name="Complaints Received" fill="#1F2937" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="resolved" name="Complaints Resolved" fill="#2E8B57" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="received" name="Complaints Received" fill="var(--color-text-primary)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="resolved" name="Complaints Resolved" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* SLA Adherence Line Chart */}
-        <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-border shadow-xs space-y-4">
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">Weekly SLA Adherence (%)</h3>
+            <h3 className="font-bold text-base text-text-primary">Weekly SLA Adherence (%)</h3>
             <p className="text-xs text-gray-500">Citizen charter SLA compliance target: 95%</p>
           </div>
 
@@ -224,7 +224,7 @@ export default function AdminDashboardPage() {
                 <Tooltip
                   formatter={(val) => [`${val}%`, "SLA Adherence"]}
                   contentStyle={{
-                    backgroundColor: "#fff",
+                    backgroundColor: "var(--color-surface)",
                     borderRadius: "8px",
                     fontSize: "11px",
                   }}
@@ -232,9 +232,9 @@ export default function AdminDashboardPage() {
                 <Line
                   type="monotone"
                   dataKey="compliance"
-                  stroke="#2E8B57"
+                  stroke="var(--color-primary)"
                   strokeWidth={3}
-                  dot={{ r: 4, fill: "#2E8B57" }}
+                  dot={{ r: 4, fill: "var(--color-primary)" }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -242,7 +242,7 @@ export default function AdminDashboardPage() {
 
           <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 space-y-1">
             <div className="font-bold flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-[#2E8B57]" />
+              <ShieldCheck className="w-4 h-4 text-primary" />
               <span>SLA Target Exceeded</span>
             </div>
             <p className="text-[11px] text-emerald-700">
@@ -255,9 +255,9 @@ export default function AdminDashboardPage() {
       {/* Department Performance Pie Chart & Recent Action Queue */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Department Volume Pie */}
-        <div className="lg:col-span-5 bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="lg:col-span-5 bg-white p-6 rounded-2xl border border-border shadow-xs space-y-4">
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">
+            <h3 className="font-bold text-base text-text-primary">
               Grievance Load by Department
             </h3>
             <p className="text-xs text-gray-500">Distribution of active and closed tickets.</p>
@@ -282,7 +282,7 @@ export default function AdminDashboardPage() {
                 <Tooltip
                   formatter={(val) => [`${val} Tickets`, "Volume"]}
                   contentStyle={{
-                    backgroundColor: "#fff",
+                    backgroundColor: "var(--color-surface)",
                     borderRadius: "8px",
                     fontSize: "11px",
                   }}
@@ -305,17 +305,17 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Live Urgent Complaints Queue */}
-        <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-border shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">
+              <h3 className="font-bold text-base text-text-primary">
                 Action Priority Grievance Queue
               </h3>
               <p className="text-xs text-gray-500">High priority and escalated citizen tickets</p>
             </div>
             <Link
               href="/admin/grievances"
-              className="text-xs font-bold text-[#2E8B57] hover:underline"
+              className="text-xs font-bold text-primary hover:underline"
             >
               View All →
             </Link>
@@ -326,13 +326,13 @@ export default function AdminDashboardPage() {
               <div key={g.id} className="py-3.5 flex items-start justify-between gap-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-[#2E8B57]">{g.refNumber}</span>
+                    <span className="font-mono font-bold text-primary">{g.refNumber}</span>
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
                       {g.status}
                     </span>
                     <span className="text-[10px] font-semibold text-gray-500">{g.department}</span>
                   </div>
-                  <h4 className="font-bold text-[#1F2937] leading-snug">{g.title}</h4>
+                  <h4 className="font-bold text-text-primary leading-snug">{g.title}</h4>
                   <div className="text-[11px] text-gray-500 truncate">
                     Citizen: {g.citizenName} ({g.citizenMobile}) • {g.ward}
                   </div>
@@ -340,7 +340,7 @@ export default function AdminDashboardPage() {
 
                 <Link
                   href="/admin/grievances"
-                  className="px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-[#2E8B57] hover:text-white font-bold text-[11px] text-gray-700 transition-colors shrink-0"
+                  className="px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-primary hover:text-white font-bold text-[11px] text-gray-700 transition-colors shrink-0"
                 >
                   Action
                 </Link>

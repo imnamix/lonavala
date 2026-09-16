@@ -23,13 +23,13 @@ export default function ProjectsPage() {
   return (
     <div className="py-10">
       {/* Page Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-12">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
               City Infrastructure
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3">
               Municipal Projects & Works
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
@@ -41,7 +41,7 @@ export default function ProjectsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Tabs */}
-        <div className="flex items-center justify-between border-b border-[#D9E8DD] pb-3">
+        <div className="flex items-center justify-between border-b border-border pb-3">
           <div className="flex items-center gap-2">
             {tabs.map((tab) => (
               <button
@@ -49,8 +49,8 @@ export default function ProjectsPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeTab === tab
-                    ? "bg-[#2E8B57] text-white shadow-xs"
-                    : "bg-white border border-[#D9E8DD] text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                    ? "bg-primary text-white shadow-xs"
+                    : "bg-white border border-border text-gray-700 hover:bg-primary-light hover:text-primary"
                 }`}
               >
                 {tab} Projects (
@@ -63,7 +63,7 @@ export default function ProjectsPage() {
           </div>
 
           <div className="hidden sm:block text-xs text-gray-500 font-semibold">
-            Total Capital Outlay: <strong className="text-[#2E8B57]">₹114.30 Crores</strong>
+            Total Capital Outlay: <strong className="text-primary">₹114.30 Crores</strong>
           </div>
         </div>
 

@@ -112,17 +112,16 @@ export default function TourismPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Category Filters */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-[#D9E8DD] pb-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-border pb-4">
           <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto scrollbar-none pb-2 sm:pb-0">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
-                  selectedCategory === cat
-                    ? "bg-[#2E8B57] text-white shadow-xs"
-                    : "bg-white border border-[#D9E8DD] text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
-                }`}
+                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${selectedCategory === cat
+                    ? "bg-primary text-white shadow-xs"
+                    : "bg-white border border-border text-gray-700 hover:bg-primary-light hover:text-primary"
+                  }`}
               >
                 {cat}
               </button>
@@ -130,7 +129,7 @@ export default function TourismPage() {
           </div>
 
           <div className="text-xs text-gray-500 font-semibold shrink-0">
-            Showing <strong className="text-[#2E8B57]">{filteredSpots.length}</strong> Destinations
+            Showing <strong className="text-primary">{filteredSpots.length}</strong> Destinations
           </div>
         </div>
 
@@ -139,7 +138,7 @@ export default function TourismPage() {
           {filteredSpots.map((spot) => (
             <div
               key={spot.id}
-              className="bg-white rounded-2xl border border-[#D9E8DD] overflow-hidden shadow-xs hover:shadow-xl hover:border-[#2E8B57] transition-all group flex flex-col justify-between"
+              className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs hover:shadow-xl hover:border-primary transition-all group flex flex-col justify-between"
             >
               <div>
                 {/* Large Image Header */}
@@ -153,13 +152,13 @@ export default function TourismPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                  <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs text-[#1F2937] text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+                  <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs text-text-primary text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
                     <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
                     <span>{spot.rating}</span>
                   </div>
 
                   <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-wider bg-[#2E8B57] px-2.5 py-0.5 rounded">
+                    <span className="text-[10px] font-bold uppercase tracking-wider bg-primary px-2.5 py-0.5 rounded">
                       {spot.category}
                     </span>
                     <h3 className="text-lg font-bold mt-1 text-white leading-tight">
@@ -174,17 +173,17 @@ export default function TourismPage() {
                     {spot.description}
                   </p>
 
-                  <div className="space-y-2 bg-[#F8FCF9] p-3.5 rounded-xl border border-[#D9E8DD] text-xs text-gray-700">
+                  <div className="space-y-2 bg-primary-surface p-3.5 rounded-xl border border-border text-xs text-gray-700">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-[#2E8B57] shrink-0" />
+                      <Clock className="w-4 h-4 text-primary shrink-0" />
                       <span>{spot.timings}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <IndianRupee className="w-4 h-4 text-[#2E8B57] shrink-0" />
+                      <IndianRupee className="w-4 h-4 text-primary shrink-0" />
                       <span>{spot.entryFee}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-[#2E8B57] shrink-0" />
+                      <MapPin className="w-4 h-4 text-primary shrink-0" />
                       <span>{spot.distanceFromStation}</span>
                     </div>
                   </div>
@@ -197,7 +196,7 @@ export default function TourismPage() {
                     <div className="space-y-1">
                       {spot.highlights.map((h, idx) => (
                         <div key={idx} className="flex items-center gap-1.5 text-xs text-gray-600">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#2E8B57] shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                           <span className="line-clamp-1">{h}</span>
                         </div>
                       ))}
@@ -209,7 +208,7 @@ export default function TourismPage() {
               <div className="p-6 pt-0">
                 <div className="text-[11px] text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
                   <span>Best: {spot.bestTimeToVisit.split("(")[0]}</span>
-                  <span className="text-[#2E8B57] font-bold">LMC Verified Spot</span>
+                  <span className="text-primary font-bold">LMC Verified Spot</span>
                 </div>
               </div>
             </div>
@@ -219,10 +218,10 @@ export default function TourismPage() {
         {/* Hill Station Festivals & Cultural Events */}
         <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-[#E8F5E9] px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary-light px-3 py-1 rounded-full border border-border">
               Culture & Celebrations
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1F2937] mt-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mt-2">
               Annual Festivals & Experiences
             </h2>
             <p className="text-xs text-gray-600 mt-1">
@@ -234,11 +233,11 @@ export default function TourismPage() {
             {festivals.map((fest, idx) => (
               <div
                 key={idx}
-                className="bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs hover:border-[#2E8B57] transition-all space-y-3"
+                className="bg-white p-6 rounded-2xl border border-border shadow-xs hover:border-primary transition-all space-y-3"
               >
                 <div className="text-3xl">{fest.icon}</div>
-                <h3 className="font-bold text-sm sm:text-base text-[#1F2937]">{fest.title}</h3>
-                <div className="text-[11px] font-bold text-[#2E8B57] bg-[#E8F5E9] px-2.5 py-1 rounded-lg inline-block">
+                <h3 className="font-bold text-sm sm:text-base text-text-primary">{fest.title}</h3>
+                <div className="text-[11px] font-bold text-primary bg-primary-light px-2.5 py-1 rounded-lg inline-block">
                   {fest.period}
                 </div>
                 <p className="text-xs text-gray-600 leading-relaxed">{fest.desc}</p>
@@ -248,13 +247,13 @@ export default function TourismPage() {
         </section>
 
         {/* Visitor Information & Safety Advisories */}
-        <section className="bg-white rounded-3xl border border-[#D9E8DD] p-8 sm:p-10 shadow-xs space-y-6">
+        <section className="bg-white rounded-3xl border border-border p-8 sm:p-10 shadow-xs space-y-6">
           <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
             <div className="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center">
               <ShieldAlert className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-[#1F2937]">
+              <h3 className="text-lg sm:text-xl font-bold text-text-primary">
                 Visitor Safety & Hill Station Regulations
               </h3>
               <p className="text-xs text-gray-500">Issued by LMC Disaster Management & Pune Police</p>
@@ -263,9 +262,9 @@ export default function TourismPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {visitorGuidelines.map((guide, idx) => (
-              <div key={idx} className="bg-[#F8FCF9] p-4 rounded-xl border border-[#D9E8DD] space-y-1.5">
-                <h4 className="text-xs font-bold text-[#1F2937] flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#2E8B57]" />
+              <div key={idx} className="bg-primary-surface p-4 rounded-xl border border-border space-y-1.5">
+                <h4 className="text-xs font-bold text-text-primary flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-primary" />
                   {guide.title}
                 </h4>
                 <p className="text-xs text-gray-600 leading-relaxed">{guide.desc}</p>
@@ -273,17 +272,17 @@ export default function TourismPage() {
             ))}
           </div>
 
-          <div className="bg-[#E8F5E9] p-4 rounded-xl border border-[#D9E8DD] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <div className="bg-primary-light p-4 rounded-xl border border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
             <div className="text-gray-800">
               <strong>Need Emergency Assistance on Tour?</strong> Call Lonavala Disaster Helpline:{" "}
-              <a href="tel:18002330101" className="text-[#2E8B57] font-bold underline">
+              <a href="tel:18002330101" className="text-primary font-bold underline">
                 1800-233-0101
               </a>{" "}
               (Toll Free 24x7)
             </div>
             <a
               href="tel:112"
-              className="px-4 py-2 rounded-lg bg-[#2E8B57] text-white font-bold shrink-0 hover:bg-[#246E45]"
+              className="px-4 py-2 rounded-lg bg-primary text-white font-bold shrink-0 hover:bg-primary-hover"
             >
               Dial 112 Police
             </a>

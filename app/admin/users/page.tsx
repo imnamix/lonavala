@@ -62,7 +62,7 @@ export default function AdminUsersPage() {
     <div className="space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#1F2937]">Users & Role Permissions</h1>
+          <h1 className="text-2xl font-extrabold text-text-primary">Users & Role Permissions</h1>
           <p className="text-xs text-gray-500 mt-0.5">
             Role-Based Access Control (RBAC) matrix for municipal staff, engineers, and administrators.
           </p>
@@ -70,7 +70,7 @@ export default function AdminUsersPage() {
 
         <button
           onClick={() => alert("Invite staff member modal")}
-          className="px-4 py-2.5 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
+          className="px-4 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
         >
           <UserPlus className="w-4 h-4" />
           <span>Add Staff User</span>
@@ -78,15 +78,15 @@ export default function AdminUsersPage() {
       </div>
 
       {/* Staff Directory Table */}
-      <div className="bg-white rounded-2xl border border-[#D9E8DD] overflow-hidden shadow-xs">
-        <div className="p-5 border-b border-[#D9E8DD] bg-[#F8FCF9] flex items-center justify-between">
-          <h2 className="font-bold text-sm text-[#1F2937]">Active Staff Accounts</h2>
+      <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs">
+        <div className="p-5 border-b border-border bg-primary-surface flex items-center justify-between">
+          <h2 className="font-bold text-sm text-text-primary">Active Staff Accounts</h2>
           <span className="text-xs font-semibold text-gray-500">{staffUsers.length} Officers</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#D9E8DD] text-[11px] font-bold text-gray-500 uppercase">
+              <tr className="border-b border-border text-[11px] font-bold text-gray-500 uppercase">
                 <th className="py-3.5 px-6">Name</th>
                 <th className="py-3.5 px-6">Assigned Role</th>
                 <th className="py-3.5 px-6">Department</th>
@@ -95,13 +95,13 @@ export default function AdminUsersPage() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-xs text-gray-700">
               {staffUsers.map((u) => (
-                <tr key={u.id} className="hover:bg-[#E8F5E9]/30 transition-colors">
+                <tr key={u.id} className="hover:bg-primary-light/30 transition-colors">
                   <td className="py-3.5 px-6">
-                    <div className="font-bold text-[#1F2937]">{u.name}</div>
+                    <div className="font-bold text-text-primary">{u.name}</div>
                     <div className="text-[10px] text-gray-400">{u.email}</div>
                   </td>
                   <td className="py-3.5 px-6 whitespace-nowrap">
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#E8F5E9] text-[#2E8B57]">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-primary-light text-primary">
                       {u.role}
                     </span>
                   </td>
@@ -115,13 +115,13 @@ export default function AdminUsersPage() {
       </div>
 
       {/* Prompt Requirement: Permission matrix table */}
-      <div className="bg-white rounded-2xl border border-[#D9E8DD] overflow-hidden shadow-xs space-y-4">
-        <div className="p-5 border-b border-[#D9E8DD] bg-[#F8FCF9] flex items-center justify-between">
+      <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs space-y-4">
+        <div className="p-5 border-b border-border bg-primary-surface flex items-center justify-between">
           <div>
-            <h2 className="font-bold text-sm text-[#1F2937]">Role-Based Permission Matrix</h2>
+            <h2 className="font-bold text-sm text-text-primary">Role-Based Permission Matrix</h2>
             <p className="text-[11px] text-gray-500">Privilege assignments across 5 administrative security tiers.</p>
           </div>
-          <span className="text-xs font-bold text-[#2E8B57] bg-[#E8F5E9] px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-primary bg-primary-light px-3 py-1 rounded-full">
             Strict RBAC Enforced
           </span>
         </div>
@@ -129,7 +129,7 @@ export default function AdminUsersPage() {
         <div className="overflow-x-auto p-4">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-[#D9E8DD] text-[11px] font-bold text-gray-600 uppercase tracking-wider">
+              <tr className="border-b border-border text-[11px] font-bold text-gray-600 uppercase tracking-wider">
                 <th className="py-3 px-4">System Capability</th>
                 <th className="py-3 px-4 text-center">Super Admin</th>
                 <th className="py-3 px-4 text-center">Content Admin</th>

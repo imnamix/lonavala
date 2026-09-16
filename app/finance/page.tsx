@@ -45,11 +45,11 @@ export default function FinancePage() {
   ];
 
   const revenueBreakdown = [
-    { name: "Property & Wealth Tax", value: 48, color: "#2E8B57" },
-    { name: "Water & Utility Charges", value: 20, color: "#4CAF50" },
-    { name: "Government Grants & 15th FC", value: 18, color: "#81C784" },
-    { name: "Trade & Hotel Tourism Cess", value: 10, color: "#A5D6A7" },
-    { name: "Building & Development Fees", value: 4, color: "#C8E6C9" },
+    { name: "Property & Wealth Tax", value: 48, color: "var(--color-primary)" },
+    { name: "Water & Utility Charges", value: 20, color: "var(--color-chart-2)" },
+    { name: "Government Grants & 15th FC", value: 18, color: "var(--color-chart-3)" },
+    { name: "Trade & Hotel Tourism Cess", value: 10, color: "var(--color-chart-4)" },
+    { name: "Building & Development Fees", value: 4, color: "var(--color-chart-5)" },
   ];
 
   const auditReports = [
@@ -82,13 +82,13 @@ export default function FinancePage() {
   return (
     <div className="py-10">
       {/* Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-12">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
               Public Financial Transparency
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3">
               Municipal Finance, Budget & Audits
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
@@ -101,14 +101,14 @@ export default function FinancePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Top 4 KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs hover:border-[#2E8B57] transition-all space-y-2">
+          <div className="bg-white p-6 rounded-2xl border border-border shadow-xs hover:border-primary transition-all space-y-2">
             <div className="flex items-center justify-between text-xs text-gray-500 font-semibold uppercase">
               <span>Annual Budget (FY 25-26)</span>
-              <div className="w-8 h-8 rounded-lg bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-primary-light text-primary flex items-center justify-center">
                 <IndianRupee className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#1F2937]">
+            <div className="text-2xl sm:text-3xl font-extrabold text-text-primary">
               {financialSummary.totalBudget}
             </div>
             <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
@@ -117,14 +117,14 @@ export default function FinancePage() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs hover:border-[#2E8B57] transition-all space-y-2">
+          <div className="bg-white p-6 rounded-2xl border border-border shadow-xs hover:border-primary transition-all space-y-2">
             <div className="flex items-center justify-between text-xs text-gray-500 font-semibold uppercase">
               <span>Revenue Collected</span>
               <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
                 <TrendingUp className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#1F2937]">
+            <div className="text-2xl sm:text-3xl font-extrabold text-text-primary">
               {financialSummary.revenueCollected}
             </div>
             <div className="text-xs text-gray-500 font-medium">
@@ -132,14 +132,14 @@ export default function FinancePage() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs hover:border-[#2E8B57] transition-all space-y-2">
+          <div className="bg-white p-6 rounded-2xl border border-border shadow-xs hover:border-primary transition-all space-y-2">
             <div className="flex items-center justify-between text-xs text-gray-500 font-semibold uppercase">
               <span>Capital & Operational Exp.</span>
               <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
                 <TrendingDown className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#1F2937]">
+            <div className="text-2xl sm:text-3xl font-extrabold text-text-primary">
               {financialSummary.expenditureIncurred}
             </div>
             <div className="text-xs text-gray-500 font-medium">
@@ -147,14 +147,14 @@ export default function FinancePage() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs hover:border-[#2E8B57] transition-all space-y-2">
+          <div className="bg-white p-6 rounded-2xl border border-border shadow-xs hover:border-primary transition-all space-y-2">
             <div className="flex items-center justify-between text-xs text-gray-500 font-semibold uppercase">
               <span>Audit Compliance</span>
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#2E8B57] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-emerald-50 text-primary flex items-center justify-center">
                 <ShieldCheck className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#2E8B57]">
+            <div className="text-2xl sm:text-3xl font-extrabold text-primary">
               {financialSummary.auditStatus}
             </div>
             <div className="text-xs text-gray-500 font-medium">
@@ -166,9 +166,9 @@ export default function FinancePage() {
         {/* Recharts Graphs Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* BarChart: Budget vs Expenditure */}
-          <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+          <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-xs space-y-4">
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">
+              <h3 className="font-bold text-base text-text-primary">
                 Budget Allocation vs Expenditure Trends (₹ in Crores)
               </h3>
               <p className="text-xs text-gray-500 mt-0.5">
@@ -183,24 +183,24 @@ export default function FinancePage() {
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#fff",
+                      backgroundColor: "var(--color-surface)",
                       borderRadius: "12px",
-                      border: "1px solid #D9E8DD",
+                      border: "1px solid var(--color-border)",
                       fontSize: "12px",
                     }}
                   />
                   <Legend wrapperStyle={{ fontSize: "11px", paddingTop: "8px" }} />
-                  <Bar dataKey="budget" name="Sanctioned Budget" fill="#2E8B57" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="expenditure" name="Actual Expenditure" fill="#4CAF50" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="budget" name="Sanctioned Budget" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="expenditure" name="Actual Expenditure" fill="var(--color-chart-2)" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* PieChart: Revenue Breakdown */}
-          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-[#D9E8DD] shadow-xs space-y-4">
+          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-xs space-y-4">
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">
+              <h3 className="font-bold text-base text-text-primary">
                 Revenue Sources Breakdown (%)
               </h3>
               <p className="text-xs text-gray-500 mt-0.5">
@@ -227,7 +227,7 @@ export default function FinancePage() {
                   <Tooltip
                     formatter={(val) => [`${val}%`, "Share"]}
                     contentStyle={{
-                      backgroundColor: "#fff",
+                      backgroundColor: "var(--color-surface)",
                       borderRadius: "8px",
                       fontSize: "11px",
                     }}
@@ -254,17 +254,17 @@ export default function FinancePage() {
         </div>
 
         {/* Statutory Audit Reports Section */}
-        <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs space-y-6">
+        <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-4">
             <div>
-              <h3 className="text-lg font-bold text-[#1F2937]">
+              <h3 className="text-lg font-bold text-text-primary">
                 Statutory Financial Audit Reports & Disclosures
               </h3>
               <p className="text-xs text-gray-500 mt-0.5">
                 Compliant with Maharashtra Local Fund Audit Act and Comptroller & Auditor General norms.
               </p>
             </div>
-            <span className="text-xs font-bold text-[#2E8B57] bg-[#E8F5E9] px-3 py-1 rounded-full shrink-0">
+            <span className="text-xs font-bold text-primary bg-primary-light px-3 py-1 rounded-full shrink-0">
               100% Audit Cleared
             </span>
           </div>
@@ -273,12 +273,12 @@ export default function FinancePage() {
             {auditReports.map((report, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-[#F8FCF9] border border-[#D9E8DD] flex items-center justify-between gap-3 hover:border-[#2E8B57] transition-colors"
+                className="p-4 rounded-xl bg-primary-surface border border-border flex items-center justify-between gap-3 hover:border-primary transition-colors"
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <FileCheck2 className="w-4 h-4 text-[#2E8B57] shrink-0" />
-                    <h4 className="text-xs sm:text-sm font-bold text-[#1F2937] line-clamp-1">
+                    <FileCheck2 className="w-4 h-4 text-primary shrink-0" />
+                    <h4 className="text-xs sm:text-sm font-bold text-text-primary line-clamp-1">
                       {report.title}
                     </h4>
                   </div>
@@ -290,7 +290,7 @@ export default function FinancePage() {
                 <a
                   href="#"
                   download
-                  className="px-3 py-1.5 bg-white border border-[#D9E8DD] hover:bg-[#2E8B57] hover:text-white rounded-lg text-xs font-semibold text-gray-700 transition-colors shrink-0 flex items-center gap-1 shadow-xs"
+                  className="px-3 py-1.5 bg-white border border-border hover:bg-primary hover:text-white rounded-lg text-xs font-semibold text-gray-700 transition-colors shrink-0 flex items-center gap-1 shadow-xs"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>PDF</span>

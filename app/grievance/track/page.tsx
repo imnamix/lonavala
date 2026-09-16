@@ -62,12 +62,12 @@ function TrackGrievanceContent() {
   return (
     <div className="py-10">
       {/* Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-10">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+          <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
             Live Public Status
           </span>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-text-primary mt-3">
             Track Grievance Redressal
           </h1>
           <p className="text-xs sm:text-sm text-gray-600 mt-2">
@@ -77,21 +77,21 @@ function TrackGrievanceContent() {
           {/* Search Bar */}
           <form
             onSubmit={handleSearch}
-            className="mt-6 max-w-xl mx-auto flex items-center bg-white p-2 rounded-2xl shadow-md border border-[#D9E8DD]"
+            className="mt-6 max-w-xl mx-auto flex items-center bg-white p-2 rounded-2xl shadow-md border border-border"
           >
             <div className="pl-3 text-gray-400">
-              <Search className="w-5 h-5 text-[#2E8B57]" />
+              <Search className="w-5 h-5 text-primary" />
             </div>
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Enter Reference Number (e.g. GRV2026001245) or Mobile"
-              className="w-full px-3 py-2 text-xs sm:text-sm text-[#1F2937] placeholder-gray-400 focus:outline-hidden"
+              className="w-full px-3 py-2 text-xs sm:text-sm text-text-primary placeholder-gray-400 focus:outline-hidden"
             />
             <button
               type="submit"
-              className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs sm:text-sm shadow-xs transition-colors shrink-0"
+              className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs sm:text-sm shadow-xs transition-colors shrink-0"
             >
               Track Now
             </button>
@@ -103,11 +103,11 @@ function TrackGrievanceContent() {
         {grievance ? (
           <div className="space-y-8">
             {/* Grievance Summary Card */}
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs">
+            <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-base font-extrabold text-[#2E8B57]">
+                    <span className="font-mono text-base font-extrabold text-primary">
                       {grievance.refNumber}
                     </span>
                     <span
@@ -118,14 +118,14 @@ function TrackGrievanceContent() {
                       {grievance.status}
                     </span>
                   </div>
-                  <h2 className="text-lg sm:text-xl font-bold text-[#1F2937] mt-2 leading-snug">
+                  <h2 className="text-lg sm:text-xl font-bold text-text-primary mt-2 leading-snug">
                     {grievance.title}
                   </h2>
                 </div>
 
                 <Link
                   href="/grievance/register"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2E8B57] hover:underline shrink-0"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline shrink-0"
                 >
                   <span>File Another Grievance</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -152,7 +152,7 @@ function TrackGrievanceContent() {
                   <div className="text-gray-400 font-semibold uppercase text-[10px]">
                     Assigned Officer
                   </div>
-                  <div className="font-bold text-[#2E8B57] mt-0.5">
+                  <div className="font-bold text-primary mt-0.5">
                     {grievance.assignedOfficer || "Pending Assignment"}
                   </div>
                 </div>
@@ -160,8 +160,8 @@ function TrackGrievanceContent() {
 
               {/* Officer Remarks Banner */}
               {grievance.officerRemarks && (
-                <div className="mt-6 p-4 rounded-xl bg-[#E8F5E9] border border-[#D9E8DD] text-xs">
-                  <div className="font-bold text-[#2E8B57] flex items-center gap-1.5 mb-1">
+                <div className="mt-6 p-4 rounded-xl bg-primary-light border border-border text-xs">
+                  <div className="font-bold text-primary flex items-center gap-1.5 mb-1">
                     <ShieldCheck className="w-4 h-4" />
                     <span>Official Desk Remarks / Resolution Note:</span>
                   </div>
@@ -179,7 +179,7 @@ function TrackGrievanceContent() {
                     {grievance.images.map((img, idx) => (
                       <div
                         key={idx}
-                        className="w-28 h-28 rounded-xl overflow-hidden border border-[#D9E8DD] shrink-0 bg-gray-100 shadow-xs"
+                        className="w-28 h-28 rounded-xl overflow-hidden border border-border shrink-0 bg-gray-100 shadow-xs"
                       >
                         <img
                           src={img}
@@ -194,9 +194,9 @@ function TrackGrievanceContent() {
             </div>
 
             {/* Prompt Requirement: Timeline component rendering the 6 statuses */}
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs">
-              <h3 className="text-base font-bold text-[#1F2937] mb-4 flex items-center gap-2">
-                <Clock className="w-5 h-5 text-[#2E8B57]" />
+            <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs">
+              <h3 className="text-base font-bold text-text-primary mb-4 flex items-center gap-2">
+                <Clock className="w-5 h-5 text-primary" />
                 <span>Grievance Redressal Timeline</span>
               </h3>
 
@@ -207,7 +207,7 @@ function TrackGrievanceContent() {
             </div>
           </div>
         ) : searched ? (
-          <div className="bg-white p-10 rounded-2xl border border-[#D9E8DD] text-center shadow-xs">
+          <div className="bg-white p-10 rounded-2xl border border-border text-center shadow-xs">
             <AlertCircle className="w-12 h-12 text-amber-500 mx-auto mb-3" />
             <h3 className="text-base font-bold text-gray-900">
               No Grievance Found for &quot;{searchQuery}&quot;
@@ -218,7 +218,7 @@ function TrackGrievanceContent() {
             <div className="mt-6">
               <Link
                 href="/grievance/register"
-                className="px-5 py-2.5 rounded-xl bg-[#2E8B57] text-white font-bold text-xs hover:bg-[#246E45] inline-flex items-center gap-1.5"
+                className="px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-xs hover:bg-primary-hover inline-flex items-center gap-1.5"
               >
                 <span>Register New Complaint</span>
                 <ArrowRight className="w-4 h-4" />

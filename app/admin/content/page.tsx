@@ -122,20 +122,20 @@ function ContentManagerContent() {
               onClick={() => handleTabChange(sec.id)}
               className={`text-left p-5 rounded-2xl border transition-all relative overflow-hidden flex flex-col justify-between cursor-pointer ${
                 isSelected
-                  ? "bg-white border-[#2E8B57] shadow-md ring-2 ring-[#2E8B57]/20"
-                  : "bg-white border-[#D9E8DD] hover:border-emerald-300 hover:shadow-xs"
+                  ? "bg-white border-primary shadow-md ring-2 ring-primary/20"
+                  : "bg-white border-border hover:border-emerald-300 hover:shadow-xs"
               }`}
             >
               {isSelected && (
-                <div className="absolute top-0 left-0 right-0 h-1 bg-[#2E8B57]" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
               )}
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div
                     className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                       isSelected
-                        ? "bg-[#2E8B57] text-white"
-                        : "bg-[#E8F5E9] text-[#2E8B57]"
+                        ? "bg-primary text-white"
+                        : "bg-primary-light text-primary"
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -144,7 +144,7 @@ function ContentManagerContent() {
                     {sec.fieldsCount}
                   </span>
                 </div>
-                <h3 className="font-bold text-base text-[#1F2937]">{sec.name}</h3>
+                <h3 className="font-bold text-base text-text-primary">{sec.name}</h3>
                 <p className="text-xs text-gray-500 mt-1 leading-relaxed">{sec.desc}</p>
               </div>
 
@@ -152,7 +152,7 @@ function ContentManagerContent() {
                 <span className="font-mono text-gray-400">Route: {sec.route}</span>
                 <span
                   className={`font-bold ${
-                    isSelected ? "text-[#2E8B57]" : "text-gray-400"
+                    isSelected ? "text-primary" : "text-gray-400"
                   }`}
                 >
                   {isSelected ? "Editing Active" : "Click to Edit →"}

@@ -94,9 +94,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FCF9] text-[#1F2937] flex flex-col md:flex-row">
+    <div className="min-h-screen bg-primary-surface text-text-primary flex flex-col md:flex-row">
       {/* Mobile Top Header */}
-      <div className="md:hidden bg-white border-b border-[#D9E8DD] px-4 py-3 flex items-center justify-between sticky top-0 z-40">
+      <div className="md:hidden bg-white border-b border-border px-4 py-3 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-2">
           <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
             <Image
@@ -107,7 +107,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="font-bold text-sm text-[#1F2937]">LMC Admin</span>
+          <span className="font-bold text-sm text-text-primary">LMC Admin</span>
         </div>
         <button
           onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
@@ -119,13 +119,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Sidebar (Desktop + Mobile Drawer) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-[#D9E8DD] flex flex-col justify-between transition-transform duration-300 md:static md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-border flex flex-col justify-between transition-transform duration-300 md:static md:translate-x-0 ${
           mobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div>
           {/* Admin Header */}
-          <div className="p-5 border-b border-[#D9E8DD] flex items-center justify-between">
+          <div className="p-5 border-b border-border flex items-center justify-between">
             <Link href="/admin/dashboard" className="flex items-center gap-3">
               <div className="relative w-10 h-10 flex items-center justify-center shrink-0">
                 <Image
@@ -137,10 +137,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 />
               </div>
               <div>
-                <div className="font-extrabold text-sm text-[#1F2937] leading-tight">
+                <div className="font-extrabold text-sm text-text-primary leading-tight">
                   LMC Admin Console
                 </div>
-                <div className="text-[10px] font-semibold text-[#2E8B57]">Govt of Maharashtra</div>
+                <div className="text-[10px] font-semibold text-primary">Govt of Maharashtra</div>
               </div>
             </Link>
             <button
@@ -175,8 +175,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   <div
                     className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors ${
                       isActive
-                        ? "bg-[#2E8B57] text-white shadow-xs"
-                        : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                        ? "bg-primary text-white shadow-xs"
+                        : "text-gray-700 hover:bg-primary-light hover:text-primary"
                     }`}
                   >
                     <Link
@@ -192,7 +192,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       <span
                         className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
                           isActive
-                            ? "bg-white text-[#2E8B57]"
+                            ? "bg-white text-primary"
                             : "bg-red-100 text-red-600 animate-pulse"
                         }`}
                       >
@@ -220,7 +220,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                   {/* Submenu Accordion */}
                   {hasChildren && isExpanded && (
-                    <div className="pl-4 pr-1 py-1 space-y-1 border-l-2 border-[#D9E8DD] ml-4 my-1">
+                    <div className="pl-4 pr-1 py-1 space-y-1 border-l-2 border-border ml-4 my-1">
                       {item.children!.map((child) => {
                         const ChildIcon = child.icon;
                         const isSubActive =
@@ -233,8 +233,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             onClick={() => setMobileSidebarOpen(false)}
                             className={`flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                               isSubActive
-                                ? "bg-[#E8F5E9] text-[#2E8B57] font-bold"
-                                : "text-gray-600 hover:bg-gray-100 hover:text-[#2E8B57]"
+                                ? "bg-primary-light text-primary font-bold"
+                                : "text-gray-600 hover:bg-gray-100 hover:text-primary"
                             }`}
                           >
                             <ChildIcon className="w-3.5 h-3.5 shrink-0" />
@@ -251,14 +251,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-[#D9E8DD] space-y-2 bg-[#F8FCF9]">
+        <div className="p-4 border-t border-border space-y-2 bg-primary-surface">
           <Link
             href="/"
             target="_blank"
-            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-gray-600 hover:bg-white border border-transparent hover:border-[#D9E8DD] transition-all"
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-gray-600 hover:bg-white border border-transparent hover:border-border transition-all"
           >
             <span className="flex items-center gap-2">
-              <ExternalLink className="w-3.5 h-3.5 text-[#2E8B57]" />
+              <ExternalLink className="w-3.5 h-3.5 text-primary" />
               <span>Public Citizen Portal</span>
             </span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -277,22 +277,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         {/* Top Navbar */}
-        <header className="bg-white border-b border-[#D9E8DD] px-6 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+        <header className="bg-white border-b border-border px-6 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xs">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
               Control Desk:
             </span>
-            <span className="text-xs font-bold text-[#2E8B57] bg-[#E8F5E9] px-2.5 py-1 rounded-lg border border-[#D9E8DD]">
+            <span className="text-xs font-bold text-primary bg-primary-light px-2.5 py-1 rounded-lg border border-border">
               Municipal Headquarters, Lonavala
             </span>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="text-right hidden sm:block">
-              <div className="text-xs font-bold text-[#1F2937]">Shri. Pandit Patil (IAS)</div>
+              <div className="text-xs font-bold text-text-primary">Shri. Pandit Patil (IAS)</div>
               <div className="text-[10px] text-gray-500">Chief Officer & Commissioner</div>
             </div>
-            <div className="w-9 h-9 rounded-full bg-[#2E8B57] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+            <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs shadow-sm">
               CO
             </div>
           </div>

@@ -116,15 +116,15 @@ export function AboutContentEditor() {
   return (
     <form onSubmit={handleSave} className="space-y-8">
       {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-[#D9E8DD] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-border shadow-xs">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-lg bg-[#E8F5E9] text-[#2E8B57] font-bold text-xs">
+            <span className="px-2.5 py-1 rounded-lg bg-primary-light text-primary font-bold text-xs">
               Live Section Editor
             </span>
             <span className="text-xs text-gray-500">• Route: /about (About Us)</span>
           </div>
-          <h2 className="text-xl font-extrabold text-[#1F2937] mt-1">About Us Page Content</h2>
+          <h2 className="text-xl font-extrabold text-text-primary mt-1">About Us Page Content</h2>
           <p className="text-xs text-gray-500">
            Manage history, vision & mission, commissioner message, and media.
           </p>
@@ -141,7 +141,7 @@ export function AboutContentEditor() {
           </Link>
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Publish Changes</span>
@@ -151,19 +151,19 @@ export function AboutContentEditor() {
 
       {saved && (
         <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 flex items-center gap-3 text-xs font-bold animate-in fade-in duration-300">
-          <CheckCircle2 className="w-5 h-5 text-[#2E8B57] shrink-0" />
+          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
           <span>About Us content saved and published successfully!</span>
         </div>
       )}
 
       {/* SECTION 1: Historical Legacy & Rich Text Description */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xs space-y-6">
         <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
             1
           </div>
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">Historical Legacy & Description</h3>
+            <h3 className="font-bold text-base text-text-primary">Historical Legacy & Description</h3>
             <p className="text-xs text-gray-500">
               Heritage milestones, image upload, and rich-text description with Formated.
             </p>
@@ -181,7 +181,7 @@ export function AboutContentEditor() {
                 type="text"
                 value={history.sectionTitle}
                 onChange={(e) => setHistory({ ...history, sectionTitle: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
@@ -192,7 +192,7 @@ export function AboutContentEditor() {
                 type="text"
                 value={history.establishedYear}
                 onChange={(e) => setHistory({ ...history, establishedYear: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold text-[#2E8B57] focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold text-primary focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
@@ -203,7 +203,7 @@ export function AboutContentEditor() {
                 type="text"
                 value={history.yearsOfService}
                 onChange={(e) => setHistory({ ...history, yearsOfService: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
@@ -217,15 +217,15 @@ export function AboutContentEditor() {
               type="text"
               value={history.elevation}
               onChange={(e) => setHistory({ ...history, elevation: e.target.value })}
-              className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
             />
           </div>
 
           {/* Heritage Feature Image File Upload */}
-          <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-3">
+          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
             <div className="flex items-center justify-between">
               <label className="font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2">
-                <ImageIcon className="w-4 h-4 text-[#2E8B57]" />
+                <ImageIcon className="w-4 h-4 text-primary" />
                 <span>Heritage Feature Image (Upload / Replace)</span>
               </label>
               <span className="text-[11px] text-gray-500 font-semibold">Supports JPG, PNG, WebP, SVG</span>
@@ -243,7 +243,7 @@ export function AboutContentEditor() {
               <button
                 type="button"
                 onClick={() => heritageFileInputRef.current?.click()}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border-2 border-dashed border-[#2E8B57] text-[#2E8B57] hover:bg-[#E8F5E9] font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border-2 border-dashed border-primary text-primary hover:bg-primary-light font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <Upload className="w-4 h-4" />
                 <span>Upload Heritage Image</span>
@@ -251,7 +251,7 @@ export function AboutContentEditor() {
 
               <div className="flex-1 w-full bg-white px-3.5 py-2 rounded-xl border border-gray-200 flex items-center justify-between">
                 <div className="flex items-center gap-2 overflow-hidden">
-                  <FileImage className="w-4 h-4 text-[#2E8B57] shrink-0" />
+                  <FileImage className="w-4 h-4 text-primary shrink-0" />
                   <span className="font-mono text-gray-700 truncate text-[11px]">
                     {history.imageFileName || history.imageUrl}
                   </span>
@@ -271,7 +271,7 @@ export function AboutContentEditor() {
               </label>
             </div>
 
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] overflow-hidden focus-within:border-[#2E8B57] transition-colors">
+            <div className="bg-white rounded-2xl border border-border overflow-hidden focus-within:border-primary transition-colors">
               <ReactQuill
                 theme="snow"
                 value={history.description}
@@ -286,36 +286,36 @@ export function AboutContentEditor() {
       </div>
 
       {/* SECTION 2: Vision & Mission */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xs space-y-6">
         <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
             2
           </div>
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">Vision & Mission Statements</h3>
+            <h3 className="font-bold text-base text-text-primary">Vision & Mission Statements</h3>
             <p className="text-xs text-gray-500">Core civic principles and key strategic focus areas.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
           {/* Vision */}
-          <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-3">
-            <div className="font-bold text-sm text-[#1F2937] flex items-center gap-2">
-              <Eye className="w-4 h-4 text-[#2E8B57]" />
+          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
+            <div className="font-bold text-sm text-text-primary flex items-center gap-2">
+              <Eye className="w-4 h-4 text-primary" />
               <span>Vision Statement</span>
             </div>
             <textarea
               rows={4}
               value={visionMission.visionText}
               onChange={(e) => setVisionMission({ ...visionMission, visionText: e.target.value })}
-              className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+              className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl focus:border-primary focus:outline-hidden"
             />
           </div>
 
           {/* Mission */}
-          <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-3">
-            <div className="font-bold text-sm text-[#1F2937] flex items-center gap-2">
-              <Target className="w-4 h-4 text-[#2E8B57]" />
+          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
+            <div className="font-bold text-sm text-text-primary flex items-center gap-2">
+              <Target className="w-4 h-4 text-primary" />
               <span>Mission Key Objectives</span>
             </div>
             <div className="space-y-2">
@@ -351,7 +351,7 @@ export function AboutContentEditor() {
                     missionPoints: [...visionMission.missionPoints, "New strategic civic objective"],
                   })
                 }
-                className="mt-2 text-xs text-[#2E8B57] font-bold flex items-center gap-1 hover:underline cursor-pointer"
+                className="mt-2 text-xs text-primary font-bold flex items-center gap-1 hover:underline cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Mission Point</span>
@@ -362,20 +362,20 @@ export function AboutContentEditor() {
       </div>
 
       {/* SECTION 3: Chief Officer's Communiqué */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xs space-y-6">
         <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
             3
           </div>
           <div>
-            <h3 className="font-bold text-base text-[#1F2937]">Chief Officer&apos;s Communiqué</h3>
+            <h3 className="font-bold text-base text-text-primary">Chief Officer&apos;s Communiqué</h3>
             <p className="text-xs text-gray-500">Official statement, portrait upload, and administrative address.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 text-xs">
           {/* Officer Details & Portrait Upload */}
-          <div className="md:col-span-5 p-5 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-3.5">
+          <div className="md:col-span-5 p-5 rounded-2xl bg-primary-surface border border-border space-y-3.5">
             <div>
               <label className="block font-bold text-gray-600 text-[11px] mb-1">Officer Name</label>
               <input
@@ -433,7 +433,7 @@ export function AboutContentEditor() {
                 <button
                   type="button"
                   onClick={() => portraitFileInputRef.current?.click()}
-                  className="w-full px-3 py-2 rounded-xl bg-white border-2 border-dashed border-[#2E8B57] text-[#2E8B57] hover:bg-[#E8F5E9] font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full px-3 py-2 rounded-xl bg-white border-2 border-dashed border-primary text-primary hover:bg-primary-light font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <Upload className="w-4 h-4" />
                   <span>Upload Portrait Photo</span>
@@ -441,7 +441,7 @@ export function AboutContentEditor() {
 
                 <div className="bg-white px-3 py-1.5 rounded-xl border border-gray-200 flex items-center justify-between">
                   <div className="flex items-center gap-2 overflow-hidden">
-                    <FileImage className="w-3.5 h-3.5 text-[#2E8B57] shrink-0" />
+                    <FileImage className="w-3.5 h-3.5 text-primary shrink-0" />
                     <span className="font-mono text-gray-700 truncate text-[10px]">
                       {communique.imageFileName || communique.imageUrl}
                     </span>
@@ -464,7 +464,7 @@ export function AboutContentEditor() {
                 type="text"
                 value={communique.title}
                 onChange={(e) => setCommunique({ ...communique, title: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
@@ -475,7 +475,7 @@ export function AboutContentEditor() {
                 type="text"
                 value={communique.subtitle}
                 onChange={(e) => setCommunique({ ...communique, subtitle: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
@@ -486,7 +486,7 @@ export function AboutContentEditor() {
                 rows={5}
                 value={communique.messageBody}
                 onChange={(e) => setCommunique({ ...communique, messageBody: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl leading-relaxed focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl leading-relaxed focus:border-primary focus:outline-hidden"
               />
             </div>
             <div>
@@ -497,7 +497,7 @@ export function AboutContentEditor() {
                 type="text"
                 value={communique.signOff}
                 onChange={(e) => setCommunique({ ...communique, signOff: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
@@ -505,7 +505,7 @@ export function AboutContentEditor() {
       </div>
 
       {/* Sticky Bottom Save Bar */}
-      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-[#D9E8DD] shadow-lg flex items-center justify-between">
+      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-border shadow-lg flex items-center justify-between">
         <div className="text-xs text-gray-500">
           Last updated: <span className="font-semibold text-gray-800">Just now</span>
         </div>
@@ -519,7 +519,7 @@ export function AboutContentEditor() {
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save & Publish About Us</span>

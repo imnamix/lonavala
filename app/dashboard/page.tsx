@@ -94,15 +94,15 @@ export default function CitizenDashboardPage() {
   return (
     <div className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Welcome Banner */}
-      <div className="bg-white rounded-3xl border border-[#D9E8DD] p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
+      <div className="bg-white rounded-3xl border border-border p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-[#2E8B57] text-white flex items-center justify-center font-bold text-xl shadow-md">
+          <div className="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center font-bold text-xl shadow-md">
             AS
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-extrabold text-[#1F2937]">{userProfile.name}</h1>
-              <span className="text-[10px] font-bold text-[#2E8B57] bg-[#E8F5E9] px-2 py-0.5 rounded-full">
+              <h1 className="text-xl font-extrabold text-text-primary">{userProfile.name}</h1>
+              <span className="text-[10px] font-bold text-primary bg-primary-light px-2 py-0.5 rounded-full">
                 Verified Citizen
               </span>
             </div>
@@ -115,7 +115,7 @@ export default function CitizenDashboardPage() {
         <div className="flex items-center gap-3">
           <Link
             href="/grievance/register"
-            className="px-4 py-2.5 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-xs transition-colors"
+            className="px-4 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-xs transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>New Grievance</span>
@@ -134,13 +134,13 @@ export default function CitizenDashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Sidebar Menu */}
         <div className="lg:col-span-3">
-          <div className="bg-white rounded-2xl border border-[#D9E8DD] p-3 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl border border-border p-3 shadow-xs space-y-1">
             <button
               onClick={() => setActiveTab("grievances")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-left transition-colors ${
                 activeTab === "grievances"
-                  ? "bg-[#2E8B57] text-white shadow-xs"
-                  : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                  ? "bg-primary text-white shadow-xs"
+                  : "text-gray-700 hover:bg-primary-light hover:text-primary"
               }`}
             >
               <AlertCircle className="w-4 h-4" />
@@ -151,8 +151,8 @@ export default function CitizenDashboardPage() {
               onClick={() => setActiveTab("profile")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-left transition-colors ${
                 activeTab === "profile"
-                  ? "bg-[#2E8B57] text-white shadow-xs"
-                  : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                  ? "bg-primary text-white shadow-xs"
+                  : "text-gray-700 hover:bg-primary-light hover:text-primary"
               }`}
             >
               <User className="w-4 h-4" />
@@ -163,8 +163,8 @@ export default function CitizenDashboardPage() {
               onClick={() => setActiveTab("notifications")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-left transition-colors ${
                 activeTab === "notifications"
-                  ? "bg-[#2E8B57] text-white shadow-xs"
-                  : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                  ? "bg-primary text-white shadow-xs"
+                  : "text-gray-700 hover:bg-primary-light hover:text-primary"
               }`}
             >
               <Bell className="w-4 h-4" />
@@ -175,8 +175,8 @@ export default function CitizenDashboardPage() {
               onClick={() => setActiveTab("documents")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-left transition-colors ${
                 activeTab === "documents"
-                  ? "bg-[#2E8B57] text-white shadow-xs"
-                  : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                  ? "bg-primary text-white shadow-xs"
+                  : "text-gray-700 hover:bg-primary-light hover:text-primary"
               }`}
             >
               <FileText className="w-4 h-4" />
@@ -187,8 +187,8 @@ export default function CitizenDashboardPage() {
               onClick={() => setActiveTab("settings")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-left transition-colors ${
                 activeTab === "settings"
-                  ? "bg-[#2E8B57] text-white shadow-xs"
-                  : "text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                  ? "bg-primary text-white shadow-xs"
+                  : "text-gray-700 hover:bg-primary-light hover:text-primary"
               }`}
             >
               <Settings className="w-4 h-4" />
@@ -203,18 +203,18 @@ export default function CitizenDashboardPage() {
           {activeTab === "grievances" && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-bold text-[#1F2937]">Registered Grievances</h2>
+                <h2 className="text-lg font-bold text-text-primary">Registered Grievances</h2>
                 <span className="text-xs text-gray-500">Live Redressal Tracker</span>
               </div>
 
               {grievances.map((g) => (
                 <div
                   key={g.id}
-                  className="bg-white rounded-2xl border border-[#D9E8DD] p-6 shadow-xs hover:border-[#2E8B57] transition-all space-y-4"
+                  className="bg-white rounded-2xl border border-border p-6 shadow-xs hover:border-primary transition-all space-y-4"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-extrabold text-[#2E8B57]">
+                      <span className="font-mono text-xs font-extrabold text-primary">
                         {g.refNumber}
                       </span>
                       <span
@@ -231,11 +231,11 @@ export default function CitizenDashboardPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-base font-bold text-[#1F2937] leading-snug">{g.title}</h3>
+                    <h3 className="text-base font-bold text-text-primary leading-snug">{g.title}</h3>
                     <p className="text-xs text-gray-600 mt-1 line-clamp-2">{g.description}</p>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-[#F8FCF9] p-3 rounded-xl border border-[#D9E8DD] text-xs">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-primary-surface p-3 rounded-xl border border-border text-xs">
                     <div>
                       <span className="text-gray-400 text-[10px] uppercase font-semibold">
                         Department
@@ -252,7 +252,7 @@ export default function CitizenDashboardPage() {
                       <span className="text-gray-400 text-[10px] uppercase font-semibold">
                         Assigned Officer
                       </span>
-                      <div className="font-medium text-[#2E8B57] truncate">
+                      <div className="font-medium text-primary truncate">
                         {g.assignedOfficer || "Pending Assignment"}
                       </div>
                     </div>
@@ -268,7 +268,7 @@ export default function CitizenDashboardPage() {
 
                     <Link
                       href={`/grievance/track?ref=${g.refNumber}`}
-                      className="px-3.5 py-1.5 rounded-lg bg-[#E8F5E9] hover:bg-[#2E8B57] hover:text-white text-[#2E8B57] font-bold text-xs transition-colors flex items-center gap-1 shrink-0"
+                      className="px-3.5 py-1.5 rounded-lg bg-primary-light hover:bg-primary hover:text-white text-primary font-bold text-xs transition-colors flex items-center gap-1 shrink-0"
                     >
                       <span>Track Timeline</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -281,8 +281,8 @@ export default function CitizenDashboardPage() {
 
           {/* TAB 2: PROFILE */}
           {activeTab === "profile" && (
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs space-y-6">
-              <h2 className="text-lg font-bold text-[#1F2937]">Citizen Profile Details</h2>
+            <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs space-y-6">
+              <h2 className="text-lg font-bold text-text-primary">Citizen Profile Details</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div className="p-3.5 bg-gray-50 rounded-xl border border-gray-100">
                   <span className="text-gray-400 uppercase font-semibold text-[10px]">
@@ -306,7 +306,7 @@ export default function CitizenDashboardPage() {
                   <span className="text-gray-400 uppercase font-semibold text-[10px]">
                     Property PID
                   </span>
-                  <div className="font-bold text-[#2E8B57] text-sm mt-0.5">
+                  <div className="font-bold text-primary text-sm mt-0.5">
                     {userProfile.pidNumber}
                   </div>
                 </div>
@@ -322,8 +322,8 @@ export default function CitizenDashboardPage() {
 
           {/* TAB 3: NOTIFICATIONS */}
           {activeTab === "notifications" && (
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 shadow-xs space-y-4">
-              <h2 className="text-lg font-bold text-[#1F2937]">Citizen Alerts & Notifications</h2>
+            <div className="bg-white rounded-2xl border border-border p-6 shadow-xs space-y-4">
+              <h2 className="text-lg font-bold text-text-primary">Citizen Alerts & Notifications</h2>
               <div className="space-y-3">
                 {notifications.map((notif) => (
                   <div
@@ -335,7 +335,7 @@ export default function CitizenDashboardPage() {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-bold text-[#1F2937]">{notif.title}</span>
+                      <span className="text-xs font-bold text-text-primary">{notif.title}</span>
                       <span className="text-[10px] text-gray-400">{notif.time}</span>
                     </div>
                     <p className="text-xs text-gray-600">{notif.desc}</p>
@@ -347,18 +347,18 @@ export default function CitizenDashboardPage() {
 
           {/* TAB 4: DOCUMENTS */}
           {activeTab === "documents" && (
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 shadow-xs space-y-4">
-              <h2 className="text-lg font-bold text-[#1F2937]">Saved Receipts & Official Extracts</h2>
+            <div className="bg-white rounded-2xl border border-border p-6 shadow-xs space-y-4">
+              <h2 className="text-lg font-bold text-text-primary">Saved Receipts & Official Extracts</h2>
               <div className="space-y-3">
                 {citizenDocs.map((doc, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl bg-[#F8FCF9] border border-[#D9E8DD] flex items-center justify-between gap-4"
+                    className="p-4 rounded-xl bg-primary-surface border border-border flex items-center justify-between gap-4"
                   >
                     <div className="flex items-center gap-3">
-                      <FileCheck className="w-5 h-5 text-[#2E8B57] shrink-0" />
+                      <FileCheck className="w-5 h-5 text-primary shrink-0" />
                       <div>
-                        <div className="text-xs font-bold text-[#1F2937]">{doc.title}</div>
+                        <div className="text-xs font-bold text-text-primary">{doc.title}</div>
                         <div className="text-[10px] text-gray-500">
                           {doc.date} • {doc.size}
                         </div>
@@ -367,7 +367,7 @@ export default function CitizenDashboardPage() {
                     <a
                       href="#"
                       download
-                      className="px-3 py-1.5 bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1 shadow-xs"
+                      className="px-3 py-1.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1 shadow-xs"
                     >
                       <Download className="w-3.5 h-3.5" />
                       <span>Download</span>
@@ -380,8 +380,8 @@ export default function CitizenDashboardPage() {
 
           {/* TAB 5: SETTINGS */}
           {activeTab === "settings" && (
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs space-y-6">
-              <h2 className="text-lg font-bold text-[#1F2937]">Account & Alert Preferences</h2>
+            <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs space-y-6">
+              <h2 className="text-lg font-bold text-text-primary">Account & Alert Preferences</h2>
               <div className="space-y-4 text-xs text-gray-700">
                 <div className="flex items-center justify-between p-3.5 bg-gray-50 rounded-xl border border-gray-100">
                   <div>
@@ -393,7 +393,7 @@ export default function CitizenDashboardPage() {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="w-4 h-4 text-[#2E8B57] rounded"
+                    className="w-4 h-4 text-primary rounded"
                   />
                 </div>
 
@@ -407,7 +407,7 @@ export default function CitizenDashboardPage() {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="w-4 h-4 text-[#2E8B57] rounded"
+                    className="w-4 h-4 text-primary rounded"
                   />
                 </div>
               </div>

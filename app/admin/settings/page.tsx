@@ -21,7 +21,7 @@ export default function AdminSettingsPage() {
     <div className="space-y-6 max-w-4xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#1F2937]">Portal Settings & Configuration</h1>
+          <h1 className="text-2xl font-extrabold text-text-primary">Portal Settings & Configuration</h1>
           <p className="text-xs text-gray-500 mt-0.5">
             Configure system helplines, SLA benchmarks, seasonal tourism status, and citizen alert banners.
           </p>
@@ -29,15 +29,15 @@ export default function AdminSettingsPage() {
 
         {saved && (
           <div className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-300 flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#2E8B57]" />
+            <CheckCircle2 className="w-4 h-4 text-primary" />
             <span>Settings saved successfully!</span>
           </div>
         )}
       </div>
 
-      <form onSubmit={handleSave} className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs space-y-6 text-xs">
+      <form onSubmit={handleSave} className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs space-y-6 text-xs">
         <div className="border-b border-gray-100 pb-4">
-          <h3 className="text-sm font-bold text-[#1F2937] uppercase tracking-wider mb-1">
+          <h3 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-1">
             Emergency & Control Room Hotlines
           </h3>
           <p className="text-gray-500">Numbers displayed on citizen emergency banner and helpline dials.</p>
@@ -52,7 +52,7 @@ export default function AdminSettingsPage() {
               type="text"
               value={tollFree}
               onChange={(e) => setTollFree(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
             />
           </div>
 
@@ -64,13 +64,13 @@ export default function AdminSettingsPage() {
               type="text"
               value={exchangePhone}
               onChange={(e) => setExchangePhone(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
             />
           </div>
         </div>
 
         <div className="border-b border-gray-100 pb-4 pt-4">
-          <h3 className="text-sm font-bold text-[#1F2937] uppercase tracking-wider mb-1">
+          <h3 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-1">
             Grievance Redressal & Citizen Charter
           </h3>
           <p className="text-gray-500">Service benchmarks and early payment incentives.</p>
@@ -85,7 +85,7 @@ export default function AdminSettingsPage() {
               type="number"
               value={slaTargetDays}
               onChange={(e) => setSlaTargetDays(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
             />
           </div>
 
@@ -97,13 +97,13 @@ export default function AdminSettingsPage() {
               type="number"
               value={taxRebatePercent}
               onChange={(e) => setTaxRebatePercent(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
             />
           </div>
         </div>
 
         <div className="border-b border-gray-100 pb-4 pt-4">
-          <h3 className="text-sm font-bold text-[#1F2937] uppercase tracking-wider mb-1">
+          <h3 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-1">
             Hill Station Tourism Status Banner
           </h3>
           <p className="text-gray-500">Real-time status shown on homepage tourism widget.</p>
@@ -117,14 +117,14 @@ export default function AdminSettingsPage() {
             type="text"
             value={weatherStatus}
             onChange={(e) => setWeatherStatus(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+            className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
           />
         </div>
 
         <div className="pt-4 flex justify-end">
           <button
             type="submit"
-            className="px-6 py-2.5 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
+            className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
           >
             <Save className="w-4 h-4" />
             <span>Save Configuration</span>

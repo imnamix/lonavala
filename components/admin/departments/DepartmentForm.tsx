@@ -183,24 +183,24 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
     <div className="space-y-6 max-w-4xl mx-auto pb-12">
       {/* Toast */}
       {savedToast && (
-        <div className="fixed top-6 right-6 z-50 bg-[#2E8B57] text-white text-xs font-bold px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2 animate-bounce">
+        <div className="fixed top-6 right-6 z-50 bg-primary text-white text-xs font-bold px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2 animate-bounce">
           <CheckCircle2 className="w-5 h-5 text-white" />
           <span>Department successfully saved! Redirecting to table...</span>
         </div>
       )}
 
       {/* Top Breadcrumb & Action Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D9E8DD] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
         <div className="flex items-center gap-3">
           <Link
             href="/admin/departments"
-            className="p-2 rounded-xl bg-white border border-gray-200 hover:border-[#2E8B57] text-gray-600 hover:text-[#2E8B57] transition-colors"
+            className="p-2 rounded-xl bg-white border border-gray-200 hover:border-primary text-gray-600 hover:text-primary transition-colors"
             title="Back to Departments list"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="text-xl sm:text-2xl font-black text-[#1F2937]">
+            <h1 className="text-xl sm:text-2xl font-black text-text-primary">
               {isNew ? "Add New Department" : `Edit Department: ${formData.name || "Loading..."}`}
             </h1>
             <p className="text-xs text-gray-500">
@@ -222,7 +222,7 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
           <button
             type="button"
             onClick={handleSave}
-            className="px-5 py-2 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+            className="px-5 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save Department</span>
@@ -248,10 +248,10 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
         )}
 
         {/* Section 1: Department Basic Information */}
-        <div className="bg-white p-6 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="bg-white p-6 rounded-3xl border border-border shadow-xs space-y-4">
           <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
-            <Building2 className="w-4 h-4 text-[#2E8B57]" />
-            <h3 className="font-bold text-sm text-[#1F2937]">Department Identity</h3>
+            <Building2 className="w-4 h-4 text-primary" />
+            <h3 className="font-bold text-sm text-text-primary">Department Identity</h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -266,8 +266,8 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.name}
                 onChange={(e) => handleNameChange(e.target.value)}
                 placeholder="e.g. Health & Sanitation"
-                className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                  errors.name ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                  errors.name ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                 }`}
               />
             </div>
@@ -283,8 +283,8 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.marathiName}
                 onChange={(e) => setFormData({ ...formData, marathiName: e.target.value })}
                 placeholder="e.g. आरोग्य व स्वच्छता विभाग"
-                className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                  errors.marathiName ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                  errors.marathiName ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                 }`}
               />
             </div>
@@ -300,8 +300,8 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.slug}
                 onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                 placeholder="e.g. health-sanitation"
-                className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                  errors.slug ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                  errors.slug ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                 }`}
               />
             </div>
@@ -312,7 +312,7 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
               <select
                 value={formData.icon}
                 onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
               >
                 {AVAILABLE_ICONS.map((i) => (
                   <option key={i.key} value={i.key}>
@@ -330,17 +330,17 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.overview}
                 onChange={(e) => setFormData({ ...formData, overview: e.target.value })}
                 placeholder="Describe the department's mandate, public cleanliness, or infrastructure role..."
-                className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
         </div>
 
         {/* Section 2: Leadership & Contact Coordinates */}
-        <div className="bg-white p-6 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="bg-white p-6 rounded-3xl border border-border shadow-xs space-y-4">
           <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
-            <User className="w-4 h-4 text-[#2E8B57]" />
-            <h3 className="font-bold text-sm text-[#1F2937]">Leadership & Contact Coordinates</h3>
+            <User className="w-4 h-4 text-primary" />
+            <h3 className="font-bold text-sm text-text-primary">Leadership & Contact Coordinates</h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -355,8 +355,8 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.headOfficer}
                 onChange={(e) => setFormData({ ...formData, headOfficer: e.target.value })}
                 placeholder="e.g. Dr. Sandeep Deshmukh"
-                className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                  errors.headOfficer ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                  errors.headOfficer ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                 }`}
               />
             </div>
@@ -369,7 +369,7 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.designation}
                 onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
                 placeholder="e.g. Chief Medical & Sanitation Officer"
-                className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
               />
             </div>
 
@@ -384,8 +384,8 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="e.g. +91 2114 273111"
-                className={`w-full px-3.5 py-2.5 bg-[#F8FCF9] border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                  errors.phone ? "border-red-400 focus:border-red-500" : "border-[#D9E8DD] focus:border-[#2E8B57]"
+                className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
+                  errors.phone ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
                 }`}
               />
             </div>
@@ -398,7 +398,7 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="e.g. health@lonavalamc.gov.in"
-                className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
               />
             </div>
 
@@ -410,23 +410,23 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 placeholder="e.g. Ground Floor, LMC Administrative Complex, Lonavala - 410401"
-                className="w-full px-3.5 py-2.5 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
         </div>
 
         {/* Section 3: Key Responsibilities */}
-        <div className="bg-white p-6 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="bg-white p-6 rounded-3xl border border-border shadow-xs space-y-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <div className="flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-[#2E8B57]" />
-              <h3 className="font-bold text-sm text-[#1F2937]">Key Responsibilities & Functions</h3>
+              <Building2 className="w-4 h-4 text-primary" />
+              <h3 className="font-bold text-sm text-text-primary">Key Responsibilities & Functions</h3>
             </div>
             <button
               type="button"
               onClick={handleAddResponsibility}
-              className="px-3 py-1 bg-[#E8F5E9] hover:bg-[#2E8B57] text-[#2E8B57] hover:text-white font-bold text-xs rounded-xl flex items-center gap-1 transition-colors cursor-pointer"
+              className="px-3 py-1 bg-primary-light hover:bg-primary text-primary hover:text-white font-bold text-xs rounded-xl flex items-center gap-1 transition-colors cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Item</span>
@@ -444,7 +444,7 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                   value={resp}
                   onChange={(e) => handleUpdateResponsibility(idx, e.target.value)}
                   placeholder="e.g. Daily door-to-door solid waste collection and segregation..."
-                  className="flex-1 px-3.5 py-2 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                  className="flex-1 px-3.5 py-2 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                 />
                 {formData.responsibilities.length > 1 && (
                   <button
@@ -462,16 +462,16 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
         </div>
 
         {/* Section 4: Citizen Services */}
-        <div className="bg-white p-6 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-4">
+        <div className="bg-white p-6 rounded-3xl border border-border shadow-xs space-y-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#2E8B57]" />
-              <h3 className="font-bold text-sm text-[#1F2937]">Citizen Services Provided</h3>
+              <Sparkles className="w-4 h-4 text-primary" />
+              <h3 className="font-bold text-sm text-text-primary">Citizen Services Provided</h3>
             </div>
             <button
               type="button"
               onClick={handleAddService}
-              className="px-3 py-1 bg-[#E8F5E9] hover:bg-[#2E8B57] text-[#2E8B57] hover:text-white font-bold text-xs rounded-xl flex items-center gap-1 transition-colors cursor-pointer"
+              className="px-3 py-1 bg-primary-light hover:bg-primary text-primary hover:text-white font-bold text-xs rounded-xl flex items-center gap-1 transition-colors cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Service</span>
@@ -489,7 +489,7 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
                   value={srv}
                   onChange={(e) => handleUpdateService(idx, e.target.value)}
                   placeholder="e.g. Garbage collection escalation request..."
-                  className="flex-1 px-3.5 py-2 bg-[#F8FCF9] border border-[#D9E8DD] rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                  className="flex-1 px-3.5 py-2 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                 />
                 {formData.services.length > 1 && (
                   <button
@@ -517,7 +517,7 @@ export function DepartmentForm({ deptId, isNew = false }: DepartmentFormProps) {
 
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer"
+            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save Department</span>

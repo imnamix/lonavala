@@ -23,13 +23,13 @@ export default function DepartmentsPage() {
   return (
     <div className="py-10">
       {/* Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-12">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
               Municipal Wings
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3">
               Administrative Departments
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
@@ -41,7 +41,7 @@ export default function DepartmentsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Search & Filter Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-[#D9E8DD] shadow-xs">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-border shadow-xs">
           <div className="w-full sm:max-w-md">
             <SearchBar
               value={search}
@@ -50,7 +50,7 @@ export default function DepartmentsPage() {
             />
           </div>
           <div className="text-xs font-semibold text-gray-500 shrink-0">
-            Showing <strong className="text-[#2E8B57]">{filteredDepts.length}</strong> of{" "}
+            Showing <strong className="text-primary">{filteredDepts.length}</strong> of{" "}
             {DEPARTMENTS.length} Departments
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function DepartmentsPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white rounded-2xl border border-[#D9E8DD] p-8">
+          <div className="text-center py-16 bg-white rounded-2xl border border-border p-8">
             <Building2 className="w-12 h-12 text-gray-400 mx-auto mb-3" />
             <h3 className="text-base font-bold text-gray-800">No departments found</h3>
             <p className="text-xs text-gray-500 mt-1">

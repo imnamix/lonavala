@@ -86,7 +86,7 @@ export default function AdminNoticesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#1F2937]">CMS Notices & Gazettes</h1>
+          <h1 className="text-2xl font-extrabold text-text-primary">CMS Notices & Gazettes</h1>
           <p className="text-xs text-gray-500 mt-0.5">
             Manage public announcements with Draft → Review → Publish editorial workflows.
           </p>
@@ -109,7 +109,7 @@ export default function AdminNoticesPage() {
               ]);
             }
           }}
-          className="px-4 py-2.5 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
+          className="px-4 py-2.5 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
         >
           <Plus className="w-4 h-4" />
           <span>New Notice</span>
@@ -117,11 +117,11 @@ export default function AdminNoticesPage() {
       </div>
 
       {/* Notice Table */}
-      <div className="bg-white rounded-2xl border border-[#D9E8DD] overflow-hidden shadow-xs">
+      <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#F8FCF9] border-b border-[#D9E8DD] text-[11px] font-bold text-gray-600 uppercase tracking-wider">
+              <tr className="bg-primary-surface border-b border-border text-[11px] font-bold text-gray-600 uppercase tracking-wider">
                 <th className="py-4 px-6">Title & Subject</th>
                 <th className="py-4 px-6">Category</th>
                 <th className="py-4 px-6">Department</th>
@@ -132,8 +132,8 @@ export default function AdminNoticesPage() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-xs text-gray-700">
               {notices.map((n) => (
-                <tr key={n.id} className="hover:bg-[#E8F5E9]/30 transition-colors">
-                  <td className="py-4 px-6 font-bold text-[#1F2937] max-w-sm">
+                <tr key={n.id} className="hover:bg-primary-light/30 transition-colors">
+                  <td className="py-4 px-6 font-bold text-text-primary max-w-sm">
                     {n.title}
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-gray-600">{n.category}</td>
@@ -151,7 +151,7 @@ export default function AdminNoticesPage() {
                   <td className="py-4 px-6 text-center whitespace-nowrap">
                     <button
                       onClick={() => cycleStatus(n.id)}
-                      className="px-3 py-1.5 rounded-lg bg-[#E8F5E9] text-[#2E8B57] hover:bg-[#2E8B57] hover:text-white font-bold text-xs transition-colors"
+                      className="px-3 py-1.5 rounded-lg bg-primary-light text-primary hover:bg-primary hover:text-white font-bold text-xs transition-colors"
                       title="Advance to next workflow state"
                     >
                       Advance State →

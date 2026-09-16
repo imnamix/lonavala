@@ -115,13 +115,13 @@ export default function RtiRtsPage() {
   return (
     <div className="py-10">
       {/* Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-12">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
               Accountability & Citizen Rights
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3">
               RTI & Maharashtra Right to Services (RTS)
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
@@ -133,13 +133,13 @@ export default function RtiRtsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Tab Switcher */}
-        <div className="flex items-center gap-4 border-b border-[#D9E8DD] pb-3">
+        <div className="flex items-center gap-4 border-b border-border pb-3">
           <button
             onClick={() => setActiveTab("RTI")}
             className={`px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 ${
               activeTab === "RTI"
-                ? "bg-[#2E8B57] text-white shadow-md"
-                : "bg-white border border-[#D9E8DD] text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                ? "bg-primary text-white shadow-md"
+                : "bg-white border border-border text-gray-700 hover:bg-primary-light hover:text-primary"
             }`}
           >
             <Scale className="w-4 h-4" />
@@ -150,8 +150,8 @@ export default function RtiRtsPage() {
             onClick={() => setActiveTab("RTS")}
             className={`px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 ${
               activeTab === "RTS"
-                ? "bg-[#2E8B57] text-white shadow-md"
-                : "bg-white border border-[#D9E8DD] text-gray-700 hover:bg-[#E8F5E9] hover:text-[#2E8B57]"
+                ? "bg-primary text-white shadow-md"
+                : "bg-white border border-border text-gray-700 hover:bg-primary-light hover:text-primary"
             }`}
           >
             <Clock className="w-4 h-4" />
@@ -166,7 +166,7 @@ export default function RtiRtsPage() {
             <section className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold text-[#1F2937]">
+                  <h2 className="text-xl font-bold text-text-primary">
                     Public Information Officers & Appellate Authority
                   </h2>
                   <p className="text-xs text-gray-500 mt-0.5">
@@ -177,7 +177,7 @@ export default function RtiRtsPage() {
                   href="https://rtionline.maharashtra.gov.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs shrink-0"
+                  className="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-1.5 shadow-xs shrink-0"
                 >
                   <span>File RTI Online</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -188,21 +188,21 @@ export default function RtiRtsPage() {
                 {rtiOfficers.map((off, idx) => (
                   <div
                     key={idx}
-                    className="bg-white rounded-2xl border border-[#D9E8DD] p-6 shadow-xs hover:border-[#2E8B57] transition-all space-y-3"
+                    className="bg-white rounded-2xl border border-border p-6 shadow-xs hover:border-primary transition-all space-y-3"
                   >
-                    <span className="text-[10px] font-bold text-[#2E8B57] bg-[#E8F5E9] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    <span className="text-[10px] font-bold text-primary bg-primary-light px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                       {off.role}
                     </span>
-                    <h3 className="text-base font-bold text-[#1F2937]">{off.name}</h3>
+                    <h3 className="text-base font-bold text-text-primary">{off.name}</h3>
                     <p className="text-xs text-gray-600 font-semibold">{off.designation}</p>
 
                     <div className="text-xs text-gray-500 space-y-1 pt-2 border-t border-gray-100">
                       <div className="flex items-center gap-2">
-                        <Phone className="w-3.5 h-3.5 text-[#2E8B57]" />
+                        <Phone className="w-3.5 h-3.5 text-primary" />
                         <span>{off.phone}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Mail className="w-3.5 h-3.5 text-[#2E8B57]" />
+                        <Mail className="w-3.5 h-3.5 text-primary" />
                         <span>{off.email}</span>
                       </div>
                     </div>
@@ -212,9 +212,9 @@ export default function RtiRtsPage() {
             </section>
 
             {/* Section 4(1)(b) Mandatory Disclosure Manuals */}
-            <section className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs space-y-4">
+            <section className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs space-y-4">
               <div>
-                <h3 className="text-lg font-bold text-[#1F2937]">
+                <h3 className="text-lg font-bold text-text-primary">
                   Section 4(1)(b) Proactive Disclosures (17 Manuals)
                 </h3>
                 <p className="text-xs text-gray-500">
@@ -226,16 +226,16 @@ export default function RtiRtsPage() {
                 {rtiManuals.map((man, idx) => (
                   <div
                     key={idx}
-                    className="p-3 rounded-xl bg-[#F8FCF9] border border-[#D9E8DD] flex items-center justify-between hover:border-[#2E8B57] transition-colors"
+                    className="p-3 rounded-xl bg-primary-surface border border-border flex items-center justify-between hover:border-primary transition-colors"
                   >
                     <div className="overflow-hidden pr-2">
-                      <span className="text-[10px] font-bold text-[#2E8B57]">{man.no}</span>
+                      <span className="text-[10px] font-bold text-primary">{man.no}</span>
                       <h4 className="text-xs font-semibold text-gray-800 line-clamp-1">{man.title}</h4>
                     </div>
                     <a
                       href="#"
                       download
-                      className="text-[11px] font-bold text-[#2E8B57] hover:underline shrink-0"
+                      className="text-[11px] font-bold text-primary hover:underline shrink-0"
                     >
                       PDF
                     </a>
@@ -251,7 +251,7 @@ export default function RtiRtsPage() {
           <div className="space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-xl font-bold text-[#1F2937]">
+                <h2 className="text-xl font-bold text-text-primary">
                   Maharashtra Right to Public Services Act (RTS), 2015
                 </h2>
                 <p className="text-xs text-gray-500 mt-0.5">
@@ -262,7 +262,7 @@ export default function RtiRtsPage() {
                 href="https://aaplesarkar.mahaonline.gov.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs shrink-0"
+                className="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-1.5 shadow-xs shrink-0"
               >
                 <span>Aaple Sarkar Portal</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -270,11 +270,11 @@ export default function RtiRtsPage() {
             </div>
 
             {/* RTS Table */}
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] overflow-hidden shadow-xs">
+            <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs">
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-[#F8FCF9] border-b border-[#D9E8DD] text-[11px] font-bold text-gray-600 uppercase tracking-wider">
+                    <tr className="bg-primary-surface border-b border-border text-[11px] font-bold text-gray-600 uppercase tracking-wider">
                       <th className="py-4 px-6">Notified Civic Service</th>
                       <th className="py-4 px-6">Designated Officer</th>
                       <th className="py-4 px-6">Stipulated Timeline</th>
@@ -283,11 +283,11 @@ export default function RtiRtsPage() {
                   </thead>
                   <tbody className="divide-y divide-gray-100 text-xs text-gray-700">
                     {rtsServices.map((rts, idx) => (
-                      <tr key={idx} className="hover:bg-[#E8F5E9]/30 transition-colors">
-                        <td className="py-4 px-6 font-bold text-[#1F2937]">{rts.service}</td>
+                      <tr key={idx} className="hover:bg-primary-light/30 transition-colors">
+                        <td className="py-4 px-6 font-bold text-text-primary">{rts.service}</td>
                         <td className="py-4 px-6 text-gray-600">{rts.designatedOfficer}</td>
                         <td className="py-4 px-6">
-                          <span className="font-bold text-[#2E8B57] bg-[#E8F5E9] px-2.5 py-1 rounded-full">
+                          <span className="font-bold text-primary bg-primary-light px-2.5 py-1 rounded-full">
                             {rts.timeline}
                           </span>
                         </td>

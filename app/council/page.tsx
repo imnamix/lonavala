@@ -77,13 +77,13 @@ export default function CouncilPage() {
   return (
     <div className="py-10">
       {/* Page Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-12">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
               Democracy in Action
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3">
               Elected Council & Ward Corporators
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
@@ -96,14 +96,14 @@ export default function CouncilPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Leadership: President & Vice President */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold text-[#1F2937] border-b border-[#D9E8DD] pb-3">
+          <h2 className="text-2xl font-bold text-text-primary border-b border-border pb-3">
             Council Leadership
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* President Card */}
-            <div className="bg-white rounded-2xl border-2 border-[#2E8B57] p-6 shadow-md flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-              <div className="relative w-36 h-44 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-[#E8F5E9]">
+            <div className="bg-white rounded-2xl border-2 border-primary p-6 shadow-md flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+              <div className="relative w-36 h-44 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-primary-light">
                 <Image
                   src={president.image}
                   alt={president.name}
@@ -112,25 +112,25 @@ export default function CouncilPage() {
                 />
               </div>
               <div className="space-y-2 text-center sm:text-left">
-                <span className="text-xs font-bold uppercase tracking-wider bg-[#E8F5E9] text-[#2E8B57] px-3 py-1 rounded-full">
+                <span className="text-xs font-bold uppercase tracking-wider bg-primary-light text-primary px-3 py-1 rounded-full">
                   {president.designation}
                 </span>
-                <h3 className="text-xl font-bold text-[#1F2937]">{president.name}</h3>
-                <p className="text-xs text-[#2E8B57] font-semibold">{president.marathiName}</p>
+                <h3 className="text-xl font-bold text-text-primary">{president.name}</h3>
+                <p className="text-xs text-primary font-semibold">{president.marathiName}</p>
                 <p className="text-xs text-gray-600 italic">&ldquo;{president.message}&rdquo;</p>
                 <div className="pt-2 text-xs text-gray-500 space-y-1">
                   <p className="flex items-center justify-center sm:justify-start gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#2E8B57]" /> {president.phone}
+                    <Phone className="w-3.5 h-3.5 text-primary" /> {president.phone}
                   </p>
                   <p className="flex items-center justify-center sm:justify-start gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-[#2E8B57]" /> {president.email}
+                    <Mail className="w-3.5 h-3.5 text-primary" /> {president.email}
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Vice President Card */}
-            <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 shadow-xs hover:border-[#2E8B57] transition-all flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+            <div className="bg-white rounded-2xl border border-border p-6 shadow-xs hover:border-primary transition-all flex flex-col sm:flex-row gap-6 items-center sm:items-start">
               <div className="relative w-36 h-44 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-gray-100">
                 <Image
                   src={vicePresident.image}
@@ -143,15 +143,15 @@ export default function CouncilPage() {
                 <span className="text-xs font-bold uppercase tracking-wider bg-gray-100 text-gray-800 px-3 py-1 rounded-full">
                   {vicePresident.designation}
                 </span>
-                <h3 className="text-xl font-bold text-[#1F2937]">{vicePresident.name}</h3>
-                <p className="text-xs text-[#2E8B57] font-semibold">{vicePresident.marathiName}</p>
+                <h3 className="text-xl font-bold text-text-primary">{vicePresident.name}</h3>
+                <p className="text-xs text-primary font-semibold">{vicePresident.marathiName}</p>
                 <p className="text-xs text-gray-600 italic">&ldquo;{vicePresident.message}&rdquo;</p>
                 <div className="pt-2 text-xs text-gray-500 space-y-1">
                   <p className="flex items-center justify-center sm:justify-start gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#2E8B57]" /> {vicePresident.phone}
+                    <Phone className="w-3.5 h-3.5 text-primary" /> {vicePresident.phone}
                   </p>
                   <p className="flex items-center justify-center sm:justify-start gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-[#2E8B57]" /> {vicePresident.email}
+                    <Mail className="w-3.5 h-3.5 text-primary" /> {vicePresident.email}
                   </p>
                 </div>
               </div>
@@ -161,12 +161,12 @@ export default function CouncilPage() {
 
         {/* Corporators Grid & Ward Information */}
         <section className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#D9E8DD] pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border pb-3">
             <div>
-              <h2 className="text-2xl font-bold text-[#1F2937]">Ward Corporators (नगरसेवक)</h2>
+              <h2 className="text-2xl font-bold text-text-primary">Ward Corporators (नगरसेवक)</h2>
               <p className="text-xs text-gray-600 mt-1">Elected representatives for Wards 1 through 5</p>
             </div>
-            <span className="text-xs font-bold text-[#2E8B57] bg-[#E8F5E9] px-3 py-1 rounded-full">
+            <span className="text-xs font-bold text-primary bg-primary-light px-3 py-1 rounded-full">
               Tenure 2022 - 2027
             </span>
           </div>
@@ -175,10 +175,10 @@ export default function CouncilPage() {
             {corporators.map((corp) => (
               <div
                 key={corp.id}
-                className="bg-white rounded-2xl border border-[#D9E8DD] p-4 shadow-xs hover:border-[#2E8B57] hover:shadow-lg transition-all text-center flex flex-col justify-between group"
+                className="bg-white rounded-2xl border border-border p-4 shadow-xs hover:border-primary hover:shadow-lg transition-all text-center flex flex-col justify-between group"
               >
                 <div>
-                  <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden shadow-sm border-2 border-[#E8F5E9] mb-3 group-hover:scale-105 transition-transform">
+                  <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden shadow-sm border-2 border-primary-light mb-3 group-hover:scale-105 transition-transform">
                     <Image
                       src={corp.image}
                       alt={corp.name}
@@ -186,21 +186,21 @@ export default function CouncilPage() {
                       className="object-cover"
                     />
                   </div>
-                  <span className="text-[10px] font-bold text-[#2E8B57] bg-[#E8F5E9] px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-primary bg-primary-light px-2 py-0.5 rounded-full">
                     {corp.ward?.split("-")[0] || "Ward Member"}
                   </span>
-                  <h4 className="font-bold text-sm text-[#1F2937] mt-2 group-hover:text-[#2E8B57] transition-colors">
+                  <h4 className="font-bold text-sm text-text-primary mt-2 group-hover:text-primary transition-colors">
                     {corp.name}
                   </h4>
                   <p className="text-[11px] text-gray-500">{corp.marathiName}</p>
-                  <p className="text-[11px] font-medium text-gray-700 mt-2 bg-[#F8FCF9] p-1.5 rounded-lg border border-[#D9E8DD]">
+                  <p className="text-[11px] font-medium text-gray-700 mt-2 bg-primary-surface p-1.5 rounded-lg border border-border">
                     {corp.ward?.split("-")[1] || "Municipal Ward"}
                   </p>
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-gray-100 text-[11px] text-gray-600">
                   <p className="flex items-center justify-center gap-1">
-                    <Phone className="w-3 h-3 text-[#2E8B57]" /> {corp.phone}
+                    <Phone className="w-3 h-3 text-primary" /> {corp.phone}
                   </p>
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function CouncilPage() {
 
         {/* Standing Committees */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold text-[#1F2937] border-b border-[#D9E8DD] pb-3">
+          <h2 className="text-2xl font-bold text-text-primary border-b border-border pb-3">
             Standing & Subject Committees
           </h2>
 
@@ -218,11 +218,11 @@ export default function CouncilPage() {
             {committees.map((comm, idx) => (
               <div
                 key={idx}
-                className="bg-white p-6 rounded-2xl border border-[#D9E8DD] shadow-xs hover:shadow-md transition-all space-y-3"
+                className="bg-white p-6 rounded-2xl border border-border shadow-xs hover:shadow-md transition-all space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-base text-[#1F2937]">{comm.name}</h3>
-                  <span className="text-xs font-semibold text-[#2E8B57] bg-[#E8F5E9] px-2.5 py-1 rounded-lg">
+                  <h3 className="font-bold text-base text-text-primary">{comm.name}</h3>
+                  <span className="text-xs font-semibold text-primary bg-primary-light px-2.5 py-1 rounded-lg">
                     {comm.members}
                   </span>
                 </div>
@@ -237,9 +237,9 @@ export default function CouncilPage() {
 
         {/* Council Documents & Resolutions */}
         <section className="space-y-6">
-          <div className="flex items-center justify-between border-b border-[#D9E8DD] pb-3">
-            <h2 className="text-2xl font-bold text-[#1F2937]">Council Gazettes & Resolutions</h2>
-            <Link href="/downloads" className="text-xs font-bold text-[#2E8B57] hover:underline">
+          <div className="flex items-center justify-between border-b border-border pb-3">
+            <h2 className="text-2xl font-bold text-text-primary">Council Gazettes & Resolutions</h2>
+            <Link href="/downloads" className="text-xs font-bold text-primary hover:underline">
               View All Documents →
             </Link>
           </div>
@@ -248,14 +248,14 @@ export default function CouncilPage() {
             {councilDocs.map((doc, idx) => (
               <div
                 key={idx}
-                className="bg-white p-4 rounded-xl border border-[#D9E8DD] flex items-center justify-between gap-3 shadow-xs hover:border-[#2E8B57] transition-all"
+                className="bg-white p-4 rounded-xl border border-border flex items-center justify-between gap-3 shadow-xs hover:border-primary transition-all"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#E8F5E9] flex items-center justify-center text-[#2E8B57] shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary-light flex items-center justify-center text-primary shrink-0">
                     <FileText className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-[#1F2937] line-clamp-1">
+                    <h4 className="text-xs sm:text-sm font-bold text-text-primary line-clamp-1">
                       {doc.title}
                     </h4>
                     <div className="text-[11px] text-gray-500 flex items-center gap-2">
@@ -269,7 +269,7 @@ export default function CouncilPage() {
                 <a
                   href="#"
                   download
-                  className="px-3 py-1.5 bg-gray-100 hover:bg-[#2E8B57] hover:text-white rounded-lg text-xs font-semibold text-gray-700 transition-colors shrink-0 flex items-center gap-1"
+                  className="px-3 py-1.5 bg-gray-100 hover:bg-primary hover:text-white rounded-lg text-xs font-semibold text-gray-700 transition-colors shrink-0 flex items-center gap-1"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">PDF</span>

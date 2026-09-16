@@ -8,7 +8,7 @@ export function MobileAppPromotion() {
 
   return (
     <section className="py-16 bg-gradient-to-tr from-slate-950 via-emerald-950 to-teal-900 text-white overflow-hidden relative">
-      <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(var(--color-status-success)_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">

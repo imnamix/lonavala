@@ -157,12 +157,12 @@ This is a computer-generated receipt. No physical signature is required.`;
   return (
     <div className="py-10">
       {/* Header */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-10 mb-10">
+      <div className="bg-primary-light/60 border-y border-border py-10 mb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+          <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
             5-Step Public Redressal
           </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F2937] mt-3">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-text-primary mt-3">
             Register Public Grievance
           </h1>
           <p className="text-xs sm:text-sm text-gray-600 mt-1">
@@ -178,7 +178,7 @@ This is a computer-generated receipt. No physical signature is required.`;
             <div className="flex items-center justify-between relative mb-2">
               <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2 z-0" />
               <div
-                className="absolute top-1/2 left-0 h-1 bg-[#2E8B57] -translate-y-1/2 z-0 transition-all duration-300"
+                className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 z-0 transition-all duration-300"
                 style={{ width: `${((step - 1) / 4) * 100}%` }}
               />
 
@@ -187,9 +187,9 @@ This is a computer-generated receipt. No physical signature is required.`;
                   key={s}
                   className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs relative z-10 transition-all ${
                     s < step
-                      ? "bg-[#2E8B57] text-white shadow-xs"
+                      ? "bg-primary text-white shadow-xs"
                       : s === step
-                      ? "bg-white border-2 border-[#2E8B57] text-[#2E8B57] shadow-md ring-4 ring-[#E8F5E9]"
+                      ? "bg-white border-2 border-primary text-primary shadow-md ring-4 ring-primary-light"
                       : "bg-gray-100 text-gray-400 border border-gray-300"
                   }`}
                 >
@@ -202,7 +202,7 @@ This is a computer-generated receipt. No physical signature is required.`;
               {stepLabels.map((lbl, idx) => (
                 <span
                   key={idx}
-                  className={idx + 1 === step ? "text-[#2E8B57] font-bold" : ""}
+                  className={idx + 1 === step ? "text-primary font-bold" : ""}
                 >
                   {lbl}
                 </span>
@@ -212,12 +212,12 @@ This is a computer-generated receipt. No physical signature is required.`;
         )}
 
         {/* Wizard Step Forms */}
-        <div className="bg-white rounded-2xl border border-[#D9E8DD] p-6 sm:p-8 shadow-xs">
+        <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 shadow-xs">
           {/* STEP 1: Category + Department */}
           {step === 1 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-lg font-bold text-[#1F2937]">
+                <h2 className="text-lg font-bold text-text-primary">
                   Step 1: Select Grievance Category & Department
                 </h2>
                 <p className="text-xs text-gray-500 mt-1">
@@ -237,7 +237,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                       onClick={() => handleCategoryChange(item.category)}
                       className={`p-3 rounded-xl border text-left text-xs transition-all ${
                         category === item.category
-                          ? "border-[#2E8B57] bg-[#E8F5E9] font-bold text-[#2E8B57] shadow-xs"
+                          ? "border-primary bg-primary-light font-bold text-primary shadow-xs"
                           : "border-gray-200 hover:border-gray-300 text-gray-700"
                       }`}
                     >
@@ -250,16 +250,16 @@ This is a computer-generated receipt. No physical signature is required.`;
                 </div>
               </div>
 
-              <div className="bg-[#F8FCF9] p-4 rounded-xl border border-[#D9E8DD] text-xs">
+              <div className="bg-primary-surface p-4 rounded-xl border border-border text-xs">
                 <span className="font-bold text-gray-700">Assigned Department: </span>
-                <span className="text-[#2E8B57] font-bold">{department}</span>
+                <span className="text-primary font-bold">{department}</span>
               </div>
 
               <div className="pt-4 flex justify-end">
                 <button
                   type="button"
                   onClick={() => setStep(2)}
-                  className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+                  className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
                 >
                   <span>Proceed to Step 2</span>
                   <ArrowRight className="w-4 h-4" />
@@ -272,7 +272,7 @@ This is a computer-generated receipt. No physical signature is required.`;
           {step === 2 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-lg font-bold text-[#1F2937]">
+                <h2 className="text-lg font-bold text-text-primary">
                   Step 2: Complaint Title & Detailed Description
                 </h2>
                 <p className="text-xs text-gray-500 mt-1">
@@ -291,7 +291,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Continuous drinking water leakage on Old Khandala Road"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57] focus:ring-2 focus:ring-[#2E8B57]/20"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
 
@@ -305,7 +305,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Explain exact issue, since how many days, impact on traffic or residents..."
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57] focus:ring-2 focus:ring-[#2E8B57]/20"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
               </div>
@@ -323,7 +323,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                   type="button"
                   onClick={() => setStep(3)}
                   disabled={!title.trim()}
-                  className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] disabled:opacity-50 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+                  className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
                 >
                   <span>Proceed to Step 3</span>
                   <ArrowRight className="w-4 h-4" />
@@ -336,7 +336,7 @@ This is a computer-generated receipt. No physical signature is required.`;
           {step === 3 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-lg font-bold text-[#1F2937]">
+                <h2 className="text-lg font-bold text-text-primary">
                   Step 3: Upload Supporting Photographs
                 </h2>
                 <p className="text-xs text-gray-500 mt-1">
@@ -344,8 +344,8 @@ This is a computer-generated receipt. No physical signature is required.`;
                 </p>
               </div>
 
-              <div className="border-2 border-dashed border-[#D9E8DD] rounded-2xl p-6 text-center bg-[#F8FCF9] hover:bg-[#E8F5E9]/50 transition-colors">
-                <Upload className="w-10 h-10 text-[#2E8B57] mx-auto mb-2" />
+              <div className="border-2 border-dashed border-border rounded-2xl p-6 text-center bg-primary-surface hover:bg-primary-light/50 transition-colors">
+                <Upload className="w-10 h-10 text-primary mx-auto mb-2" />
                 <div className="text-xs font-bold text-gray-800">
                   Drag and drop site photos or browse from device
                 </div>
@@ -354,7 +354,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                 </div>
                 <button
                   type="button"
-                  className="mt-3 px-4 py-2 bg-white border border-[#D9E8DD] text-xs font-bold text-[#2E8B57] rounded-xl hover:bg-gray-50 shadow-xs"
+                  className="mt-3 px-4 py-2 bg-white border border-border text-xs font-bold text-primary rounded-xl hover:bg-gray-50 shadow-xs"
                 >
                   Select Photos
                 </button>
@@ -369,7 +369,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                   {images.map((img, idx) => (
                     <div
                       key={idx}
-                      className="w-24 h-24 rounded-xl overflow-hidden border border-[#D9E8DD] relative bg-gray-100 shadow-xs"
+                      className="w-24 h-24 rounded-xl overflow-hidden border border-border relative bg-gray-100 shadow-xs"
                     >
                       <img
                         src={img}
@@ -396,7 +396,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                 <button
                   type="button"
                   onClick={() => setStep(4)}
-                  className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+                  className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
                 >
                   <span>Proceed to Step 4</span>
                   <ArrowRight className="w-4 h-4" />
@@ -409,7 +409,7 @@ This is a computer-generated receipt. No physical signature is required.`;
           {step === 4 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-lg font-bold text-[#1F2937]">
+                <h2 className="text-lg font-bold text-text-primary">
                   Step 4: Location & Municipal Ward
                 </h2>
                 <p className="text-xs text-gray-500 mt-1">
@@ -425,7 +425,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                   <select
                     value={ward}
                     onChange={(e) => setWard(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                   >
                     {WARDS.map((w) => (
                       <option key={w} value={w}>
@@ -445,12 +445,12 @@ This is a computer-generated receipt. No physical signature is required.`;
                     value={landmark}
                     onChange={(e) => setLandmark(e.target.value)}
                     placeholder="e.g. Opposite St. Joseph Convent Gate, Old Khandala Road"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                   />
                 </div>
 
-                <div className="bg-[#F8FCF9] p-4 rounded-xl border border-[#D9E8DD] flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-[#2E8B57] shrink-0" />
+                <div className="bg-primary-surface p-4 rounded-xl border border-border flex items-center gap-3">
+                  <MapPin className="w-5 h-5 text-primary shrink-0" />
                   <div className="text-xs text-gray-600">
                     <span className="font-semibold text-gray-900">Geo-coordinates captured: </span>
                     18.7548° N, 73.4062° E (Lonavala, MH)
@@ -471,7 +471,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                   type="button"
                   onClick={() => setStep(5)}
                   disabled={!landmark.trim()}
-                  className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] disabled:opacity-50 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+                  className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
                 >
                   <span>Proceed to Step 5</span>
                   <ArrowRight className="w-4 h-4" />
@@ -484,7 +484,7 @@ This is a computer-generated receipt. No physical signature is required.`;
           {step === 5 && (
             <form onSubmit={handleFinalSubmit} className="space-y-6">
               <div>
-                <h2 className="text-lg font-bold text-[#1F2937]">
+                <h2 className="text-lg font-bold text-text-primary">
                   Step 5: Citizen Contact & OTP Verification
                 </h2>
                 <p className="text-xs text-gray-500 mt-1">
@@ -503,7 +503,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                     value={citizenName}
                     onChange={(e) => setCitizenName(e.target.value)}
                     placeholder="Aniket Sharma"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                   />
                 </div>
 
@@ -520,12 +520,12 @@ This is a computer-generated receipt. No physical signature is required.`;
                         value={citizenMobile}
                         onChange={(e) => setCitizenMobile(e.target.value)}
                         placeholder="9876543210"
-                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                       />
                       <button
                         type="button"
                         onClick={handleSendOtp}
-                        className="px-3 py-2 bg-[#E8F5E9] hover:bg-[#2E8B57] hover:text-white text-[#2E8B57] rounded-xl text-xs font-bold transition-colors shrink-0"
+                        className="px-3 py-2 bg-primary-light hover:bg-primary hover:text-white text-primary rounded-xl text-xs font-bold transition-colors shrink-0"
                       >
                         {otpSent ? "Resend" : "Send OTP"}
                       </button>
@@ -541,7 +541,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                       value={citizenEmail}
                       onChange={(e) => setCitizenEmail(e.target.value)}
                       placeholder="citizen@example.com"
-                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                     />
                   </div>
                 </div>
@@ -549,7 +549,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                 {otpSent && (
                   <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2 animate-in fade-in duration-200">
                     <div className="flex items-center gap-2 text-xs font-bold text-emerald-900">
-                      <Smartphone className="w-4 h-4 text-[#2E8B57]" />
+                      <Smartphone className="w-4 h-4 text-primary" />
                       <span>OTP sent to +91 {citizenMobile}. (For testing, enter: 123456)</span>
                     </div>
                     <input
@@ -558,7 +558,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                       value={enteredOtp}
                       onChange={(e) => setEnteredOtp(e.target.value)}
                       placeholder="Enter 6-digit OTP (123456)"
-                      className="w-full max-w-xs px-3.5 py-2 text-sm bg-white border border-emerald-300 rounded-lg text-center tracking-widest font-bold focus:outline-hidden focus:ring-2 focus:ring-[#2E8B57]"
+                      className="w-full max-w-xs px-3.5 py-2 text-sm bg-white border border-emerald-300 rounded-lg text-center tracking-widest font-bold focus:outline-hidden focus:ring-2 focus:ring-primary"
                     />
                   </div>
                 )}
@@ -582,7 +582,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                 </button>
                 <button
                   type="submit"
-                  className="px-8 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-colors"
+                  className="px-8 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-colors"
                 >
                   <ShieldCheck className="w-4 h-4" />
                   <span>Verify OTP & Submit Grievance</span>
@@ -594,15 +594,15 @@ This is a computer-generated receipt. No physical signature is required.`;
           {/* STEP 6: Success Acknowledgement Page */}
           {step === 6 && (
             <div className="text-center py-6 space-y-6 animate-in zoom-in-95 duration-300">
-              <div className="w-16 h-16 bg-[#E8F5E9] text-[#2E8B57] rounded-full flex items-center justify-center mx-auto shadow-sm">
+              <div className="w-16 h-16 bg-primary-light text-primary rounded-full flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
 
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-[#E8F5E9] px-3 py-1 rounded-full">
+                <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary-light px-3 py-1 rounded-full">
                   Registration Successful
                 </span>
-                <h2 className="text-2xl font-extrabold text-[#1F2937] mt-3">
+                <h2 className="text-2xl font-extrabold text-text-primary mt-3">
                   Grievance Lodged Successfully
                 </h2>
                 <p className="text-xs sm:text-sm text-gray-600 mt-1 max-w-md mx-auto">
@@ -611,11 +611,11 @@ This is a computer-generated receipt. No physical signature is required.`;
               </div>
 
               {/* Prompt Requirement: Success page displays Reference Number GRV2026001245 */}
-              <div className="bg-[#F8FCF9] border-2 border-dashed border-[#2E8B57] rounded-2xl p-5 max-w-md mx-auto">
+              <div className="bg-primary-surface border-2 border-dashed border-primary rounded-2xl p-5 max-w-md mx-auto">
                 <div className="text-xs text-gray-500 font-semibold uppercase tracking-wider">
                   Official Grievance Reference Number
                 </div>
-                <div className="text-2xl font-mono font-extrabold text-[#2E8B57] tracking-wider mt-1">
+                <div className="text-2xl font-mono font-extrabold text-primary tracking-wider mt-1">
                   {registeredRef}
                 </div>
                 <div className="text-[11px] text-gray-500 mt-1">
@@ -628,7 +628,7 @@ This is a computer-generated receipt. No physical signature is required.`;
                 <button
                   type="button"
                   onClick={handleDownloadReceipt}
-                  className="px-6 py-3 rounded-xl bg-white border border-[#2E8B57] text-[#2E8B57] hover:bg-[#E8F5E9] font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
+                  className="px-6 py-3 rounded-xl bg-white border border-primary text-primary hover:bg-primary-light font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
                 >
                   <Download className="w-4 h-4" />
                   <span>{receiptDownloaded ? "Receipt Downloaded ✓" : "Download Receipt"}</span>
@@ -636,7 +636,7 @@ This is a computer-generated receipt. No physical signature is required.`;
 
                 <Link
                   href={`/grievance/track?ref=${registeredRef}`}
-                  className="px-6 py-3 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-md transition-colors"
+                  className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-md transition-colors"
                 >
                   <span>Track Status</span>
                   <ArrowRight className="w-4 h-4" />

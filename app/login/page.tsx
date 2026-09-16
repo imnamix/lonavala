@@ -76,16 +76,16 @@ export default function CitizenLoginPage() {
               priority
             />
           </div>
-          <h1 className="text-2xl font-extrabold text-[#1F2937]">Citizen Self-Service Portal</h1>
+          <h1 className="text-2xl font-extrabold text-text-primary">Citizen Self-Service Portal</h1>
           <p className="text-xs text-gray-500">
             Lonavala Municipal Council • नागरिक सेवा पोर्टल
           </p>
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-3xl border border-[#D9E8DD] p-6 sm:p-8 shadow-sm">
+        <div className="bg-white rounded-3xl border border-border p-6 sm:p-8 shadow-sm">
           {/* Method Switcher Tabs */}
-          <div className="flex border-b border-[#D9E8DD] mb-6">
+          <div className="flex border-b border-border mb-6">
             <button
               onClick={() => {
                 setLoginMethod("otp");
@@ -93,7 +93,7 @@ export default function CitizenLoginPage() {
               }}
               className={`flex-1 py-2.5 text-xs font-bold transition-all border-b-2 ${
                 loginMethod === "otp" && !showForgot
-                  ? "border-[#2E8B57] text-[#2E8B57]"
+                  ? "border-primary text-primary"
                   : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -106,7 +106,7 @@ export default function CitizenLoginPage() {
               }}
               className={`flex-1 py-2.5 text-xs font-bold transition-all border-b-2 ${
                 loginMethod === "password" && !showForgot
-                  ? "border-[#2E8B57] text-[#2E8B57]"
+                  ? "border-primary text-primary"
                   : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -119,7 +119,7 @@ export default function CitizenLoginPage() {
               }}
               className={`flex-1 py-2.5 text-xs font-bold transition-all border-b-2 ${
                 loginMethod === "register" && !showForgot
-                  ? "border-[#2E8B57] text-[#2E8B57]"
+                  ? "border-primary text-primary"
                   : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -130,7 +130,7 @@ export default function CitizenLoginPage() {
           {/* FORGOT PASSWORD MODAL/VIEW */}
           {showForgot ? (
             <div className="space-y-4 text-xs">
-              <h3 className="text-sm font-bold text-[#1F2937]">Reset Password</h3>
+              <h3 className="text-sm font-bold text-text-primary">Reset Password</h3>
               <p className="text-gray-500">
                 Enter your registered citizen email address. We will send a secure password reset link.
               </p>
@@ -153,11 +153,11 @@ export default function CitizenLoginPage() {
                     value={forgotEmail}
                     onChange={(e) => setForgotEmail(e.target.value)}
                     placeholder="Enter registered email..."
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                    className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                   />
                   <button
                     type="submit"
-                    className="w-full py-2.5 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold rounded-xl transition-colors"
+                    className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-colors"
                   >
                     Send Reset Link
                   </button>
@@ -166,7 +166,7 @@ export default function CitizenLoginPage() {
 
               <button
                 onClick={() => setShowForgot(false)}
-                className="text-xs font-bold text-[#2E8B57] hover:underline"
+                className="text-xs font-bold text-primary hover:underline"
               >
                 ← Back to Login
               </button>
@@ -179,7 +179,7 @@ export default function CitizenLoginPage() {
                   Registered Mobile Number
                 </label>
                 <div className="flex gap-2">
-                  <div className="flex items-center px-3 bg-gray-50 border border-[#D9E8DD] rounded-xl font-bold text-gray-600">
+                  <div className="flex items-center px-3 bg-gray-50 border border-border rounded-xl font-bold text-gray-600">
                     +91
                   </div>
                   <input
@@ -189,12 +189,12 @@ export default function CitizenLoginPage() {
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder="9876543210"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                    className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                   />
                   <button
                     type="button"
                     onClick={handleSendOtp}
-                    className="px-3.5 py-2 bg-[#E8F5E9] hover:bg-[#2E8B57] hover:text-white text-[#2E8B57] rounded-xl font-bold transition-colors shrink-0"
+                    className="px-3.5 py-2 bg-primary-light hover:bg-primary hover:text-white text-primary rounded-xl font-bold transition-colors shrink-0"
                   >
                     {otpSent ? "Resend" : "Send OTP"}
                   </button>
@@ -220,7 +220,7 @@ export default function CitizenLoginPage() {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2"
               >
                 <span>Login to Citizen Portal</span>
                 <ArrowRight className="w-4 h-4" />
@@ -239,7 +239,7 @@ export default function CitizenLoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="aniket@example.com"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                 />
               </div>
 
@@ -251,7 +251,7 @@ export default function CitizenLoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowForgot(true)}
-                    className="text-[11px] text-[#2E8B57] hover:underline font-semibold"
+                    className="text-[11px] text-primary hover:underline font-semibold"
                   >
                     Forgot Password?
                   </button>
@@ -262,13 +262,13 @@ export default function CitizenLoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                  className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2"
               >
                 <span>Sign In</span>
                 <ArrowRight className="w-4 h-4" />
@@ -287,7 +287,7 @@ export default function CitizenLoginPage() {
                   value={regName}
                   onChange={(e) => setRegName(e.target.value)}
                   placeholder="Aniket Sharma"
-                  className="w-full px-3 py-2 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                  className="w-full px-3 py-2 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                 />
               </div>
 
@@ -302,7 +302,7 @@ export default function CitizenLoginPage() {
                     value={regMobile}
                     onChange={(e) => setRegMobile(e.target.value)}
                     placeholder="9876543210"
-                    className="w-full px-3 py-2 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                    className="w-full px-3 py-2 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                   />
                 </div>
                 <div>
@@ -315,7 +315,7 @@ export default function CitizenLoginPage() {
                     value={regEmail}
                     onChange={(e) => setRegEmail(e.target.value)}
                     placeholder="citizen@example.com"
-                    className="w-full px-3 py-2 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                    className="w-full px-3 py-2 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                   />
                 </div>
               </div>
@@ -329,13 +329,13 @@ export default function CitizenLoginPage() {
                   value={regAadhaar}
                   onChange={(e) => setRegAadhaar(e.target.value)}
                   placeholder="XXXX-XXXX-XXXX"
-                  className="w-full px-3 py-2 bg-white border border-[#D9E8DD] rounded-xl focus:outline-hidden focus:border-[#2E8B57]"
+                  className="w-full px-3 py-2 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 mt-2"
+                className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 mt-2"
               >
                 <span>Create Citizen Account</span>
                 <ArrowRight className="w-4 h-4" />
@@ -345,7 +345,7 @@ export default function CitizenLoginPage() {
 
           <div className="mt-6 pt-4 border-t border-gray-100 text-center text-xs text-gray-500">
             Government official or Council staff?{" "}
-            <Link href="/admin/login" className="font-bold text-[#2E8B57] hover:underline">
+            <Link href="/admin/login" className="font-bold text-primary hover:underline">
               Access Admin Panel →
             </Link>
           </div>

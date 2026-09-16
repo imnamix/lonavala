@@ -105,10 +105,10 @@ function PointIconDropdown({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-[#2E8B57] focus:outline-hidden transition-colors cursor-pointer"
+        className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs flex items-center justify-between hover:border-primary focus:outline-hidden transition-colors cursor-pointer"
       >
         <span className="flex items-center gap-2 truncate">
-          <SelectedIcon className="w-4 h-4 text-[#2E8B57] shrink-0" />
+          <SelectedIcon className="w-4 h-4 text-primary shrink-0" />
           <span className="font-semibold text-gray-800 truncate">{selectedObj.name}</span>
         </span>
         <ChevronDown className="w-3.5 h-3.5 text-gray-400 shrink-0 ml-1" />
@@ -132,15 +132,15 @@ function PointIconDropdown({
                   }}
                   className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
-                      ? "bg-[#E8F5E9] text-[#2E8B57] font-bold"
+                      ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
                   <span className="flex items-center gap-2 truncate">
-                    <IconComp className="w-4 h-4 shrink-0 text-[#2E8B57]" />
+                    <IconComp className="w-4 h-4 shrink-0 text-primary" />
                     <span>{item.name}</span>
                   </span>
-                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-[#2E8B57]" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-primary" />}
                 </button>
               );
             })}
@@ -442,15 +442,15 @@ export function TourismContentEditor() {
   return (
     <form onSubmit={handleSave} className="space-y-8">
       {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-[#D9E8DD] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-border shadow-xs">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-lg bg-[#E8F5E9] text-[#2E8B57] font-bold text-xs">
+            <span className="px-2.5 py-1 rounded-lg bg-primary-light text-primary font-bold text-xs">
               Live Section Editor
             </span>
             <span className="text-xs text-gray-500">• Route: /tourism (Tourism & Landmarks)</span>
           </div>
-          <h2 className="text-xl font-extrabold text-[#1F2937] mt-1">Tourism & Attractions Content</h2>
+          <h2 className="text-xl font-extrabold text-text-primary mt-1">Tourism & Attractions Content</h2>
           <p className="text-xs text-gray-500">
             Manage tourist landmarks, labels, descriptions, key-value highlights, proximity distance, gallery images, and advisory points.
           </p>
@@ -467,7 +467,7 @@ export function TourismContentEditor() {
           </Link>
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Publish Changes</span>
@@ -477,20 +477,20 @@ export function TourismContentEditor() {
 
       {saved && (
         <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 flex items-center gap-3 text-xs font-bold animate-in fade-in duration-300">
-          <CheckCircle2 className="w-5 h-5 text-[#2E8B57] shrink-0" />
+          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
           <span>Tourism destinations and attraction points saved successfully!</span>
         </div>
       )}
 
       {/* SECTION 1: Tourism Destinations in Table Format */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#D9E8DD] shadow-xs space-y-5">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xs space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#2E8B57] flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
               <Compass className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-base text-[#1F2937]">Tourism Destinations Table</h3>
+              <h3 className="font-bold text-base text-text-primary">Tourism Destinations Table</h3>
               <p className="text-xs text-gray-500">
                 Manage destination records ({destinations.length} configured). Click edit to update details below.
               </p>
@@ -505,14 +505,14 @@ export function TourismContentEditor() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search destinations..."
-                className="pl-8 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs w-48 sm:w-60 focus:bg-white focus:border-[#2E8B57] focus:outline-hidden"
+                className="pl-8 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs w-48 sm:w-60 focus:bg-white focus:border-primary focus:outline-hidden"
               />
             </div>
 
             <button
               type="button"
               onClick={handleAddDestination}
-              className="px-4 py-2 rounded-xl bg-[#2E8B57] text-white hover:bg-[#246E45] font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shrink-0 shadow-xs"
+              className="px-4 py-2 rounded-xl bg-primary text-white hover:bg-primary-hover font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shrink-0 shadow-xs"
             >
               <Plus className="w-4 h-4" />
               <span>Add Destination</span>
@@ -521,10 +521,10 @@ export function TourismContentEditor() {
         </div>
 
         {/* Table Format */}
-        <div className="overflow-x-auto rounded-2xl border border-[#D9E8DD]">
+        <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-[#F8FCF9] border-b border-[#D9E8DD] text-gray-700 font-bold uppercase text-[10px] tracking-wider">
+              <tr className="bg-primary-surface border-b border-border text-gray-700 font-bold uppercase text-[10px] tracking-wider">
                 <th className="py-3 px-4"># / Photo</th>
                 <th className="py-3 px-4">Destination Name & Label</th>
                 <th className="py-3 px-4">Distance / Location</th>
@@ -544,7 +544,7 @@ export function TourismContentEditor() {
                     onClick={() => setSelectedDestId(dest.id)}
                     className={`transition-colors cursor-pointer ${
                       isSelected
-                        ? "bg-[#E8F5E9]/60 font-semibold"
+                        ? "bg-primary-light/60 font-semibold"
                         : "hover:bg-gray-50/80"
                     }`}
                   >
@@ -567,10 +567,10 @@ export function TourismContentEditor() {
 
                     {/* Name & Label */}
                     <td className="py-3 px-4">
-                      <div className="font-bold text-[#1F2937] text-xs leading-tight">
+                      <div className="font-bold text-text-primary text-xs leading-tight">
                         {dest.name}
                       </div>
-                      <div className="text-[10px] text-[#2E8B57] font-semibold mt-0.5">
+                      <div className="text-[10px] text-primary font-semibold mt-0.5">
                         {dest.label || "Attraction"}
                       </div>
                     </td>
@@ -578,7 +578,7 @@ export function TourismContentEditor() {
                     {/* Distance */}
                     <td className="py-3 px-4 text-gray-600 text-[11px] max-w-xs truncate">
                       <span className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-[#2E8B57] shrink-0" />
+                        <MapPin className="w-3 h-3 text-primary shrink-0" />
                         <span className="truncate">{dest.distance}</span>
                       </span>
                     </td>
@@ -612,7 +612,7 @@ export function TourismContentEditor() {
                         onClick={(e) => handleToggleActive(dest.id, e)}
                         className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${
                           dest.active
-                            ? "bg-[#2E8B57] text-white hover:bg-[#246E45]"
+                            ? "bg-primary text-white hover:bg-primary-hover"
                             : "bg-gray-100 text-gray-400 hover:bg-gray-200"
                         }`}
                       >
@@ -628,7 +628,7 @@ export function TourismContentEditor() {
                           onClick={() => setSelectedDestId(dest.id)}
                           className={`p-1.5 rounded-lg border text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer ${
                             isSelected
-                              ? "bg-[#2E8B57] text-white border-[#2E8B57]"
+                              ? "bg-primary text-white border-primary"
                               : "bg-white border-gray-200 text-gray-700 hover:bg-gray-100"
                           }`}
                           title="Edit destination details"
@@ -659,18 +659,18 @@ export function TourismContentEditor() {
 
       {/* SECTION 2: Form Editor for Selected Destination */}
       {currentDest && (
-        <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#D9E8DD] shadow-xs space-y-6 text-xs">
+        <div className="p-6 sm:p-8 rounded-3xl bg-white border border-border shadow-xs space-y-6 text-xs">
           {/* Header Toolbar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#F8FCF9] p-4 rounded-2xl border border-[#D9E8DD]">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-primary-surface p-4 rounded-2xl border border-border">
             <div className="flex-1 space-y-1">
-              <div className="text-[11px] font-bold text-[#2E8B57] uppercase tracking-wider">
+              <div className="text-[11px] font-bold text-primary uppercase tracking-wider">
                 Destination Detailed Editor
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-black text-base text-[#1F2937]">
+                <span className="font-black text-base text-text-primary">
                   Editing:
                 </span>
-                <span className="font-extrabold text-base text-[#2E8B57]">
+                <span className="font-extrabold text-base text-primary">
                   {currentDest.name}
                 </span>
               </div>
@@ -683,7 +683,7 @@ export function TourismContentEditor() {
                   type="checkbox"
                   checked={currentDest.active}
                   onChange={(e) => handleUpdateCurrent("active", e.target.checked)}
-                  className="w-4 h-4 rounded text-[#2E8B57] focus:ring-[#2E8B57]"
+                  className="w-4 h-4 rounded text-primary focus:ring-primary"
                 />
               </label>
 
@@ -712,7 +712,7 @@ export function TourismContentEditor() {
                 value={currentDest.name}
                 onChange={(e) => handleUpdateCurrent("name", e.target.value)}
                 placeholder="e.g. Tiger Point (Tiger's Leap)"
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-bold text-[#1F2937] focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold text-text-primary focus:border-primary focus:outline-hidden"
               />
             </div>
 
@@ -725,7 +725,7 @@ export function TourismContentEditor() {
                 value={currentDest.label}
                 onChange={(e) => handleUpdateCurrent("label", e.target.value)}
                 placeholder="e.g. Scenic Valley & Waterfall"
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl font-semibold focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-semibold focus:border-primary focus:outline-hidden"
               />
             </div>
 
@@ -738,16 +738,16 @@ export function TourismContentEditor() {
                 value={currentDest.distance}
                 onChange={(e) => handleUpdateCurrent("distance", e.target.value)}
                 placeholder="e.g. 8.5 km from Lonavala Station"
-                className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl focus:border-[#2E8B57] focus:outline-hidden"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
 
           {/* Feature Image Upload */}
-          <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-3">
+          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
             <div className="flex items-center justify-between">
               <label className="font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2">
-                <ImageIcon className="w-4 h-4 text-[#2E8B57]" />
+                <ImageIcon className="w-4 h-4 text-primary" />
                 <span>Destination Feature Cover Image (Upload / Replace)</span>
               </label>
               <span className="text-[11px] text-gray-500 font-semibold">
@@ -767,7 +767,7 @@ export function TourismContentEditor() {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border-2 border-dashed border-[#2E8B57] text-[#2E8B57] hover:bg-[#E8F5E9] font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border-2 border-dashed border-primary text-primary hover:bg-primary-light font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <Upload className="w-4 h-4" />
                 <span>Upload Cover Image</span>
@@ -775,7 +775,7 @@ export function TourismContentEditor() {
 
               <div className="flex-1 w-full bg-white px-3.5 py-2 rounded-xl border border-gray-200 flex items-center justify-between">
                 <div className="flex items-center gap-2 overflow-hidden">
-                  <FileImage className="w-4 h-4 text-[#2E8B57] shrink-0" />
+                  <FileImage className="w-4 h-4 text-primary shrink-0" />
                   <span className="font-mono text-gray-700 truncate text-[11px]">
                     {currentDest.imageFileName || currentDest.imageUrl}
                   </span>
@@ -797,12 +797,12 @@ export function TourismContentEditor() {
               value={currentDest.description}
               onChange={(e) => handleUpdateCurrent("description", e.target.value)}
               placeholder="Write detailed tourist information, natural landscape description, historical background..."
-              className="w-full px-3.5 py-2.5 bg-white border border-[#D9E8DD] rounded-xl leading-relaxed focus:border-[#2E8B57] focus:outline-hidden text-xs"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl leading-relaxed focus:border-primary focus:outline-hidden text-xs"
             />
           </div>
 
             {/* Important Points (Icon + Text) */}
-          <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-3">
+          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
               <div>
                 <span className="font-bold text-gray-800 uppercase tracking-wider block">
@@ -816,7 +816,7 @@ export function TourismContentEditor() {
               <button
                 type="button"
                 onClick={handleAddPoint}
-                className="px-3 py-1.5 rounded-xl bg-white hover:bg-emerald-50 text-[#2E8B57] border border-emerald-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-white hover:bg-emerald-50 text-primary border border-emerald-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Important Point</span>
@@ -841,7 +841,7 @@ export function TourismContentEditor() {
                     value={pt.text}
                     onChange={(e) => handleUpdatePoint(pt.id, "text", e.target.value)}
                     placeholder="Advisory text (e.g. Remain behind barricades...)"
-                    className="flex-1 px-3 py-2 bg-white border border-gray-200 rounded-xl text-gray-800 focus:border-[#2E8B57] focus:outline-hidden text-xs"
+                    className="flex-1 px-3 py-2 bg-white border border-gray-200 rounded-xl text-gray-800 focus:border-primary focus:outline-hidden text-xs"
                   />
 
                   <button
@@ -859,7 +859,7 @@ export function TourismContentEditor() {
 
 
           {/* Key Highlights (Key-Value Pairs) */}
-          <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-3">
+          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
               <div>
                 <span className="font-bold text-gray-800 uppercase tracking-wider block">
@@ -873,7 +873,7 @@ export function TourismContentEditor() {
               <button
                 type="button"
                 onClick={handleAddHighlight}
-                className="px-3 py-1.5 rounded-xl bg-white hover:bg-emerald-50 text-[#2E8B57] border border-emerald-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-white hover:bg-emerald-50 text-primary border border-emerald-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Highlight Pair</span>
@@ -888,14 +888,14 @@ export function TourismContentEditor() {
                     value={hl.key}
                     onChange={(e) => handleUpdateHighlight(hl.id, "key", e.target.value)}
                     placeholder="Key (e.g. Best Season)"
-                    className="w-1/3 px-3 py-2 bg-white border border-gray-200 rounded-xl font-bold text-gray-700 focus:border-[#2E8B57] focus:outline-hidden"
+                    className="w-1/3 px-3 py-2 bg-white border border-gray-200 rounded-xl font-bold text-gray-700 focus:border-primary focus:outline-hidden"
                   />
                   <input
                     type="text"
                     value={hl.value}
                     onChange={(e) => handleUpdateHighlight(hl.id, "value", e.target.value)}
                     placeholder="Value (e.g. Monsoon & Winter)"
-                    className="flex-1 px-3 py-2 bg-white border border-gray-200 rounded-xl text-gray-800 focus:border-[#2E8B57] focus:outline-hidden"
+                    className="flex-1 px-3 py-2 bg-white border border-gray-200 rounded-xl text-gray-800 focus:border-primary focus:outline-hidden"
                   />
                   <button
                     type="button"
@@ -912,11 +912,11 @@ export function TourismContentEditor() {
 
         
           {/* Gallery Media Section */}
-          <div className="p-4 rounded-2xl bg-[#F8FCF9] border border-[#D9E8DD] space-y-4">
+          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-4">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
               <div>
                 <span className="font-bold text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
-                  <Images className="w-4 h-4 text-[#2E8B57]" />
+                  <Images className="w-4 h-4 text-primary" />
                   <span>Destination Gallery Media ({currentDest.galleryImages?.length || 0})</span>
                 </span>
                 <span className="text-[11px] text-gray-500">
@@ -935,7 +935,7 @@ export function TourismContentEditor() {
                 <button
                   type="button"
                   onClick={() => galleryFileInputRef.current?.click()}
-                  className="px-3.5 py-1.5 rounded-xl bg-[#2E8B57] text-white hover:bg-[#246E45] font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                  className="px-3.5 py-1.5 rounded-xl bg-primary text-white hover:bg-primary-hover font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>+ Add Media (Photo / Video)</span>
@@ -1021,7 +1021,7 @@ export function TourismContentEditor() {
       )}
 
       {/* Sticky Bottom Save Bar */}
-      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-[#D9E8DD] shadow-lg flex items-center justify-between">
+      <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-border shadow-lg flex items-center justify-between">
         <div className="text-xs text-gray-500">
           Last updated: <span className="font-semibold text-gray-800">Just now</span>
         </div>
@@ -1035,7 +1035,7 @@ export function TourismContentEditor() {
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-[#2E8B57] hover:bg-[#246E45] text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save & Publish Tourism</span>

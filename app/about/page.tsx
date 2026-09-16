@@ -46,13 +46,13 @@ export default function AboutPage() {
   return (
     <div className="py-10">
       {/* Header Banner */}
-      <div className="bg-[#E8F5E9]/60 border-y border-[#D9E8DD] py-12 mb-12">
+      <div className="bg-primary-light/60 border-y border-border py-12 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-white px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full border border-border">
               Council Profile
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] mt-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-text-primary mt-3">
               About Lonavala Municipal Council
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
@@ -66,11 +66,11 @@ export default function AboutPage() {
         {/* History Section */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F5E9] text-[#2E8B57] text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light text-primary text-xs font-bold">
               <History className="w-4 h-4" />
               <span>Historical Legacy</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1F2937]">
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
               Over a Century of Hill-Station Stewardship
             </h2>
             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
@@ -90,7 +90,7 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-[#2E8B57] text-white p-4 rounded-2xl shadow-lg">
+            <div className="absolute -bottom-4 -left-4 bg-primary text-white p-4 rounded-2xl shadow-lg">
               <div className="text-2xl font-black">Est. 1877</div>
               <div className="text-[11px] text-emerald-100">148+ Years of Civic Service</div>
             </div>
@@ -99,32 +99,32 @@ export default function AboutPage() {
 
         {/* Vision & Mission Cards */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-2xl border border-[#D9E8DD] p-8 shadow-xs hover:border-[#2E8B57] transition-all">
-            <div className="w-12 h-12 rounded-xl bg-[#E8F5E9] flex items-center justify-center text-[#2E8B57] mb-4">
+          <div className="bg-white rounded-2xl border border-border p-8 shadow-xs hover:border-primary transition-all">
+            <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center text-primary mb-4">
               <Eye className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#1F2937] mb-3">Our Vision</h3>
+            <h3 className="text-xl font-bold text-text-primary mb-3">Our Vision</h3>
             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
               To transform Lonavala into India&apos;s leading carbon-neutral, clean, and digitally advanced eco-tourism hill station, while preserving its pristine Sahyadri biodiversity and ensuring dignified civic amenities for every resident.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl border border-[#D9E8DD] p-8 shadow-xs hover:border-[#2E8B57] transition-all">
-            <div className="w-12 h-12 rounded-xl bg-[#E8F5E9] flex items-center justify-center text-[#2E8B57] mb-4">
+          <div className="bg-white rounded-2xl border border-border p-8 shadow-xs hover:border-primary transition-all">
+            <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center text-primary mb-4">
               <Target className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#1F2937] mb-3">Our Mission</h3>
+            <h3 className="text-xl font-bold text-text-primary mb-3">Our Mission</h3>
             <ul className="space-y-2 text-xs sm:text-sm text-gray-600">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#2E8B57] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <span>Deliver 100% door-to-door segregated waste processing and plastic-free tourism.</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#2E8B57] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <span>Provide 24x7 treated potable water supply and eco-conscious underground sewerage.</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#2E8B57] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <span>Enforce zero-tolerance transparency through time-bound online grievance redressal.</span>
               </li>
             </ul>
@@ -132,10 +132,10 @@ export default function AboutPage() {
         </section>
 
         {/* Commissioner's Message */}
-        <section className="bg-[#F8FCF9] border border-[#D9E8DD] rounded-3xl p-8 sm:p-10">
+        <section className="bg-primary-surface border border-border rounded-3xl p-8 sm:p-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-4 flex flex-col items-center text-center">
-              <div className="relative w-36 h-36 rounded-full overflow-hidden shadow-lg border-4 border-[#2E8B57] mb-3">
+              <div className="relative w-36 h-36 rounded-full overflow-hidden shadow-lg border-4 border-primary mb-3">
                 <Image
                   src={commissioner.image}
                   alt={commissioner.name}
@@ -143,16 +143,16 @@ export default function AboutPage() {
                   className="object-cover"
                 />
               </div>
-              <h4 className="font-bold text-[#1F2937] text-base">{commissioner.name}</h4>
-              <p className="text-xs text-[#2E8B57] font-semibold">{commissioner.designation}</p>
+              <h4 className="font-bold text-text-primary text-base">{commissioner.name}</h4>
+              <p className="text-xs text-primary font-semibold">{commissioner.designation}</p>
               <p className="text-[11px] text-gray-500">{commissioner.phone}</p>
             </div>
 
             <div className="md:col-span-8 space-y-3">
-              <div className="text-xs font-bold uppercase tracking-wider text-[#2E8B57]">
+              <div className="text-xs font-bold uppercase tracking-wider text-primary">
                 Chief Officer&apos;s Communiqué
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1F2937]">
+              <h3 className="text-xl sm:text-2xl font-bold text-text-primary">
                 Advancing Citizen-Centric e-Governance
               </h3>
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
@@ -170,10 +170,10 @@ export default function AboutPage() {
         {/* Organization Chart */}
         <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-[#E8F5E9] px-3 py-1 rounded-full border border-[#D9E8DD]">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary-light px-3 py-1 rounded-full border border-border">
               Hierarchy & Administration
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1F2937] mt-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mt-2">
               Organizational Chart
             </h2>
             <p className="text-xs text-gray-600 mt-1">
@@ -181,10 +181,10 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#D9E8DD] overflow-x-auto">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-border overflow-x-auto">
             <div className="min-w-[680px] flex flex-col items-center text-center space-y-6">
               {/* Level 1: General Body & President */}
-              <div className="bg-[#2E8B57] text-white px-6 py-3 rounded-xl shadow-md font-bold text-sm w-72">
+              <div className="bg-primary text-white px-6 py-3 rounded-xl shadow-md font-bold text-sm w-72">
                 General Body & Municipal President
                 <div className="text-[11px] text-emerald-100 font-normal">Smt. Surekha Nitin Jadhav</div>
               </div>
@@ -192,29 +192,29 @@ export default function AboutPage() {
               <div className="w-0.5 h-6 bg-gray-300" />
 
               {/* Level 2: Chief Officer */}
-              <div className="bg-white border-2 border-[#2E8B57] text-[#1F2937] px-6 py-3 rounded-xl shadow-sm font-bold text-sm w-72">
+              <div className="bg-white border-2 border-primary text-text-primary px-6 py-3 rounded-xl shadow-sm font-bold text-sm w-72">
                 Chief Officer / Commissioner
-                <div className="text-[11px] text-[#2E8B57] font-semibold">Shri. Pandit Patil (State Cadre)</div>
+                <div className="text-[11px] text-primary font-semibold">Shri. Pandit Patil (State Cadre)</div>
               </div>
 
               <div className="w-0.5 h-6 bg-gray-300" />
 
               {/* Level 3: Department Heads */}
               <div className="grid grid-cols-4 gap-4 w-full">
-                <div className="bg-[#F8FCF9] border border-[#D9E8DD] p-3 rounded-xl">
-                  <div className="font-bold text-xs text-[#1F2937]">Health & Sanitation</div>
+                <div className="bg-primary-surface border border-border p-3 rounded-xl">
+                  <div className="font-bold text-xs text-text-primary">Health & Sanitation</div>
                   <div className="text-[11px] text-gray-500">Dr. Sandeep Deshmukh</div>
                 </div>
-                <div className="bg-[#F8FCF9] border border-[#D9E8DD] p-3 rounded-xl">
-                  <div className="font-bold text-xs text-[#1F2937]">Public Works (PWD)</div>
+                <div className="bg-primary-surface border border-border p-3 rounded-xl">
+                  <div className="font-bold text-xs text-text-primary">Public Works (PWD)</div>
                   <div className="text-[11px] text-gray-500">Er. Mahesh Kulkarni</div>
                 </div>
-                <div className="bg-[#F8FCF9] border border-[#D9E8DD] p-3 rounded-xl">
-                  <div className="font-bold text-xs text-[#1F2937]">Water Supply</div>
+                <div className="bg-primary-surface border border-border p-3 rounded-xl">
+                  <div className="font-bold text-xs text-text-primary">Water Supply</div>
                   <div className="text-[11px] text-gray-500">Er. Rameshwar Kale</div>
                 </div>
-                <div className="bg-[#F8FCF9] border border-[#D9E8DD] p-3 rounded-xl">
-                  <div className="font-bold text-xs text-[#1F2937]">Town Planning</div>
+                <div className="bg-primary-surface border border-border p-3 rounded-xl">
+                  <div className="font-bold text-xs text-text-primary">Town Planning</div>
                   <div className="text-[11px] text-gray-500">Ar. Sneha Joshi</div>
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function AboutPage() {
         {/* Image Gallery */}
         <section className="space-y-6">
           <div className="text-center max-w-xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1F2937]">
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
               Lonavala Municipal Gallery
             </h2>
             <p className="text-xs text-gray-600 mt-1">
@@ -237,7 +237,7 @@ export default function AboutPage() {
             {galleryImages.map((img, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl overflow-hidden border border-[#D9E8DD] shadow-xs group"
+                className="bg-white rounded-2xl overflow-hidden border border-border shadow-xs group"
               >
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image

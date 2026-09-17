@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
+  process.env.NEXT_PUBLIC_API_URL || 'https://be-lonavala.onrender.com/api/v1' || 'http://localhost:3001/api/v1';
 
 export interface ApiResponse<T = any> {
   success: boolean;
@@ -7,6 +7,7 @@ export interface ApiResponse<T = any> {
   data?: T;
   error?: string;
 }
+
 
 export class ApiError extends Error {
   statusCode: number;

@@ -23,6 +23,7 @@ export interface Translations {
     electedCouncil: string;
     electedCouncilDesc: string;
     departments: string;
+    court: string;
     services: string;
     grievance: string;
     registerGrievance: string;
@@ -45,6 +46,8 @@ export interface Translations {
     rtiRtsDesc: string;
     downloads: string;
     downloadsDesc: string;
+    faq: string;
+    faqDesc: string;
     contactHelpdesk: string;
     contactHelpdeskDesc: string;
     citizenPortal: string;
@@ -94,6 +97,15 @@ export interface Translations {
       noc: { title: string; desc: string; timeline: string };
       onlinePay: { title: string; desc: string; timeline: string };
     };
+  };
+  stateLeadership: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    cm: { name: string; position: string; role: string };
+    dcm1: { name: string; position: string; role: string };
+    dcm2: { name: string; position: string; role: string };
+    mla: { name: string; position: string; role: string };
   };
   council: {
     badge: string;
@@ -242,6 +254,7 @@ export const translations: Record<Language, Translations> = {
       electedCouncil: "Elected Council",
       electedCouncilDesc: "President, Corporators & Ward details",
       departments: "Departments",
+      court: "Court",
       services: "Services",
       grievance: "Grievance",
       registerGrievance: "Register Grievance",
@@ -264,6 +277,8 @@ export const translations: Record<Language, Translations> = {
       rtiRtsDesc: "Right to Information & Public Services",
       downloads: "Downloads",
       downloadsDesc: "Citizen forms and civic documents",
+      faq: "FAQs & Help",
+      faqDesc: "Frequently asked questions & guidance",
       contactHelpdesk: "Contact Helpdesk",
       contactHelpdeskDesc: "Municipal offices & helpline numbers",
       citizenPortal: "Citizen Portal",
@@ -307,7 +322,7 @@ export const translations: Record<Language, Translations> = {
       daysTimeline: "Days",
       items: {
         propertyTax: {
-          title: "Property Tax Assessment & Payment",
+          title: "Property Tax Assessment",
           desc: "Calculate tax, view arrears & get 5% early-bird rebate online.",
           timeline: "Instant Online Clearance",
         },
@@ -348,6 +363,32 @@ export const translations: Record<Language, Translations> = {
         },
       },
     },
+  stateLeadership: {
+      badge: "State & Regional Leadership",
+      title: "Key Dignitaries & People's Representatives",
+      subtitle:
+        "Guiding Maharashtra's progress, state-level development policies, and regional infrastructure for Lonavala.",
+      cm: {
+        name: "Shri. Devendra Fadnavis",
+        position: "Hon'ble Chief Minister, Maharashtra State",
+        role: "Chief Minister",
+      },
+      dcm1: {
+        name: "Shri. Eknath Shinde",
+        position: "Hon'ble Deputy Chief Minister, Maharashtra State",
+        role: "Deputy Chief Minister",
+      },
+      dcm2: {
+        name: "Shri. Ajit Pawar",
+        position: "Hon'ble Deputy Chief Minister, Maharashtra State",
+        role: "Deputy Chief Minister",
+      },
+      mla: {
+        name: "Shri. Sunil Shelke",
+        position: "Hon'ble Member of Legislative Assembly (MLA), Maval-Lonavala",
+        role: "Local MLA",
+      },
+    },
     council: {
       badge: "Civic Leadership",
       title: "Council Overview",
@@ -369,7 +410,7 @@ export const translations: Record<Language, Translations> = {
       weatherCity: "Lonavala: 22°C • Pleasant Fog",
       weatherCondition: "Pleasant Fog",
       ghatsStatus: "Ghats Open • High Tourism Rush",
-      viewAllSpots: "Explore All 24 Scenic Spots",
+      viewAllSpots: "Explore All Scenic Spots",
       spots: {
         tigerPoint: {
           name: "Tiger Point (Lions Point)",
@@ -560,6 +601,7 @@ export const translations: Record<Language, Translations> = {
       electedCouncil: "लोकप्रतिनिधी व नगरसेवक",
       electedCouncilDesc: "नगराध्यक्ष, उपनगराध्यक्ष व प्रभाग सदस्य",
       departments: "विभाग",
+      court: "न्यायालय",
       services: "नागरी सेवा",
       grievance: "तक्रार निवारण",
       registerGrievance: "तक्रार नोंदवा",
@@ -582,6 +624,8 @@ export const translations: Record<Language, Translations> = {
       rtiRtsDesc: "माहितीचा अधिकार व महाराष्ट्र लोकसेवा हक्क अधिनियम",
       downloads: "फॉर्म व दस्तऐवज",
       downloadsDesc: "नागरी अर्ज आणि विविध विहित नमुने",
+      faq: "वारंवार विचारले जाणारे प्रश्न (FAQ)",
+      faqDesc: "नागरी प्रश्न, कर व सेवांविषयी उत्तरे",
       contactHelpdesk: "संपर्क व मदत कक्ष",
       contactHelpdeskDesc: "नगरपरिषद कार्यालये व हेल्पलाइन क्रमांक",
       citizenPortal: "नागरिक पोर्टल",
@@ -664,6 +708,32 @@ export const translations: Record<Language, Translations> = {
           desc: "सर्व कर, पाणीपट्टी, भाडे व दंड भरण्यासाठी एकत्रित BBPS गेटवे.",
           timeline: "त्वरित डिजिटल पावती",
         },
+      },
+    },
+  stateLeadership: {
+      badge: "राज्य व प्रादेशिक नेतृत्व",
+      title: "प्रमुख शासनकर्ते व लोकप्रतिनिधी",
+      subtitle:
+        "महाराष्ट्राचा शाश्वत विकास आणि लोणावळा-मावळ परिसराच्या पायाभूत विकासाला दिशा देणारे आदरणीय नेतृत्व.",
+      cm: {
+        name: "श्री. देवेंद्र फडणवीस",
+        position: "मा. मुख्यमंत्री, महाराष्ट्र राज्य",
+        role: "मुख्यमंत्री",
+      },
+      dcm1: {
+        name: "श्री. एकनाथ शिंदे",
+        position: "मा. उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        role: "उपमुख्यमंत्री",
+      },
+      dcm2: {
+        name: "श्री. अजित पवार",
+        position: "मा. उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        role: "उपमुख्यमंत्री",
+      },
+      mla: {
+        name: "श्री. सुनील शेळके",
+        position: "मा. आमदार, मावळ-लोणावळा विधानसभा मतदारसंघ",
+        role: "स्थानिक आमदार",
       },
     },
     council: {
@@ -878,6 +948,7 @@ export const translations: Record<Language, Translations> = {
       electedCouncil: "निर्वाचित परिषद व पार्षद",
       electedCouncilDesc: "अध्यक्ष, उपाध्यक्ष एवं वार्ड पार्षद",
       departments: "विभाग",
+      court: "न्यायालय",
       services: "नागरिक सेवाएं",
       grievance: "शिकायत निवारण",
       registerGrievance: "शिकायत दर्ज करें",
@@ -900,6 +971,8 @@ export const translations: Record<Language, Translations> = {
       rtiRtsDesc: "सूचना का अधिकार एवं लोक सेवा गारंटी",
       downloads: "डाउनलोड व प्रपत्र",
       downloadsDesc: "नागरिक प्रपत्र एवं आधिकारिक दस्तावेज",
+      faq: "अक्सर पूछे जाने वाले प्रश्न (FAQ)",
+      faqDesc: "नागरिक प्रश्न, कर एवं सेवाओं से संबंधित उत्तर",
       contactHelpdesk: "संपर्क व सहायता केंद्र",
       contactHelpdeskDesc: "नगर परिषद कार्यालय एवं हेल्पलाइन नंबर",
       citizenPortal: "नागरिक पोर्टल",
@@ -982,6 +1055,32 @@ export const translations: Record<Language, Translations> = {
           desc: "सभी कर, जल बिल, किराया व चालान भुगतान का एकीकृत BBPS गेटवे।",
           timeline: "तत्काल डिजिटल रसीद",
         },
+      },
+    },
+  stateLeadership: {
+      badge: "राज्य एवं क्षेत्रीय नेतृत्व",
+      title: "प्रमुख शासनकर्ता एवं जनप्रतिनिधि",
+      subtitle:
+        "महाराष्ट्र राज्य एवं लोनावला-मावल क्षेत्र के समग्र बुनियादी विकास को दिशा प्रदान करने वाला माननीय नेतृत्व।",
+      cm: {
+        name: "श्री देवेंद्र फडणवीस",
+        position: "माननीय मुख्यमंत्री, महाराष्ट्र राज्य",
+        role: "मुख्यमंत्री",
+      },
+      dcm1: {
+        name: "श्री एकनाथ शिंदे",
+        position: "माननीय उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        role: "उपमुख्यमंत्री",
+      },
+      dcm2: {
+        name: "श्री अजित पवार",
+        position: "माननीय उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        role: "उपमुख्यमंत्री",
+      },
+      mla: {
+        name: "श्री सुनील शेळके",
+        position: "माननीय विधायक, मावल-लोनावला विधानसभा क्षेत्र",
+        role: "स्थानीय विधायक",
       },
     },
     council: {

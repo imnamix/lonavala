@@ -20,7 +20,6 @@ import {
   FileCheck2,
   Sparkles,
 } from "lucide-react";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import { EmergencyBanner } from "./EmergencyBanner";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -59,6 +58,7 @@ export function Navbar() {
       ],
     },
     { name: dict.nav.departments, href: "/departments" },
+    { name: dict.nav.court, href: "/court" },
     { name: dict.nav.services, href: "/services" },
     {
       name: dict.nav.grievance,
@@ -78,6 +78,7 @@ export function Navbar() {
         { name: dict.nav.financeBudget, href: "/finance", desc: dict.nav.financeBudgetDesc },
         { name: dict.nav.rtiRts, href: "/rti", desc: dict.nav.rtiRtsDesc },
         { name: dict.nav.downloads, href: "/downloads", desc: dict.nav.downloadsDesc },
+        { name: dict.nav.faq, href: "/faq", desc: dict.nav.faqDesc },
         { name: dict.nav.contactHelpdesk, href: "/contact", desc: dict.nav.contactHelpdeskDesc },
       ],
     },
@@ -85,8 +86,8 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      {/* Collapsible Emergency Banner */}
-      <EmergencyBanner isCollapsed={isScrolled} />
+      {/* Emergency Banner (Always Visible) */}
+      <EmergencyBanner />
 
       {/* Main Navbar */}
       <nav
@@ -192,8 +193,6 @@ export function Navbar() {
 
             {/* Right Action Icons & Buttons */}
             <div className="flex items-center gap-2 shrink-0">
-              <LanguageSwitcher />
-
               {/* Citizen Login Button */}
               <Link
                 href="/login"

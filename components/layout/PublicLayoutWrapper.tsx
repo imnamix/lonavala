@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { WhatsAppVisitor } from "./WhatsAppVisitor";
+import { ScrollToTop } from "./ScrollToTop";
 
 export function PublicLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -19,6 +20,7 @@ export function PublicLayoutWrapper({ children }: { children: React.ReactNode })
       <main className="grow pt-[76px] sm:pt-[84px]">{children}</main>
       <Footer />
       <WhatsAppVisitor />
+      <ScrollToTop />
     </div>
   );
 }

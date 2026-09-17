@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { PhoneCall, AlertTriangle, ShieldAlert } from "lucide-react";
+import { PhoneCall, AlertTriangle, ShieldAlert, Globe } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import { Language } from "@/lib/translations";
 import { getHomepageData } from "@/lib/services/homepage.service";
 
 interface EmergencyBannerProps {
   isCollapsed?: boolean;
 }
 
-export function EmergencyBanner({ isCollapsed = false }: EmergencyBannerProps) {
+export function EmergencyBanner({}: EmergencyBannerProps) {
   const [isDismissed] = useState(false);
-  const { dict } = useLanguage();
+  const { dict, language, setLanguage } = useLanguage();
   const [dynamicAnnouncement, setDynamicAnnouncement] = useState<string | null>(null);
   const [isBannerActive, setIsBannerActive] = useState<boolean>(true);
 
@@ -44,14 +45,16 @@ export function EmergencyBanner({ isCollapsed = false }: EmergencyBannerProps) {
   const defaultText = `${dict.emergencyBanner.monsoonHelpline}: 1800-233-0101 | ${dict.emergencyBanner.fire}: 101 | ${dict.emergencyBanner.police}: 112 | ${dict.emergencyBanner.disasterMgmt}: +91 2114 273999`;
   const displayText = dynamicAnnouncement || defaultText;
 
+  const languages: { code: Language; label: string }[] = [
+    { code: "en", label: "English" },
+    { code: "mr", label: "मराठी" },
+  ];
+
   return (
-    <div
-      className={`bg-slate-900 text-white text-xs border-b border-slate-800 transition-all duration-300 overflow-hidden ${
-        isCollapsed ? "max-h-0 opacity-0 py-0" : "max-h-12 opacity-100 py-2 px-4"
-      }`}
-    >
+    <div className="bg-slate-900 text-white text-xs border-b border-slate-800 py-1.5 px-3 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2 overflow-hidden">
+        {/* Left: Emergency Alert Broadcast */}
+        <div className="flex items-center gap-2 overflow-hidden flex-1 min-w-0">
           <span className="flex items-center gap-1 bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-extrabold tracking-wider uppercase shrink-0 animate-pulse">
             <AlertTriangle className="w-3 h-3" />
             {dict.emergencyBanner.controlRoom}
@@ -61,10 +64,11 @@ export function EmergencyBanner({ isCollapsed = false }: EmergencyBannerProps) {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0">
+        {/* Right: Emergency Actions and Language Switcher at the very end */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <Link
             href="/grievance/register"
-            className="hidden sm:inline-flex items-center gap-1 text-emerald-300 hover:text-emerald-200 font-medium text-[11px]"
+            className="hidden md:inline-flex items-center gap-1 text-emerald-300 hover:text-emerald-200 font-medium text-[11px]"
           >
             <ShieldAlert className="w-3 h-3" />
             {dict.emergencyBanner.lodgeComplaint}
@@ -76,6 +80,31 @@ export function EmergencyBanner({ isCollapsed = false }: EmergencyBannerProps) {
             <PhoneCall className="w-2.5 h-2.5" />
             {dict.emergencyBanner.tollFree}
           </a>
+
+          {/* Language Switcher at the End (English & Marathi only) */}
+          <div className="inline-flex items-center bg-slate-800/90 rounded-lg p-0.5 border border-slate-700 shadow-2xs">
+            <div className="flex items-center pl-1.5 pr-1 text-slate-400">
+              <Globe className="w-3 h-3 text-emerald-400" />
+            </div>
+            {languages.map((lang) => {
+              const isActive = language === lang.code;
+              return (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => setLanguage(lang.code)}
+                  className={`px-2 py-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-emerald-600 text-white shadow-xs"
+                      : "text-slate-300 hover:text-white hover:bg-slate-700/70"
+                  }`}
+                  aria-label={`Switch language to ${lang.label}`}
+                >
+                  {lang.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

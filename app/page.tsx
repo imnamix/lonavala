@@ -1,13 +1,13 @@
 import { Hero } from "@/components/home/Hero";
-import { QuickServices } from "@/components/home/QuickServices";
+import { StateLeadership } from "@/components/home/StateLeadership";
 import { CouncilOverview } from "@/components/home/CouncilOverview";
+import { QuickServices } from "@/components/home/QuickServices";
 import { TourismHighlights } from "@/components/home/TourismHighlights";
 import { NoticeBoard } from "@/components/home/NoticeBoard";
 import { OngoingProjectsSection } from "@/components/home/OngoingProjectsSection";
 import { EmergencyContactsSection } from "@/components/home/EmergencyContactsSection";
 import { StatisticsSection } from "@/components/shared/StatisticsSection";
 import { MobileAppPromotion } from "@/components/home/MobileAppPromotion";
-import { FaqSection } from "@/components/home/FaqSection";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 
 export default function HomePage() {
@@ -16,9 +16,13 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <Hero />
 
-      {/* 3. Council Overview */}
+      {/* 2. State & Regional Leadership (Maharashtra CM, 2 DCMs & Lonavala MLA) */}
+      <StateLeadership />
+
+      {/* 3. Council Overview (Civic Leadership) */}
       <CouncilOverview />
-      {/* 2. Quick Citizen Services (8 icon cards) */}
+
+      {/* 4. Quick Citizen Services (8 icon cards) */}
       <QuickServices />
 
 
@@ -40,8 +44,6 @@ export default function HomePage() {
       {/* 11. Mobile App Promotion */}
       <MobileAppPromotion />
 
-      {/* 12. FAQ & Newsletter */}
-      <FaqSection />
       {/* <NewsletterSection /> */}
     </div>
   );

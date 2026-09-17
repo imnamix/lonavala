@@ -174,5 +174,76 @@ export interface FAQItem {
   active?: boolean;
 }
 
+export interface CourtCommitteeMember {
+  id: string;
+  name: string;
+  marathiName: string;
+  designation: string;
+  role: string;
+  category?: "Leadership" | "Elected Corporator" | "Legal Officer" | "Legal Aid & Conciliation";
+  phone: string;
+  email: string;
+  ward?: string;
+  experience?: string;
+  image?: string;
+  responsibilities: string[];
+}
+
+export interface PanelAdvocate {
+  id: string;
+  name: string;
+  marathiName: string;
+  designation: string;
+  courtForum: string;
+  barRegNo: string;
+  specialization: string;
+  phone: string;
+  email: string;
+  officeAddress: string;
+  experience: string;
+}
+
+export interface CourtCaseItem {
+  id: string;
+  caseNumber: string;
+  cnrNumber: string;
+  title: string;
+  marathiTitle?: string;
+  court: string;
+  caseType: string;
+  petitioner: string;
+  respondent: string;
+  subject: string;
+  status: "Scheduled for Hearing" | "Interim Stay Vacated" | "In Progress" | "Disposed in Favor of LMC" | "Under Scrutiny";
+  nextHearingDate: string;
+  advocateAssigned: string;
+  summary: string;
+}
+
+export interface LokAdalatEvent {
+  id: string;
+  title: string;
+  marathiTitle: string;
+  date: string;
+  venue: string;
+  benchOfficers: string;
+  eligibleMatters: string[];
+  documentsRequired: string[];
+  contactPerson: string;
+  status: "Upcoming" | "Completed" | "Registration Open";
+}
+
+export interface LegalDocument {
+  id: string;
+  title: string;
+  marathiTitle: string;
+  category: "Acts & Rules" | "Forms & Petitions" | "Standing Orders" | "Cause List";
+  fileType: "PDF" | "DOCX";
+  fileSize: string;
+  date: string;
+  department: string;
+  description: string;
+}
+
 
 

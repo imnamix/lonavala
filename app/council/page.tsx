@@ -11,6 +11,7 @@ import {
   Users,
   Building2,
   MapPin,
+  ChevronRight,
 } from "lucide-react";
 import { getCouncilMembers } from "@/lib/services/council.service";
 import { CouncilMember } from "@/types";
@@ -171,18 +172,32 @@ export default async function CouncilPage() {
   ];
 
   return (
-    <div className="py-10 bg-slate-50/40">
-      {/* Page Header */}
-      <div className="bg-gradient-to-br from-slate-50 via-white to-emerald-50/50 border-y border-slate-200/80 py-12 mb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100/80 px-3.5 py-1 rounded-full border border-emerald-200">
-              Democracy in Action • लोकशाही व जनसेवा
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+    <div className="pt-2 pb-16 bg-slate-50/40">
+      {/* Page Header Banner */}
+      <div className="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white border-b border-emerald-800/40 py-12 sm:py-16 mb-12 overflow-hidden">
+        {/* Decorative Background Glows */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-2 text-xs font-medium text-emerald-300/80 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">
+              Home
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-white font-semibold">Elected Council</span>
+          </div>
+
+          <div className="max-w-3xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-400/30">
+              <Users className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Democracy in Action • लोकशाही व जनसेवा</span>
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Elected Council & Representatives
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-light">
               Representing citizens across municipal wards, leading statutory subject committees, and driving sustainable civic development for Lonavala.
             </p>
           </div>

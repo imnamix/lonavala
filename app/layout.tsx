@@ -26,9 +26,16 @@ export const metadata: Metadata = {
     "Aaple Sarkar Lonavala",
   ],
   icons: {
-    icon: "/images/logo-192.png",
-    shortcut: "/favicon.ico",
-    apple: "/images/logo-192.png",
+    icon: [
+      { url: "/favicon.ico?v=2" },
+      { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
+      { url: "/images/logo-192.png?v=2", sizes: "192x192", type: "image/png" },
+      { url: "/images/logo.png?v=2", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico?v=2",
+    apple: [
+      { url: "/images/logo-192.png?v=2", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 

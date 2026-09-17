@@ -37,8 +37,8 @@ export function QuickServices() {
 
         {/* 8 Citizen Service Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CITIZEN_SERVICES.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {CITIZEN_SERVICES.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
       </div>

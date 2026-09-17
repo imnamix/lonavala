@@ -6,14 +6,26 @@ import {
   HelpCircle,
   AlertCircle,
   Save,
+  Loader2,
+  Tag,
 } from "lucide-react";
-import { FAQItem } from "@/types";
+import { FaqItemDto, CreateFaqPayload } from "@/lib/services/faq.service";
+
+const COMMON_CATEGORIES = [
+  "Property Tax",
+  "Grievance Redressal",
+  "Tourism & Safety",
+  "Health & Sanitation",
+  "Water Supply",
+  "Town Planning & Trade",
+  "General & Emergency",
+];
 
 interface FaqModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (faq: FAQItem) => void;
-  faqToEdit?: FAQItem | null;
+  onSave: (faqData: CreateFaqPayload, id?: number) => Promise<void>;
+  faqToEdit?: FaqItemDto | null;
 }
 
 export function FaqModal({
@@ -26,6 +38,7 @@ export function FaqModal({
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [category, setCategory] = useState("General");
   const [active, setActive] = useState(true);
   const [errors, setErrors] = useState<{ question?: string; answer?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,10 +47,12 @@ export function FaqModal({
     if (faqToEdit) {
       setQuestion(faqToEdit.question || "");
       setAnswer(faqToEdit.answer || "");
+      setCategory(faqToEdit.category || "General");
       setActive(faqToEdit.active !== false);
     } else {
       setQuestion("");
       setAnswer("");
+      setCategory("General");
       setActive(true);
     }
     setErrors({});
@@ -68,23 +83,26 @@ export function FaqModal({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setIsSubmitting(true);
-    const faqItem: FAQItem = {
-      id: faqToEdit?.id || `faq-${Date.now()}`,
-      question: question.trim(),
-      answer: answer.trim(),
-      active: active,
-    };
+    try {
+      setIsSubmitting(true);
+      const payload: CreateFaqPayload = {
+        question: question.trim(),
+        answer: answer.trim(),
+        category: category.trim() || "General",
+        active: active,
+      };
 
-    setTimeout(() => {
-      onSave(faqItem);
-      setIsSubmitting(false);
+      await onSave(payload, faqToEdit?.id);
       onClose();
-    }, 150);
+    } catch (err) {
+      console.error("Failed to save FAQ:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -106,7 +124,7 @@ export function FaqModal({
               </div>
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 bg-white/10 px-2.5 py-0.5 rounded-full">
-                  {isEditing ? "Edit FAQ" : "Add FAQ"}
+                  {isEditing ? "Edit FAQ" : "Add New FAQ"}
                 </span>
                 <h2 className="text-xl font-black text-white mt-1">
                   {isEditing ? "Edit Question & Answer" : "New Question & Answer"}
@@ -157,6 +175,29 @@ export function FaqModal({
             )}
           </div>
 
+          {/* Category Input / Selection */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-gray-800 flex items-center gap-1">
+              <Tag className="w-3.5 h-3.5 text-primary" />
+              <span>Category</span>
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                list="faq-categories"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Select or enter category..."
+                className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm bg-gray-50 border border-gray-200 focus:bg-white focus:border-primary focus:outline-hidden"
+              />
+              <datalist id="faq-categories">
+                {COMMON_CATEGORIES.map((cat, idx) => (
+                  <option key={idx} value={cat} />
+                ))}
+              </datalist>
+            </div>
+          </div>
+
           {/* Answer Input */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
@@ -172,7 +213,7 @@ export function FaqModal({
                 setAnswer(e.target.value);
                 if (errors.answer) setErrors((prev) => ({ ...prev, answer: undefined }));
               }}
-              placeholder="Enter the answer here..."
+              placeholder="Enter the official answer or citizen guideline..."
               className={`w-full px-4 py-3 rounded-2xl text-xs sm:text-sm bg-gray-50 border transition-all focus:bg-white focus:outline-hidden resize-y ${
                 errors.answer
                   ? "border-rose-400 ring-2 ring-rose-100 bg-rose-50/20"
@@ -227,8 +268,12 @@ export function FaqModal({
               disabled={isSubmitting}
               className="px-5 py-2.5 rounded-2xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-2 shadow-xs hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
             >
-              <Save className="w-4 h-4" />
-              <span>{isEditing ? "Update FAQ" : "Save FAQ"}</span>
+              {isSubmitting ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
+              <span>{isSubmitting ? "Saving..." : isEditing ? "Update FAQ" : "Save FAQ"}</span>
             </button>
           </div>
         </form>

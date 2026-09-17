@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,13 +12,137 @@ import {
   PhoneCall,
   Sparkles,
   ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+  Bell,
+  DollarSign,
+  FileText,
+  HelpCircle,
+  Building2,
+  MapPin,
+  Tag as TagIcon,
+  Leaf,
+  TreePine,
+  Mountain,
+  Droplets,
+  Zap,
+  Sun,
+  Award,
+  FileCheck,
+  Waves,
+  Landmark,
+  Compass,
+  Hammer,
+  LayoutGrid,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { getHomepageData, HeroSlide, HomepageData } from "@/lib/services/homepage.service";
+
+const ICON_MAP: { [key: string]: any } = {
+  AlertCircle,
+  DollarSign,
+  FileText,
+  PhoneCall,
+  ArrowRight,
+  ExternalLink,
+  ShieldCheck,
+  HelpCircle,
+  Sparkles,
+  Building2,
+  MapPin,
+  TagIcon,
+  Tag: TagIcon,
+  Leaf,
+  TreePine,
+  Mountain,
+  Droplets,
+  Zap,
+  Sun,
+  Award,
+  FileCheck,
+  Waves,
+  Landmark,
+  Compass,
+  Hammer,
+  LayoutGrid,
+  Search,
+};
+
+const BUTTON_COLOR_CLASSES: { [key: string]: string } = {
+  Emerald:
+    "bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white shadow-xl shadow-emerald-950/40 border border-emerald-400/30",
+  primary:
+    "bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white shadow-xl shadow-emerald-950/40 border border-emerald-400/30",
+  Teal:
+    "bg-gradient-to-r from-teal-600 to-emerald-700 hover:from-teal-700 hover:to-emerald-800 text-white shadow-xl shadow-teal-950/40 border border-teal-400/30",
+  secondary:
+    "bg-gradient-to-r from-teal-600 to-emerald-700 hover:from-teal-700 hover:to-emerald-800 text-white shadow-xl shadow-teal-950/40 border border-teal-400/30",
+  Blue:
+    "bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white shadow-xl shadow-blue-950/40 border border-blue-400/30",
+  White:
+    "bg-white/95 hover:bg-white text-slate-900 hover:text-emerald-700 shadow-xl border border-slate-200",
+  Amber:
+    "bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white shadow-xl shadow-amber-950/40 border border-amber-400/30",
+  Red:
+    "bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800 text-white shadow-xl shadow-red-950/40 border border-red-400/30",
+  Indigo:
+    "bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white shadow-xl shadow-indigo-950/40 border border-indigo-400/30",
+  Dark:
+    "bg-slate-900 hover:bg-slate-800 text-white shadow-xl border border-slate-700",
+};
 
 export function Hero() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const { dict } = useLanguage();
+  const { dict, language } = useLanguage();
+
+  const [loading, setLoading] = useState(true);
+  const [homepageData, setHomepageData] = useState<HomepageData | null>(null);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const data = await getHomepageData(false);
+        if (isMounted && data) {
+          setHomepageData(data);
+        }
+      } catch (err) {
+        console.warn("Homepage dynamic data fetch error:", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+    fetchData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Filter active slides from API
+  const activeSlides = (homepageData?.slides || []).filter((s) => s.active !== false);
+  const slidesCount = activeSlides.length;
+
+  // Auto-advance slides every 5 seconds if more than 1 slide exists
+  useEffect(() => {
+    if (slidesCount <= 1 || isPaused) return;
+
+    const timer = setInterval(() => {
+      setActiveSlideIndex((prev) => (prev + 1) % slidesCount);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [slidesCount, isPaused]);
+
+  // If no dynamic data or no active slides, DO NOT show banner
+  if (loading || !homepageData || slidesCount === 0) {
+    return null;
+  }
+
+  const currentSlide: HeroSlide = activeSlides[activeSlideIndex % slidesCount];
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,115 +150,252 @@ export function Hero() {
     router.push(`/services?search=${encodeURIComponent(searchQuery.trim())}`);
   };
 
+  const nextSlide = () => {
+    if (slidesCount > 1) {
+      setActiveSlideIndex((prev) => (prev + 1) % slidesCount);
+    }
+  };
+
+  const prevSlide = () => {
+    if (slidesCount > 1) {
+      setActiveSlideIndex((prev) => (prev - 1 + slidesCount) % slidesCount);
+    }
+  };
+
+  // Resolve localized dynamic text for current slide
+  const badgeText =
+    language === "mr"
+      ? currentSlide.badgeMr || currentSlide.badgeEn
+      : currentSlide.badgeEn || currentSlide.badgeMr;
+
+  const headlineText =
+    language === "mr"
+      ? currentSlide.headlineMr || currentSlide.headlineEn
+      : currentSlide.headlineEn || currentSlide.headlineMr;
+
+  const taglineText =
+    language === "mr"
+      ? currentSlide.taglineMr || currentSlide.taglineEn
+      : currentSlide.taglineEn || currentSlide.taglineMr;
+
+  const mediaUrl = currentSlide.mediaUrl;
+  const isVideoMedia =
+    mediaUrl &&
+    (mediaUrl.includes("/video/") ||
+      mediaUrl.endsWith(".mp4") ||
+      mediaUrl.endsWith(".webm") ||
+      mediaUrl.endsWith(".ogg") ||
+      mediaUrl.includes("video/upload"));
+
+  const alignment = currentSlide.alignment || "left";
+  const alignContainerClass =
+    alignment === "left"
+      ? "text-left items-start"
+      : alignment === "right"
+        ? "text-right items-end"
+        : "text-center items-center";
+
+  const alignMarginClass =
+    alignment === "left"
+      ? "mr-auto"
+      : alignment === "right"
+        ? "ml-auto"
+        : "mx-auto";
+
+  const showButtons = currentSlide.showButtons !== false;
+  const activeButtons = (currentSlide.buttons || []).filter((b) => b.active !== false);
+
+  const showTags = currentSlide.showTags !== false;
+  const activeTags = (currentSlide.tags || []).filter((t) => t.active !== false);
+
+  // Check if current slide has any overlaid text / buttons
+  const hasContent = Boolean(
+    badgeText ||
+    headlineText ||
+    taglineText ||
+    (showButtons && activeButtons.length > 0)
+  );
+
   return (
-    <section className="relative min-h-[620px] lg:min-h-[680px] flex items-center justify-center overflow-hidden">
-      {/* Background Video Player with Cinematic Gradient Overlays */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-center scale-105"
-        >
-          <source src="/intro.mp4" type="video/mp4" />
-        </video>
-        {/* Balanced Cinematic Overlays - reduced darkness to showcase lush video scenery while keeping text sharp */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-slate-900/30 to-slate-950/70" />
-        <div className="absolute inset-0 bg-radial-at-c from-emerald-950/20 via-transparent to-slate-950/45" />
+    <section
+      className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[680px] flex flex-col justify-between overflow-hidden group/hero"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Dynamic Background Media */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-slate-900">
+        {mediaUrl ? (
+          isVideoMedia ? (
+            <video
+              key={mediaUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover object-center scale-105 transition-opacity duration-1000"
+            >
+              <source src={mediaUrl} />
+            </video>
+          ) : (
+            <div className="relative w-full h-full">
+              <Image
+                key={mediaUrl}
+                src={mediaUrl}
+                alt={headlineText || "Hero Slide"}
+                fill
+                priority
+                unoptimized={mediaUrl.startsWith("http")}
+                className="object-cover object-center transition-all duration-1000"
+                sizes="100vw"
+              />
+            </div>
+          )
+        ) : null}
+
+        {/* Only show dark gradient overlays if the slide has text/content to keep text legible */}
+        {hasContent && (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-slate-900/40 to-slate-950/80" />
+            <div className="absolute inset-0 bg-radial-at-c from-emerald-950/30 via-transparent to-slate-950/60" />
+          </>
+        )}
       </div>
 
-      {/* Subtle Micro Dot Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(var(--color-status-success)_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+      {/* Subtle Micro Dot Pattern (Only when content is present) */}
+      {hasContent && (
+        <div className="absolute inset-0 bg-[radial-gradient(var(--color-status-success)_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+      )}
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
-        {/* Civic Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-emerald-400/20 text-emerald-200 text-xs sm:text-sm font-semibold mb-6 shadow-md">
-          <Sparkles className="w-4 h-4 text-emerald-400" />
-          <span>{dict.hero.portalBadge}</span>
-        </div>
-
-        {/* Hero Headline */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto drop-shadow-md">
-          {dict.hero.welcomePrefix} <br className="hidden sm:inline" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-white">
-            {dict.hero.councilName}
-          </span>
-        </h1>
-
-        {/* Concise Tagline */}
-        <p className="mt-4 sm:mt-6 text-sm sm:text-base text-slate-200 max-w-2xl mx-auto leading-relaxed font-normal">
-          {dict.hero.tagline}
-        </p>
-
-        {/* Search Bar */}
-        <form
-          onSubmit={handleSearchSubmit}
-          className="mt-8 max-w-xl mx-auto flex items-center bg-white/95 backdrop-blur-xl p-1.5 rounded-2xl shadow-2xl border border-white/40 focus-within:ring-4 focus-within:ring-emerald-500/30 transition-all"
-        >
-          <div className="pl-3.5 text-emerald-700">
-            <Search className="w-5 h-5" />
-          </div>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={dict.hero.searchPlaceholder}
-            className="w-full px-3 py-2 text-xs sm:text-sm bg-transparent text-slate-800 placeholder-slate-400 focus:outline-hidden"
-          />
+      {/* Carousel Navigation Arrows (Visible when > 1 slide) */}
+      {slidesCount > 1 && (
+        <>
           <button
-            type="submit"
-            className="px-5 sm:px-6 py-2.5 bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-bold text-xs sm:text-sm rounded-xl transition-all shadow-md shrink-0"
+            type="button"
+            onClick={prevSlide}
+            aria-label="Previous Slide"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all opacity-0 group-hover/hero:opacity-100 cursor-pointer shadow-lg hover:scale-105"
           >
-            {dict.hero.searchBtn}
+            <ChevronLeft className="w-6 h-6" />
           </button>
-        </form>
-
-        {/* CTAs */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/grievance/register"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold text-sm sm:text-base shadow-xl shadow-emerald-950/40 hover:-translate-y-0.5 transition-all border border-emerald-400/30"
+          <button
+            type="button"
+            onClick={nextSlide}
+            aria-label="Next Slide"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all opacity-0 group-hover/hero:opacity-100 cursor-pointer shadow-lg hover:scale-105"
           >
-            <AlertCircle className="w-5 h-5 text-emerald-200" />
-            <span>{dict.hero.fileGrievance}</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </>
+      )}
 
-          <Link
-            href="/grievance/track"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/95 hover:bg-white text-slate-900 hover:text-emerald-700 font-bold text-sm sm:text-base shadow-xl hover:-translate-y-0.5 transition-all border border-slate-200"
-          >
-            <Search className="w-5 h-5 text-emerald-700" />
-            <span>{dict.nav.trackStatus}</span>
-          </Link>
+      {/* Main Dynamic Hero Content (Only rendered if text/buttons exist) */}
+      {hasContent ? (
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 my-auto w-full">
+          <div className={`flex flex-col ${alignContainerClass}`}>
+            {/* Civic Badge (Only if provided dynamically) */}
+            {badgeText && (
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-emerald-400/20 text-emerald-200 text-xs sm:text-sm font-semibold mb-6 shadow-md">
+                <Sparkles className="w-4 h-4 text-emerald-400" />
+                <span>{badgeText}</span>
+              </div>
+            )}
 
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm sm:text-base backdrop-blur-md border border-white/20 transition-all"
-          >
-            <span>{dict.nav.services}</span>
-            <ExternalLink className="w-4 h-4 text-emerald-300" />
-          </Link>
+            {/* Dynamic Headline (Only if provided dynamically) */}
+            {headlineText && (
+              <h1
+                className={`text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl drop-shadow-md transition-all duration-300 ${alignment === "center"
+                    ? "text-center mx-auto"
+                    : alignment === "right"
+                      ? "text-right ml-auto"
+                      : "text-left mr-auto"
+                  }`}
+              >
+                {headlineText}
+              </h1>
+            )}
+
+            {/* Dynamic Tagline (Only if provided dynamically) */}
+            {taglineText && (
+              <p
+                className={`mt-4 sm:mt-6 text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed font-normal ${alignMarginClass}`}
+              >
+                {taglineText}
+              </p>
+            )}
+
+            {/* Dynamic Action Buttons (Only render if active buttons configured) */}
+            {showButtons && activeButtons.length > 0 && (
+              <div
+                className={`mt-8 flex flex-wrap items-center gap-4 ${alignment === "center"
+                    ? "justify-center"
+                    : alignment === "right"
+                      ? "justify-end"
+                      : "justify-start"
+                  }`}
+              >
+                {activeButtons.map((btn, bIdx) => {
+                  const IconComp = (btn.icon && ICON_MAP[btn.icon]) || ArrowRight;
+                  const colorClass =
+                    (btn.color && BUTTON_COLOR_CLASSES[btn.color]) || BUTTON_COLOR_CLASSES.Emerald;
+                  const isExternal = btn.url?.startsWith("http");
+
+                  return (
+                    <Link
+                      key={btn.id || bIdx}
+                      href={btn.url || "#"}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base hover:-translate-y-0.5 transition-all ${colorClass}`}
+                    >
+                      <IconComp className="w-5 h-5" />
+                      <span>{btn.name}</span>
+                      {isExternal && <ExternalLink className="w-3.5 h-3.5 opacity-80" />}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
+      ) : (
+        <div className="flex-1" />
+      )}
 
-        {/* Ticker Badges */}
-        <div className="mt-10 pt-6 border-t border-white/15 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs text-emerald-100 font-medium">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>5-Step Verified Grievance Redressal</span>
+      {/* Dynamic Slide Dots & Dynamic Feature Tags */}
+      <div className="relative z-10 w-full pb-8">
+        {/* Slide Indicators */}
+        {slidesCount > 1 && (
+          <div className="flex items-center justify-center gap-2 mb-4">
+            {activeSlides.map((s, idx) => (
+              <button
+                key={s.id || idx}
+                type="button"
+                onClick={() => setActiveSlideIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`transition-all rounded-full cursor-pointer ${idx === activeSlideIndex % slidesCount
+                    ? "w-8 h-2.5 bg-emerald-400 shadow-md ring-1 ring-white/40"
+                    : "w-2.5 h-2.5 bg-white/60 hover:bg-white shadow-xs"
+                  }`}
+              />
+            ))}
           </div>
-          <div className="flex items-center gap-2">
-            <PhoneCall className="w-4 h-4 text-emerald-400" />
-            <span>24x7 Control Room: 1800-233-0101</span>
+        )}
+
+        {/* Dynamic Feature Tags (Only if active tags configured) */}
+        {showTags && activeTags.length > 0 && (
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/15 pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs text-emerald-100 font-medium">
+            {activeTags.map((tag, tIdx) => {
+              const TagIconComponent = (tag.icon && ICON_MAP[tag.icon]) || TagIcon;
+              return (
+                <div key={tag.id || tIdx} className="flex items-center gap-2">
+                  <TagIconComponent className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>{tag.name}</span>
+                </div>
+              );
+            })}
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>Swachh Survekshan 3-Star Certified</span>
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );

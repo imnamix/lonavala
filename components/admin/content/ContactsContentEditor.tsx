@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Phone,
   Save,
@@ -26,16 +26,17 @@ import {
   ChevronDown,
   MessageSquare,
   MessageCircle,
+  Loader2,
+  RefreshCw,
+  X,
 } from "lucide-react";
 import Link from "next/link";
-
-interface EmergencyContact {
-  id: string;
-  name: string;
-  number: string;
-  icon: string;
-  active: boolean;
-}
+import {
+  getContactsData,
+  updateContactsData,
+  EmergencyContact,
+  MunicipalHq,
+} from "@/lib/services/contacts.service";
 
 const EMERGENCY_ICONS: { [key: string]: { name: string; icon: any } } = {
   ShieldAlert: { name: "Shield Alert / Control", icon: ShieldAlert },
@@ -117,57 +118,65 @@ function EmergencyIconDropdown({
 }
 
 export function ContactsContentEditor() {
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // 1. WhatsApp Helpline
-  const [whatsappHelpline, setWhatsappHelpline] = useState("+91 94235 88990");
+  const [whatsappHelpline, setWhatsappHelpline] = useState("");
 
   // 2. Dynamic Emergency Numbers & Hotlines
-  const [emergencyContacts, setEmergencyContacts] = useState<EmergencyContact[]>([
-    {
-      id: "em-1",
-      name: "24x7 Control Room",
-      number: "1800-233-0101",
-      icon: "ShieldAlert",
-      active: true,
-    },
-    {
-      id: "em-2",
-      name: "Fire Brigade Hotline",
-      number: "101 / 02114-273101",
-      icon: "Flame",
-      active: true,
-    },
-    {
-      id: "em-3",
-      name: "Police Station",
-      number: "112 / 02114-273033",
-      icon: "Siren",
-      active: true,
-    },
-    {
-      id: "em-4",
-      name: "Ambulance Emergency (108)",
-      number: "108 / 02114-273111",
-      icon: "Ambulance",
-      active: true,
-    },
-  ]);
+  const [emergencyContacts, setEmergencyContacts] = useState<EmergencyContact[]>([]);
 
   // 3. Municipal Headquarters & Timings & Google Maps
-  const [hq, setHq] = useState({
-    complexName: "Administrative Complex",
-    addressLine1: "Old Mumbai-Pune Highway, Near Kumar Resort",
-    addressLine2: "Lonavala, Dist. Pune, Maharashtra",
-    pinCode: "410401",
-    epabxPhones: "+91 2114 273030 / 273031 / 273032",
-    officialEmail: "contact@lonavalamc.gov.in",
-    coEmail: "co@lonavalamc.gov.in",
-    workingHours: "Monday to Saturday: 09:45 AM – 05:45 PM",
-    workingHoursNote: "(Closed on 2nd & 4th Saturdays and Public Holidays)",
-    mapEmbedUrl:
-      "https://maps.google.com/maps?q=Lonavala+Municipal+Council&t=&z=15&ie=UTF8&iwloc=&output=embed",
+  const [hq, setHq] = useState<MunicipalHq>({
+    complexName: "",
+    addressLine1: "",
+    addressLine2: "",
+    pinCode: "",
+    epabxPhones: "",
+    officialEmail: "",
+    coEmail: "",
+    workingHours: "",
+    workingHoursNote: "",
+    mapEmbedUrl: "",
   });
+
+  // Load live data from API
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      setErrorMessage(null);
+      const data = await getContactsData();
+
+      setWhatsappHelpline(data.whatsappHelpline || "");
+      setEmergencyContacts(data.emergencyContacts || []);
+      setHq(
+        data.hq || {
+          complexName: "",
+          addressLine1: "",
+          addressLine2: "",
+          pinCode: "",
+          epabxPhones: "",
+          officialEmail: "",
+          coEmail: "",
+          workingHours: "",
+          workingHoursNote: "",
+          mapEmbedUrl: "",
+        }
+      );
+    } catch (err: any) {
+      console.error("Failed to load contacts data:", err);
+      setErrorMessage(err.message || "Failed to load contacts data from server.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const handleAddEmergencyContact = () => {
     const newId = `em-${Date.now()}`;
@@ -175,8 +184,8 @@ export function ContactsContentEditor() {
       ...emergencyContacts,
       {
         id: newId,
-        name: "New Emergency Contact",
-        number: "02114-XXXXXX",
+        name: "",
+        number: "",
         icon: "Phone",
         active: true,
       },
@@ -184,47 +193,89 @@ export function ContactsContentEditor() {
   };
 
   const handleUpdateEmergencyContact = (
-    id: string,
+    id: string | number,
     field: keyof EmergencyContact,
     value: any
   ) => {
     setEmergencyContacts(
-      emergencyContacts.map((c) => (c.id === id ? { ...c, [field]: value } : c))
+      emergencyContacts.map((c) => (String(c.id) === String(id) ? { ...c, [field]: value } : c))
     );
   };
 
-  const handleDeleteEmergencyContact = (id: string) => {
-    if (emergencyContacts.length <= 1) {
-      alert("At least one emergency contact must remain configured.");
-      return;
-    }
-    setEmergencyContacts(emergencyContacts.filter((c) => c.id !== id));
+  const handleDeleteEmergencyContact = (id: string | number) => {
+    setEmergencyContacts(emergencyContacts.filter((c) => String(c.id) !== String(id)));
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3500);
+    try {
+      setSaving(true);
+      setErrorMessage(null);
+
+      const payload = {
+        whatsappHelpline,
+        emergencyContacts,
+        hq,
+      };
+
+      const res = await updateContactsData(payload);
+
+      if (res.data?.contacts) {
+        setWhatsappHelpline(res.data.contacts.whatsappHelpline || "");
+        if (res.data.contacts.emergencyContacts) {
+          setEmergencyContacts(res.data.contacts.emergencyContacts);
+        }
+        if (res.data.contacts.hq) {
+          setHq(res.data.contacts.hq);
+        }
+      }
+
+      setSaved(true);
+      setTimeout(() => setSaved(false), 4000);
+    } catch (err: any) {
+      console.error("Failed to save contacts:", err);
+      setErrorMessage(err.message || "Failed to save contacts and helpdesk data.");
+    } finally {
+      setSaving(false);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="p-12 text-center bg-white rounded-3xl border border-border shadow-xs space-y-4">
+        <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto" />
+        <p className="text-sm font-bold text-gray-700">Loading Contacts & Helpdesk Content from API...</p>
+        <p className="text-xs text-gray-500">Fetching emergency hotlines, WhatsApp lines, and municipal office info.</p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSave} className="space-y-8">
       {/* Top Banner & Quick Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-border shadow-xs">
         <div>
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <span className="px-2.5 py-1 rounded-lg bg-primary-light text-primary font-bold text-xs">
               Live Section Editor
             </span>
-            <span className="text-xs text-gray-500">• Route: /contact (Contacts)</span>
-          </div>
+            <span className="text-xs text-gray-500">• Route: /contact (Contacts & Helpdesk)</span>
+          </div> */}
           <h2 className="text-xl font-extrabold text-text-primary mt-1">Contacts & Helpdesk Content</h2>
           <p className="text-xs text-gray-500">
-            Manage dynamic 24x7 emergency contacts, WhatsApp helpline, municipal headquarters address, EPABX phone lines, office timings, and Google Maps embed.
+           Manage 24×7 emergency contacts, WhatsApp helpline, office details, timings, and Google Maps.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={loadData}
+            title="Reload from API"
+            className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors cursor-pointer"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
           <Link
             href="/contact"
             target="_blank"
@@ -235,18 +286,55 @@ export function ContactsContentEditor() {
           </Link>
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            disabled={saving}
+            className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer disabled:opacity-50"
           >
-            <Save className="w-4 h-4" />
-            <span>Publish Changes</span>
+            {saving ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Publishing...</span>
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                <span>Publish Changes</span>
+              </>
+            )}
           </button>
         </div>
       </div>
 
+      {/* Error Alert Message */}
+      {errorMessage && (
+        <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 flex items-center justify-between text-xs font-semibold animate-in fade-in">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+            <span>{errorMessage}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={loadData}
+              className="text-xs font-bold underline hover:no-underline text-red-800 cursor-pointer"
+            >
+              Retry
+            </button>
+            <button
+              type="button"
+              onClick={() => setErrorMessage(null)}
+              className="p-1 hover:bg-red-100 rounded-lg cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Success Notification */}
       {saved && (
         <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 flex items-center gap-3 text-xs font-bold animate-in fade-in duration-300">
           <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-          <span>Contact details and emergency helplines saved successfully!</span>
+          <span>Contact details and emergency helplines saved and published successfully!</span>
         </div>
       )}
 
@@ -260,7 +348,7 @@ export function ContactsContentEditor() {
             <div>
               <h3 className="font-bold text-base text-text-primary">24x7 Emergency Numbers & Helplines</h3>
               <p className="text-xs text-gray-500">
-                Configure WhatsApp helpline and dynamic emergency hotline numbers ({emergencyContacts.length} numbers active).
+                Configure WhatsApp helpline and dynamic emergency hotline numbers ({emergencyContacts.length} numbers configured).
               </p>
             </div>
           </div>
@@ -308,30 +396,38 @@ export function ContactsContentEditor() {
             Department Emergency Numbers ({emergencyContacts.length})
           </div>
 
-          {emergencyContacts.map((contact, index) => (
-            <div
-              key={contact.id}
-              className="p-4 rounded-2xl bg-primary-surface border border-border hover:border-emerald-300 transition-colors space-y-3"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-xs text-primary">
-                  Emergency Helpline #{index + 1}
-                </span>
+          {emergencyContacts.length === 0 ? (
+            <div className="p-8 text-center bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl space-y-2">
+              <Phone className="w-8 h-8 text-gray-400 mx-auto" />
+              <p className="text-xs font-bold text-gray-700">No emergency contacts configured yet.</p>
+              <p className="text-[11px] text-gray-500">
+                Click the &quot;Add Emergency Contact&quot; button above to create dynamic 24x7 helpline numbers.
+              </p>
+            </div>
+          ) : (
+            emergencyContacts.map((contact, index) => (
+              <div
+                key={contact.id}
+                className="p-4 rounded-2xl bg-primary-surface border border-border hover:border-emerald-300 transition-colors space-y-3"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-xs text-primary">
+                    Emergency Helpline #{index + 1}
+                  </span>
 
-                <div className="flex items-center gap-3">
-                  <label className="flex items-center gap-1.5 cursor-pointer text-xs font-semibold text-gray-700">
-                    <span>Active:</span>
-                    <input
-                      type="checkbox"
-                      checked={contact.active}
-                      onChange={(e) =>
-                        handleUpdateEmergencyContact(contact.id, "active", e.target.checked)
-                      }
-                      className="w-4 h-4 rounded text-primary focus:ring-primary"
-                    />
-                  </label>
+                  <div className="flex items-center gap-3">
+                    <label className="flex items-center gap-1.5 cursor-pointer text-xs font-semibold text-gray-700">
+                      <span>Active:</span>
+                      <input
+                        type="checkbox"
+                        checked={contact.active}
+                        onChange={(e) =>
+                          handleUpdateEmergencyContact(contact.id, "active", e.target.checked)
+                        }
+                        className="w-4 h-4 rounded text-primary focus:ring-primary"
+                      />
+                    </label>
 
-                  {emergencyContacts.length > 1 && (
                     <button
                       type="button"
                       onClick={() => handleDeleteEmergencyContact(contact.id)}
@@ -340,56 +436,56 @@ export function ContactsContentEditor() {
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
-                  )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
+                  {/* Visual Icon Dropdown */}
+                  <div className="sm:col-span-4">
+                    <label className="block text-[10px] font-bold text-gray-600 uppercase mb-1">
+                      Contact Icon
+                    </label>
+                    <EmergencyIconDropdown
+                      value={contact.icon}
+                      onChange={(val) => handleUpdateEmergencyContact(contact.id, "icon", val)}
+                    />
+                  </div>
+
+                  {/* Contact Name */}
+                  <div className="sm:col-span-4">
+                    <label className="block text-[10px] font-bold text-gray-600 uppercase mb-1">
+                      Contact Title / Name
+                    </label>
+                    <input
+                      type="text"
+                      value={contact.name}
+                      onChange={(e) =>
+                        handleUpdateEmergencyContact(contact.id, "name", e.target.value)
+                      }
+                      placeholder="e.g. 24x7 Control Room"
+                      className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold text-gray-800 focus:border-primary focus:outline-hidden"
+                    />
+                  </div>
+
+                  {/* Contact Number */}
+                  <div className="sm:col-span-4">
+                    <label className="block text-[10px] font-bold text-gray-600 uppercase mb-1">
+                      Helpline Number / Phone
+                    </label>
+                    <input
+                      type="text"
+                      value={contact.number}
+                      onChange={(e) =>
+                        handleUpdateEmergencyContact(contact.id, "number", e.target.value)
+                      }
+                      placeholder="e.g. 1800-233-0101"
+                      className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold font-mono text-emerald-800 focus:border-primary focus:outline-hidden"
+                    />
+                  </div>
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
-                {/* Visual Icon Dropdown */}
-                <div className="sm:col-span-4">
-                  <label className="block text-[10px] font-bold text-gray-600 uppercase mb-1">
-                    Contact Icon
-                  </label>
-                  <EmergencyIconDropdown
-                    value={contact.icon}
-                    onChange={(val) => handleUpdateEmergencyContact(contact.id, "icon", val)}
-                  />
-                </div>
-
-                {/* Contact Name */}
-                <div className="sm:col-span-4">
-                  <label className="block text-[10px] font-bold text-gray-600 uppercase mb-1">
-                    Contact Title / Name
-                  </label>
-                  <input
-                    type="text"
-                    value={contact.name}
-                    onChange={(e) =>
-                      handleUpdateEmergencyContact(contact.id, "name", e.target.value)
-                    }
-                    placeholder="e.g. 24x7 Control Room"
-                    className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold text-gray-800 focus:border-primary focus:outline-hidden"
-                  />
-                </div>
-
-                {/* Contact Number */}
-                <div className="sm:col-span-4">
-                  <label className="block text-[10px] font-bold text-gray-600 uppercase mb-1">
-                    Helpline Number / Phone
-                  </label>
-                  <input
-                    type="text"
-                    value={contact.number}
-                    onChange={(e) =>
-                      handleUpdateEmergencyContact(contact.id, "number", e.target.value)
-                    }
-                    placeholder="e.g. 1800-233-0101"
-                    className="w-full px-3.5 py-2 bg-white border border-gray-200 rounded-xl font-bold font-mono text-emerald-800 focus:border-primary focus:outline-hidden"
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
 
           {/* Add More Emergency Contacts Option Button */}
           <button
@@ -398,7 +494,7 @@ export function ContactsContentEditor() {
             className="w-full py-3 rounded-2xl border-2 border-dashed border-primary/50 hover:border-primary bg-primary-light/40 hover:bg-primary-light text-primary font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
-            <span>+ Add More Emergency Contacts</span>
+            <span>+ Add Emergency Contact</span>
           </button>
         </div>
       </div>
@@ -428,6 +524,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.complexName}
                 onChange={(e) => setHq({ ...hq, complexName: e.target.value })}
+                placeholder="e.g. Administrative Complex"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-bold focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -440,6 +537,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.addressLine1}
                 onChange={(e) => setHq({ ...hq, addressLine1: e.target.value })}
+                placeholder="e.g. Old Mumbai-Pune Highway, Near Kumar Resort"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -454,6 +552,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.addressLine2}
                 onChange={(e) => setHq({ ...hq, addressLine2: e.target.value })}
+                placeholder="e.g. Lonavala, Dist. Pune, Maharashtra"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -465,6 +564,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.pinCode}
                 onChange={(e) => setHq({ ...hq, pinCode: e.target.value })}
+                placeholder="e.g. 410401"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -480,6 +580,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.epabxPhones}
                 onChange={(e) => setHq({ ...hq, epabxPhones: e.target.value })}
+                placeholder="e.g. +91 2114 273030 / 273031"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -492,6 +593,7 @@ export function ContactsContentEditor() {
                 type="email"
                 value={hq.officialEmail}
                 onChange={(e) => setHq({ ...hq, officialEmail: e.target.value })}
+                placeholder="e.g. contact@lonavalamc.gov.in"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -504,6 +606,7 @@ export function ContactsContentEditor() {
                 type="email"
                 value={hq.coEmail}
                 onChange={(e) => setHq({ ...hq, coEmail: e.target.value })}
+                placeholder="e.g. co@lonavalamc.gov.in"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -519,6 +622,7 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.workingHours}
                 onChange={(e) => setHq({ ...hq, workingHours: e.target.value })}
+                placeholder="e.g. Monday to Saturday: 09:45 AM – 05:45 PM"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
@@ -530,24 +634,66 @@ export function ContactsContentEditor() {
                 type="text"
                 value={hq.workingHoursNote}
                 onChange={(e) => setHq({ ...hq, workingHoursNote: e.target.value })}
+                placeholder="e.g. (Closed on 2nd & 4th Saturdays and Public Holidays)"
                 className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:border-primary focus:outline-hidden"
               />
             </div>
           </div>
 
-          {/* Google Maps Embed URL */}
-          <div>
-            <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-primary" />
-              <span>Google Maps Embed URL</span>
+          {/* Google Maps Embed URL or iframe code */}
+          <div className="space-y-2">
+            <label className="block font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center justify-between">
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-primary" />
+                <span>Google Maps Embed URL or Iframe Code</span>
+              </span>
+              <span className="text-[10px] text-gray-400 font-normal normal-case">
+                Paste either direct link or full &lt;iframe src=&quot;...&quot;&gt;&lt;/iframe&gt; code
+              </span>
             </label>
-            <input
-              type="text"
+            <textarea
+              rows={2}
               value={hq.mapEmbedUrl}
-              onChange={(e) => setHq({ ...hq, mapEmbedUrl: e.target.value })}
-              placeholder="https://maps.google.com/maps?q=..."
+              onChange={(e) => {
+                const raw = e.target.value;
+                const match = raw.match(/src=["']([^"']+)["']/i);
+                if (match && match[1]) {
+                  setHq({ ...hq, mapEmbedUrl: match[1] });
+                } else {
+                  setHq({ ...hq, mapEmbedUrl: raw });
+                }
+              }}
+              placeholder='https://www.google.com/maps/embed?pb=... or <iframe src="https://www.google.com/maps/embed?pb=..." ...></iframe>'
               className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl font-mono text-[11px] text-gray-700 focus:border-primary focus:outline-hidden"
             />
+
+            {/* Live Map Preview in Admin Editor */}
+            {hq.mapEmbedUrl && (
+              <div className="mt-3 rounded-2xl overflow-hidden border border-border bg-slate-100">
+                <div className="px-3 py-1.5 bg-gray-50 border-b border-border text-[11px] font-bold text-gray-600 flex items-center justify-between">
+                  <span>Live Map Preview</span>
+                  <span className="text-emerald-600 font-semibold">✓ Valid Embed URL</span>
+                </div>
+                <div className="relative h-44 w-full">
+                  <iframe
+                    src={
+                      hq.mapEmbedUrl.match(/src=["']([^"']+)["']/i)?.[1] ||
+                      (hq.mapEmbedUrl.startsWith("http")
+                        ? hq.mapEmbedUrl
+                        : `https://maps.google.com/maps?q=${encodeURIComponent(
+                            hq.mapEmbedUrl
+                          )}&t=&z=16&ie=UTF8&iwloc=&output=embed`)
+                    }
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    title="Admin Google Map Preview"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -555,22 +701,33 @@ export function ContactsContentEditor() {
       {/* Sticky Bottom Save Bar */}
       <div className="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-border shadow-lg flex items-center justify-between">
         <div className="text-xs text-gray-500">
-          Last updated: <span className="font-semibold text-gray-800">Just now</span>
+          Status: <span className="font-semibold text-gray-800">Connected to API</span>
         </div>
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => window.location.reload()}
-            className="px-4 py-2 rounded-xl text-gray-600 hover:bg-gray-100 text-xs font-bold transition-colors cursor-pointer"
+            onClick={loadData}
+            disabled={saving}
+            className="px-4 py-2 rounded-xl text-gray-600 hover:bg-gray-100 text-xs font-bold transition-colors cursor-pointer disabled:opacity-50"
           >
             Discard Changes
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            disabled={saving}
+            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer disabled:opacity-50"
           >
-            <Save className="w-4 h-4" />
-            <span>Save & Publish Contacts</span>
+            {saving ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Saving Contacts...</span>
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                <span>Save & Publish Contacts</span>
+              </>
+            )}
           </button>
         </div>
       </div>

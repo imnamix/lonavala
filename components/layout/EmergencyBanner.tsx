@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PhoneCall, AlertTriangle, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import { getHomepageData } from "@/lib/services/homepage.service";
 
 interface EmergencyBannerProps {
   isCollapsed?: boolean;
@@ -12,8 +13,36 @@ interface EmergencyBannerProps {
 export function EmergencyBanner({ isCollapsed = false }: EmergencyBannerProps) {
   const [isDismissed] = useState(false);
   const { dict } = useLanguage();
+  const [dynamicAnnouncement, setDynamicAnnouncement] = useState<string | null>(null);
+  const [isBannerActive, setIsBannerActive] = useState<boolean>(true);
 
-  if (isDismissed) return null;
+  useEffect(() => {
+    let isMounted = true;
+    async function loadAnnouncement() {
+      try {
+        const data = await getHomepageData(false);
+        if (isMounted && data) {
+          if (typeof data.announcementActive === "boolean") {
+            setIsBannerActive(data.announcementActive);
+          }
+          if (data.announcement && data.announcement.trim()) {
+            setDynamicAnnouncement(data.announcement.trim());
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to load emergency announcement:", err);
+      }
+    }
+    loadAnnouncement();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  if (isDismissed || !isBannerActive) return null;
+
+  const defaultText = `${dict.emergencyBanner.monsoonHelpline}: 1800-233-0101 | ${dict.emergencyBanner.fire}: 101 | ${dict.emergencyBanner.police}: 112 | ${dict.emergencyBanner.disasterMgmt}: +91 2114 273999`;
+  const displayText = dynamicAnnouncement || defaultText;
 
   return (
     <div
@@ -28,13 +57,7 @@ export function EmergencyBanner({ isCollapsed = false }: EmergencyBannerProps) {
             {dict.emergencyBanner.controlRoom}
           </span>
           <p className="truncate text-slate-300 text-[11px] sm:text-xs">
-            {dict.emergencyBanner.monsoonHelpline}:{" "}
-            <a href="tel:18002330101" className="font-bold text-emerald-400 hover:underline">
-              1800-233-0101
-            </a>{" "}
-            | {dict.emergencyBanner.fire}: <span className="font-semibold text-emerald-300">101</span> | {dict.emergencyBanner.police}:{" "}
-            <span className="font-semibold text-emerald-300">112</span> | {dict.emergencyBanner.disasterMgmt}:{" "}
-            <span className="font-semibold text-emerald-300">+91 2114 273999</span>
+            {displayText}
           </p>
         </div>
 

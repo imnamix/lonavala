@@ -16,11 +16,11 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <Hero />
 
+      {/* 3. Council Overview */}
+      <CouncilOverview />
       {/* 2. Quick Citizen Services (8 icon cards) */}
       <QuickServices />
 
-      {/* 3. Council Overview */}
-      <CouncilOverview />
 
       {/* 4. Tourism Highlights */}
       <TourismHighlights />

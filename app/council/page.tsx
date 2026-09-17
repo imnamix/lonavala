@@ -1,17 +1,67 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Users,
   Phone,
   Mail,
-  Award,
   FileText,
-  MapPin,
-  CheckCircle,
   Download,
-  Calendar,
 } from "lucide-react";
 import { COUNCIL_MEMBERS } from "@/data/mockData";
+import { getCouncilMembers } from "@/lib/services/council.service";
+import { CouncilMember } from "@/types";
+
+export const dynamic = "force-dynamic";
+
+const COMMITTEE_MANDATES: Record<string, string> = {
+  standing:
+    "Financial sanctions, policy formulation, administrative reviews, and annual budget oversight.",
+  "public works":
+    "Road tenders, street lighting, stormwater drainage, and civil infrastructure.",
+  sanitation:
+    "Solid waste management, dam catchments, water distribution, and environmental safety.",
+  water:
+    "Solid waste management, dam catchments, water distribution, and environmental safety.",
+  women:
+    "Self-help group microfinance, Anganwadi nutrition, civic maternity care, and skill training.",
+  child:
+    "Self-help group microfinance, Anganwadi nutrition, civic maternity care, and skill training.",
+};
+
+function getCommitteeMandate(name: string) {
+  const key = name.toLowerCase();
+  const matchingKey = Object.keys(COMMITTEE_MANDATES).find((candidate) =>
+    key.includes(candidate)
+  );
+  return matchingKey
+    ? COMMITTEE_MANDATES[matchingKey]
+    : "Oversees civic planning, public accountability, and service delivery within its assigned portfolio.";
+}
+
+function getInitials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}
+
+function MemberImage({ member, className }: { member: CouncilMember; className: string }) {
+  return member.image ? (
+    <Image
+      src={member.image}
+      alt={member.name}
+      fill
+      className={className}
+      sizes="(max-width: 768px) 100vw, 180px"
+    />
+  ) : (
+    <div className="w-full h-full flex items-center justify-center bg-primary-light text-primary text-xl font-bold">
+      {getInitials(member.name)}
+    </div>
+  );
+}
 
 export const metadata = {
   title: "Elected Council & Corporators | Lonavala Municipal Council",
@@ -19,37 +69,60 @@ export const metadata = {
     "Elected President, Vice President, Ward Corporators, Standing Committees and Council resolutions of Lonavala Municipal Council.",
 };
 
-export default function CouncilPage() {
-  const president = COUNCIL_MEMBERS[0];
-  const vicePresident = COUNCIL_MEMBERS[1];
-  const corporators = COUNCIL_MEMBERS.slice(3);
+export default async function CouncilPage() {
+  const liveMembers = await getCouncilMembers({ active: true });
+  const members = liveMembers.length > 0 ? liveMembers : COUNCIL_MEMBERS;
 
-  const committees = [
-    {
-      name: "Standing Committee (स्थायी समिती)",
-      chair: "Smt. Surekha Nitin Jadhav (President)",
-      members: "5 Elected Corporators",
-      mandate: "Financial sanctions, policy formulation, administrative reviews, and annual budget oversight.",
-    },
-    {
-      name: "Public Works Committee (सार्वजनिक बांधकाम समिती)",
-      chair: "Shri. Rajesh Shinde (Vice President)",
-      members: "4 Elected Corporators",
-      mandate: "Road tenders, street lighting, stormwater drainage, and civil infrastructure.",
-    },
-    {
-      name: "Sanitation & Water Works (स्वच्छता व पाणीपुरवठा समिती)",
-      chair: "Shri. Amit Vilas Gaikwad",
-      members: "4 Elected Corporators",
-      mandate: "Solid waste management, dam catchments, water distribution, and environmental safety.",
-    },
-    {
-      name: "Women & Child Welfare Committee (महिला व बालकल्याण समिती)",
-      chair: "Smt. Kavita Anil Sonawane",
-      members: "4 Elected Corporators",
-      mandate: "Self-help group microfinance, Anganwadi nutrition, civic maternity care, and skill training.",
-    },
-  ];
+  const president = members.find(
+    (member) =>
+      member.roleCategory === "President" ||
+      (member.designation.toLowerCase().includes("president") &&
+        !member.designation.toLowerCase().includes("vice"))
+  );
+  const vicePresident = members.find(
+    (member) =>
+      member.roleCategory === "Vice President" ||
+      member.designation.toLowerCase().includes("vice president")
+  );
+  const corporators = members.filter(
+    (member) =>
+      member.roleCategory === "Corporator" ||
+      member.designation.toLowerCase().includes("corporator")
+  );
+
+  const committeeGroups = new Map<string, CouncilMember[]>();
+  members.forEach((member) => {
+    const committee = member.committee?.trim();
+    if (!committee) return;
+    const group = committeeGroups.get(committee) || [];
+    group.push(member);
+    committeeGroups.set(committee, group);
+  });
+  const committees = Array.from(committeeGroups, ([name, committeeMembers]) => {
+    const chair =
+      committeeMembers.find((member) => member.roleCategory === "President") ||
+      committeeMembers.find((member) => member.roleCategory === "Vice President") ||
+      committeeMembers[0];
+
+    return {
+      name,
+      chair,
+      members: `${committeeMembers.length} ${
+        committeeMembers.length === 1 ? "Council Member" : "Council Members"
+      }`,
+      mandate: getCommitteeMandate(name),
+    };
+  });
+
+  const wardCount = new Set(
+    corporators
+      .map((member) => member.ward?.match(/ward\s+\d+/i)?.[0].toLowerCase())
+      .filter(Boolean)
+  ).size;
+  const tenure =
+    president?.tenure ||
+    corporators.find((member) => member.tenure)?.tenure ||
+    "Current term";
 
   const councilDocs = [
     {
@@ -87,7 +160,7 @@ export default function CouncilPage() {
               Elected Council & Ward Corporators
             </h1>
             <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-              Representing the citizens across 5 municipal wards, deliberating policies, and driving civic progress for Lonavala.
+              Representing citizens across {wardCount || "the municipal"} {wardCount === 1 ? "ward" : "wards"}, deliberating policies, and driving civic progress for Lonavala.
             </p>
           </div>
         </div>
@@ -102,14 +175,9 @@ export default function CouncilPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* President Card */}
-            <div className="bg-white rounded-2xl border-2 border-primary p-6 shadow-md flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+            {president && <div className="bg-white rounded-2xl border-2 border-primary p-6 shadow-md flex flex-col sm:flex-row gap-6 items-center sm:items-start">
               <div className="relative w-36 h-44 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-primary-light">
-                <Image
-                  src={president.image}
-                  alt={president.name}
-                  fill
-                  className="object-cover"
-                />
+                <MemberImage member={president} className="object-cover" />
               </div>
               <div className="space-y-2 text-center sm:text-left">
                 <span className="text-xs font-bold uppercase tracking-wider bg-primary-light text-primary px-3 py-1 rounded-full">
@@ -127,17 +195,12 @@ export default function CouncilPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div>}
 
             {/* Vice President Card */}
-            <div className="bg-white rounded-2xl border border-border p-6 shadow-xs hover:border-primary transition-all flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+            {vicePresident && <div className="bg-white rounded-2xl border border-border p-6 shadow-xs hover:border-primary transition-all flex flex-col sm:flex-row gap-6 items-center sm:items-start">
               <div className="relative w-36 h-44 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-gray-100">
-                <Image
-                  src={vicePresident.image}
-                  alt={vicePresident.name}
-                  fill
-                  className="object-cover"
-                />
+                <MemberImage member={vicePresident} className="object-cover" />
               </div>
               <div className="space-y-2 text-center sm:text-left">
                 <span className="text-xs font-bold uppercase tracking-wider bg-gray-100 text-gray-800 px-3 py-1 rounded-full">
@@ -155,7 +218,7 @@ export default function CouncilPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         </section>
 
@@ -164,27 +227,25 @@ export default function CouncilPage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border pb-3">
             <div>
               <h2 className="text-2xl font-bold text-text-primary">Ward Corporators (नगरसेवक)</h2>
-              <p className="text-xs text-gray-600 mt-1">Elected representatives for Wards 1 through 5</p>
+              <p className="text-xs text-gray-600 mt-1">
+                Elected representatives for {wardCount ? `${wardCount} municipal wards` : "the municipal wards"}
+              </p>
             </div>
             <span className="text-xs font-bold text-primary bg-primary-light px-3 py-1 rounded-full">
-              Tenure 2022 - 2027
+              Tenure {tenure}
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {corporators.map((corp) => (
+          {corporators.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {corporators.map((corp) => (
               <div
                 key={corp.id}
                 className="bg-white rounded-2xl border border-border p-4 shadow-xs hover:border-primary hover:shadow-lg transition-all text-center flex flex-col justify-between group"
               >
                 <div>
                   <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden shadow-sm border-2 border-primary-light mb-3 group-hover:scale-105 transition-transform">
-                    <Image
-                      src={corp.image}
-                      alt={corp.name}
-                      fill
-                      className="object-cover"
-                    />
+                    <MemberImage member={corp} className="object-cover" />
                   </div>
                   <span className="text-[10px] font-bold text-primary bg-primary-light px-2 py-0.5 rounded-full">
                     {corp.ward?.split("-")[0] || "Ward Member"}
@@ -204,8 +265,13 @@ export default function CouncilPage() {
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-border bg-white p-8 text-center text-sm text-gray-500">
+              No active ward representatives are currently listed.
+            </div>
+          )}
         </section>
 
         {/* Standing Committees */}
@@ -227,7 +293,8 @@ export default function CouncilPage() {
                   </span>
                 </div>
                 <div className="text-xs text-gray-700">
-                  <strong>Chairperson:</strong> {comm.chair}
+                    <strong>Chairperson:</strong> {comm.chair.name}
+                    {comm.chair.designation ? ` — ${comm.chair.designation}` : ""}
                 </div>
                 <p className="text-xs text-gray-600 leading-relaxed">{comm.mandate}</p>
               </div>

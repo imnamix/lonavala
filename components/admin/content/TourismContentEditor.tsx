@@ -744,45 +744,111 @@ export function TourismContentEditor() {
           </div>
 
           {/* Feature Image Upload */}
-          <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
-            <div className="flex items-center justify-between">
-              <label className="font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2">
-                <ImageIcon className="w-4 h-4 text-primary" />
-                <span>Destination Feature Cover Image (Upload / Replace)</span>
-              </label>
-              <span className="text-[11px] text-gray-500 font-semibold">
+          <div className="p-5 rounded-2xl bg-primary-surface border border-border space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200/80 pb-3">
+              <div>
+                <label className="font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2 text-xs">
+                  <ImageIcon className="w-4 h-4 text-primary" />
+                  <span>Destination Feature Cover Image</span>
+                </label>
+                <p className="text-[11px] text-gray-500 mt-0.5">
+                  Main banner photo displayed on homepage cards and destination hero page.
+                </p>
+              </div>
+              <span className="text-[10px] text-emerald-800 bg-emerald-100 font-bold px-2.5 py-1 rounded-lg w-fit">
                 Supports JPG, PNG, WebP, SVG
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml"
-                onChange={handleFeatureImageChange}
-                className="hidden"
-              />
+            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-5">
+              {/* Visual Photo Preview Thumbnail */}
+              <div className="relative w-full md:w-44 h-28 rounded-2xl overflow-hidden bg-slate-900 border-2 border-border flex items-center justify-center shrink-0 shadow-2xs group">
+                {currentDest.imageUrl ? (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={currentDest.imageUrl}
+                      alt={currentDest.name || "Cover Image Preview"}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                      <a
+                        href={currentDest.imageUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 rounded-xl bg-white/95 text-gray-800 hover:bg-white text-xs font-bold flex items-center gap-1 shadow-md transition-colors"
+                      >
+                        <Eye className="w-3.5 h-3.5 text-primary" />
+                        <span className="text-[10px]">Preview</span>
+                      </a>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center p-3">
+                    <Camera className="w-7 h-7 text-gray-400 mx-auto mb-1" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase">No Cover Selected</span>
+                  </div>
+                )}
+              </div>
 
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border-2 border-dashed border-primary text-primary hover:bg-primary-light font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
-              >
-                <Upload className="w-4 h-4" />
-                <span>Upload Cover Image</span>
-              </button>
+              {/* Action Buttons & URL */}
+              <div className="flex-1 space-y-3">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml"
+                    onChange={handleFeatureImageChange}
+                    className="hidden"
+                  />
 
-              <div className="flex-1 w-full bg-white px-3.5 py-2 rounded-xl border border-gray-200 flex items-center justify-between">
-                <div className="flex items-center gap-2 overflow-hidden">
-                  <FileImage className="w-4 h-4 text-primary shrink-0" />
-                  <span className="font-mono text-gray-700 truncate text-[11px]">
-                    {currentDest.imageFileName || currentDest.imageUrl}
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="px-4 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+                  >
+                    <Upload className="w-4 h-4" />
+                    <span>{currentDest.imageUrl ? "Replace Cover Image" : "Upload Cover Image"}</span>
+                  </button>
+
+                  {currentDest.imageUrl && (
+                    <a
+                      href={currentDest.imageUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-primary hover:bg-primary-light text-gray-700 hover:text-primary font-bold text-xs flex items-center gap-1.5 transition-colors shadow-2xs"
+                    >
+                      <Eye className="w-4 h-4 text-primary" />
+                      <span>Preview Cover</span>
+                    </a>
+                  )}
+
+                  {currentDest.imageUrl && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleUpdateCurrent("imageUrl", "");
+                        handleUpdateCurrent("imageFileName", "");
+                      }}
+                      className="px-3 py-2.5 rounded-xl bg-white border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Remove</span>
+                    </button>
+                  )}
+                </div>
+
+                <div className="bg-white px-3.5 py-2 rounded-xl border border-gray-200 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2 overflow-hidden min-w-0">
+                    <FileImage className="w-4 h-4 text-primary shrink-0" />
+                    <span className="font-mono text-gray-700 truncate text-[11px]">
+                      {currentDest.imageFileName || currentDest.imageUrl || "No cover image uploaded"}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-gray-400 font-semibold shrink-0 ml-2">
+                    JPG / PNG / WebP / SVG
                   </span>
                 </div>
-                <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full shrink-0 uppercase">
-                  Cover Photo
-                </span>
               </div>
             </div>
           </div>

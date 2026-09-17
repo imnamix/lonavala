@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Compass,
@@ -8,34 +8,51 @@ import {
   MapPin,
   Clock,
   IndianRupee,
-  CloudSun,
   ShieldAlert,
-  Sparkles,
-  Info,
-  Camera,
-  Calendar,
-  Waves,
-  Mountain,
+  Loader2,
+  AlertCircle,
+  Tag,
+  Images,
 } from "lucide-react";
-import { TOURISM_SPOTS } from "@/data/mockData";
+import { TourismDestination, INITIAL_TOURISM_DESTINATIONS } from "@/data/tourismData";
+import { getTourismSpots } from "@/lib/services/tourism.service";
 
 export default function TourismPage() {
+  const [destinations, setDestinations] = useState<TourismDestination[]>(INITIAL_TOURISM_DESTINATIONS);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = [
-    "All",
-    "Attractions",
-    "Forts",
-    "Waterfalls",
-    "Lakes",
-    "Parks",
-    "Caves",
-  ];
+  useEffect(() => {
+    async function loadData() {
+      try {
+        setLoading(true);
+        const data = await getTourismSpots({ active: true });
+        if (data && data.length > 0) {
+          setDestinations(data.filter((d) => d.active));
+        }
+      } catch (err) {
+        console.warn("Failed to load live tourism spots, using default fallback:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  // Extract unique categories from loaded destinations
+  const dynamicCategories = Array.from(
+    new Set(
+      destinations
+        .map((d) => d.label?.trim())
+        .filter((label): label is string => Boolean(label))
+    )
+  );
+  const categories = ["All", ...dynamicCategories];
 
   const filteredSpots =
     selectedCategory === "All"
-      ? TOURISM_SPOTS
-      : TOURISM_SPOTS.filter((s) => s.category === selectedCategory);
+      ? destinations
+      : destinations.filter((s) => s.label?.toLowerCase() === selectedCategory.toLowerCase());
 
   const festivals = [
     {
@@ -105,7 +122,7 @@ export default function TourismPage() {
             Explore Scenic Lonavala & Khandala
           </h1>
           <p className="text-xs sm:text-base text-emerald-100 max-w-xl mx-auto leading-relaxed">
-            Perched 624m high amidst misty clouds, roaring waterfalls, prehistoric caves, and towering Maratha bastions.
+            Perched 624m high amidst misty clouds, roaring waterfalls, prehistoric caves, and towering Sahyadri bastions.
           </p>
         </div>
       </div>
@@ -118,10 +135,11 @@ export default function TourismPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${selectedCategory === cat
+                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                  selectedCategory === cat
                     ? "bg-primary text-white shadow-xs"
                     : "bg-white border border-border text-gray-700 hover:bg-primary-light hover:text-primary"
-                  }`}
+                }`}
               >
                 {cat}
               </button>
@@ -134,86 +152,124 @@ export default function TourismPage() {
         </div>
 
         {/* Large Image Cards Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredSpots.map((spot) => (
-            <div
-              key={spot.id}
-              className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs hover:shadow-xl hover:border-primary transition-all group flex flex-col justify-between"
-            >
-              <div>
-                {/* Large Image Header */}
-                <div className="relative h-64 w-full overflow-hidden bg-gray-100">
-                  <Image
-                    src={spot.image}
-                    alt={spot.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        {loading ? (
+          <div className="py-20 flex flex-col items-center justify-center gap-3 text-gray-400">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            <span className="text-xs font-semibold text-gray-500">Loading scenic tourist spots...</span>
+          </div>
+        ) : filteredSpots.length === 0 ? (
+          <div className="p-12 text-center bg-white rounded-3xl border border-gray-200 text-gray-400">
+            <Compass className="w-10 h-10 mx-auto mb-2 text-gray-300" />
+            <p className="font-semibold text-gray-600">No destinations found in this category.</p>
+          </div>
+        ) : (
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredSpots.map((spot) => (
+              <div
+                key={spot.id}
+                className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs hover:shadow-xl hover:border-primary transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  {/* Large Image Header */}
+                  <div className="relative h-64 w-full overflow-hidden bg-gray-100">
+                    <img
+                      src={spot.imageUrl || "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"}
+                      alt={spot.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                  <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs text-text-primary text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
-                    <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                    <span>{spot.rating}</span>
-                  </div>
+                    {spot.label && (
+                      <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs text-text-primary text-[11px] font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+                        <Tag className="w-3 h-3 text-primary" />
+                        <span>{spot.label}</span>
+                      </div>
+                    )}
 
-                  <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-wider bg-primary px-2.5 py-0.5 rounded">
-                      {spot.category}
-                    </span>
-                    <h3 className="text-lg font-bold mt-1 text-white leading-tight">
-                      {spot.name}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Spot Details */}
-                <div className="p-6 space-y-4">
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    {spot.description}
-                  </p>
-
-                  <div className="space-y-2 bg-primary-surface p-3.5 rounded-xl border border-border text-xs text-gray-700">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-primary shrink-0" />
-                      <span>{spot.timings}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <IndianRupee className="w-4 h-4 text-primary shrink-0" />
-                      <span>{spot.entryFee}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-primary shrink-0" />
-                      <span>{spot.distanceFromStation}</span>
-                    </div>
-                  </div>
-
-                  {/* Highlights Bullet List */}
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 block mb-1.5">
-                      Highlights:
-                    </span>
-                    <div className="space-y-1">
-                      {spot.highlights.map((h, idx) => (
-                        <div key={idx} className="flex items-center gap-1.5 text-xs text-gray-600">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                          <span className="line-clamp-1">{h}</span>
+                    <div className="absolute bottom-3 left-4 right-4 text-white">
+                      <h3 className="text-lg font-bold text-white leading-tight">
+                        {spot.name}
+                      </h3>
+                      {spot.distance && (
+                        <div className="flex items-center gap-1 text-[11px] text-emerald-200 font-medium mt-0.5">
+                          <MapPin className="w-3 h-3 text-emerald-300 shrink-0" />
+                          <span className="truncate">{spot.distance}</span>
                         </div>
-                      ))}
+                      )}
                     </div>
+                  </div>
+
+                  {/* Spot Details */}
+                  <div className="p-6 space-y-4">
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                      {spot.description}
+                    </p>
+
+                    {/* Highlights Key-Value Box */}
+                    {(spot.highlights || []).length > 0 && (
+                      <div className="space-y-2 bg-primary-surface p-3.5 rounded-xl border border-border text-xs text-gray-700">
+                        {spot.highlights.map((h) => (
+                          <div key={h.id} className="flex items-center justify-between gap-2">
+                            <span className="font-bold text-gray-700">{h.key}:</span>
+                            <span className="font-semibold text-primary truncate">{h.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Important Advisory Points */}
+                    {(spot.importantPoints || []).length > 0 && (
+                      <div>
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 block mb-1.5">
+                          Advisories & Tips:
+                        </span>
+                        <div className="space-y-1.5">
+                          {spot.importantPoints.map((pt) => (
+                            <div key={pt.id} className="flex items-start gap-2 text-xs text-gray-600">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                              <span className="leading-snug">{pt.text}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Gallery Preview Photos */}
+                    {(spot.galleryImages || []).length > 0 && (
+                      <div>
+                        <div className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
+                          <Images className="w-3.5 h-3.5 text-primary" />
+                          <span>Gallery ({spot.galleryImages.length})</span>
+                        </div>
+                        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+                          {spot.galleryImages.map((img) => (
+                            <div
+                              key={img.id}
+                              className="w-16 h-12 rounded-lg overflow-hidden bg-gray-100 border border-gray-200 shrink-0 relative"
+                            >
+                              <img
+                                src={img.url}
+                                alt="Gallery Preview"
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="p-6 pt-0">
+                  <div className="text-[11px] text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
+                    <span>LMC Municipal Council Verified</span>
+                    <span className="text-primary font-bold">Eco-Tourism</span>
                   </div>
                 </div>
               </div>
-
-              <div className="p-6 pt-0">
-                <div className="text-[11px] text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
-                  <span>Best: {spot.bestTimeToVisit.split("(")[0]}</span>
-                  <span className="text-primary font-bold">LMC Verified Spot</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </section>
+            ))}
+          </section>
+        )}
 
         {/* Hill Station Festivals & Cultural Events */}
         <section className="space-y-6">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Compass,
   Star,
@@ -12,7 +13,8 @@ import {
   Loader2,
   AlertCircle,
   Tag,
-  Images,
+  ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 import { TourismDestination, INITIAL_TOURISM_DESTINATIONS } from "@/data/tourismData";
 import { getTourismSpots } from "@/lib/services/tourism.service";
@@ -165,9 +167,10 @@ export default function TourismPage() {
         ) : (
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredSpots.map((spot) => (
-              <div
+              <Link
                 key={spot.id}
-                className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs hover:shadow-xl hover:border-primary transition-all group flex flex-col justify-between"
+                href={`/tourism/${spot.id}`}
+                className="bg-white rounded-2xl border border-border overflow-hidden shadow-xs hover:shadow-xl hover:border-primary transition-all group flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   {/* Large Image Header */}
@@ -187,7 +190,7 @@ export default function TourismPage() {
                     )}
 
                     <div className="absolute bottom-3 left-4 right-4 text-white">
-                      <h3 className="text-lg font-bold text-white leading-tight">
+                      <h3 className="text-lg font-bold text-white leading-tight group-hover:text-primary-light transition-colors">
                         {spot.name}
                       </h3>
                       {spot.distance && (
@@ -201,14 +204,14 @@ export default function TourismPage() {
 
                   {/* Spot Details */}
                   <div className="p-6 space-y-4">
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-3">
                       {spot.description}
                     </p>
 
                     {/* Highlights Key-Value Box */}
                     {(spot.highlights || []).length > 0 && (
                       <div className="space-y-2 bg-primary-surface p-3.5 rounded-xl border border-border text-xs text-gray-700">
-                        {spot.highlights.map((h) => (
+                        {spot.highlights.slice(0, 3).map((h) => (
                           <div key={h.id} className="flex items-center justify-between gap-2">
                             <span className="font-bold text-gray-700">{h.key}:</span>
                             <span className="font-semibold text-primary truncate">{h.value}</span>
@@ -216,57 +219,16 @@ export default function TourismPage() {
                         ))}
                       </div>
                     )}
-
-                    {/* Important Advisory Points */}
-                    {(spot.importantPoints || []).length > 0 && (
-                      <div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 block mb-1.5">
-                          Advisories & Tips:
-                        </span>
-                        <div className="space-y-1.5">
-                          {spot.importantPoints.map((pt) => (
-                            <div key={pt.id} className="flex items-start gap-2 text-xs text-gray-600">
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
-                              <span className="leading-snug">{pt.text}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Gallery Preview Photos */}
-                    {(spot.galleryImages || []).length > 0 && (
-                      <div>
-                        <div className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
-                          <Images className="w-3.5 h-3.5 text-primary" />
-                          <span>Gallery ({spot.galleryImages.length})</span>
-                        </div>
-                        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-                          {spot.galleryImages.map((img) => (
-                            <div
-                              key={img.id}
-                              className="w-16 h-12 rounded-lg overflow-hidden bg-gray-100 border border-gray-200 shrink-0 relative"
-                            >
-                              <img
-                                src={img.url}
-                                alt="Gallery Preview"
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
 
                 <div className="p-6 pt-0">
-                  <div className="text-[11px] text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
-                    <span>LMC Municipal Council Verified</span>
-                    <span className="text-primary font-bold">Eco-Tourism</span>
+                  <div className="text-xs font-bold text-primary border-t border-gray-100 pt-3.5 flex items-center justify-between group-hover:underline">
+                    <span>Explore Details & Gallery</span>
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </section>
         )}

@@ -1,11 +1,6 @@
 import { CouncilMemberForm } from "@/components/admin/council/CouncilMemberForm";
-import { INITIAL_COUNCIL_MEMBERS } from "@/data/councilData";
 
-export function generateStaticParams() {
-  return INITIAL_COUNCIL_MEMBERS.map((member) => ({
-    id: member.id,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: Promise<{ id: string }>;

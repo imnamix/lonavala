@@ -322,7 +322,7 @@ export default function AboutPage() {
         )}
 
         {/* Organization Chart */}
-        <section className="space-y-6">
+        {/* <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
               Hierarchy & Administration
@@ -337,7 +337,6 @@ export default function AboutPage() {
 
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs overflow-x-auto">
             <div className="min-w-[680px] flex flex-col items-center text-center space-y-6">
-              {/* Level 1: General Body & President */}
               <div className="bg-gradient-to-r from-emerald-700 to-teal-800 text-white px-6 py-3.5 rounded-2xl shadow-md font-bold text-sm w-80">
                 General Body & Municipal President
                 <div className="text-[11px] text-emerald-200 font-normal mt-0.5">
@@ -347,7 +346,6 @@ export default function AboutPage() {
 
               <div className="w-0.5 h-6 bg-slate-300" />
 
-              {/* Level 2: Chief Officer */}
               <div className="bg-white border-2 border-emerald-600 text-slate-900 px-6 py-3.5 rounded-2xl shadow-xs font-bold text-sm w-80">
                 Chief Officer / Commissioner
                 <div className="text-[11px] text-emerald-700 font-semibold mt-0.5">
@@ -357,7 +355,6 @@ export default function AboutPage() {
 
               <div className="w-0.5 h-6 bg-slate-300" />
 
-              {/* Level 3: Department Heads */}
               <div className="grid grid-cols-4 gap-4 w-full">
                 <div className="bg-emerald-50/50 border border-emerald-100 p-3.5 rounded-2xl">
                   <div className="font-bold text-xs text-slate-900">Health & Sanitation</div>
@@ -378,7 +375,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Image Gallery */}
         {/* <section className="space-y-6">

@@ -201,7 +201,7 @@ export function CouncilTable() {
               className="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors shrink-0"
             >
               <Plus className="w-4 h-4" />
-              <span>+ Add Council</span>
+              <span> Add Council</span>
             </Link>
           </div>
         </div>

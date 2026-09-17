@@ -668,7 +668,7 @@ export function ContactsContentEditor() {
             />
 
             {/* Live Map Preview in Admin Editor */}
-            {hq.mapEmbedUrl && (
+            {/* {hq.mapEmbedUrl && (
               <div className="mt-3 rounded-2xl overflow-hidden border border-border bg-slate-100">
                 <div className="px-3 py-1.5 bg-gray-50 border-b border-border text-[11px] font-bold text-gray-600 flex items-center justify-between">
                   <span>Live Map Preview</span>
@@ -693,7 +693,7 @@ export function ContactsContentEditor() {
                   />
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

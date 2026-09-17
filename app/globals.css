@@ -8,24 +8,24 @@
      ========================================================================== */
 
   /* --- Primary Brand Colors --- */
-  --color-primary: #2E8B57;
-  --color-primary-hover: #246E45;
-  --color-primary-dark: #1E5638;
-  --color-primary-light: #E8F5E9;
-  --color-primary-surface: #F8FCF9;
+  --color-primary: #B59A6D;
+  --color-primary-hover: #9F8356;
+  --color-primary-dark: #7A633F;
+  --color-primary-light: #F6F1E9;
+  --color-primary-surface: #FAF7F2;
 
   /* --- Secondary & Accent Colors --- */
-  --color-secondary: #0D9488;
-  --color-secondary-hover: #0F766E;
-  --color-accent-gold: #D97706;
-  --color-accent-gold-light: #FEF3C7;
-  --color-accent-gold-surface: #FFFDF5;
+  --color-secondary: #8E7348;
+  --color-secondary-hover: #755E38;
+  --color-accent-gold: #D4AF37;
+  --color-accent-gold-light: #FBF4DC;
+  --color-accent-gold-surface: #FDFBF3;
 
   /* --- Surface & Background Colors --- */
   --color-background: #F8FAFC;
-  --color-background-alt: #F8FCF9;
+  --color-background-alt: #FAF7F2;
   --color-surface: #FFFFFF;
-  --color-surface-hover: #F1F5F9;
+  --color-surface-hover: #F6F3EC;
   --color-surface-dark: #1F2937;
 
   /* --- Typography / Text Colors --- */
@@ -36,8 +36,8 @@
   --color-text-inverse: #FFFFFF;
 
   /* --- Border Colors --- */
-  --color-border: #D9E8DD;
-  --color-border-subtle: #E2E8F0;
+  --color-border: #E8E0D2;
+  --color-border-subtle: #EDE8DF;
 
   /* --- Status Colors --- */
   --color-status-success: #10B981;
@@ -50,11 +50,11 @@
   --color-status-info-light: #EFF6FF;
 
   /* --- Chart & Data Visualization Colors --- */
-  --color-chart-1: #2E8B57;
-  --color-chart-2: #4CAF50;
-  --color-chart-3: #81C784;
-  --color-chart-4: #A5D6A7;
-  --color-chart-5: #C8E6C9;
+  --color-chart-1: #B59A6D;
+  --color-chart-2: #C5AE87;
+  --color-chart-3: #D4C2A1;
+  --color-chart-4: #E4D6BC;
+  --color-chart-5: #F3EBD8;
 
   /* --- Gradients & Legacy Compatibility --- */
   --primary-gradient: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 55%, var(--color-primary-hover) 100%);
@@ -129,6 +129,45 @@
   --color-lmc-muted: var(--color-text-muted);
   --color-lmc-border: var(--color-border);
 
+  /* Override emerald palette so all emerald-* Tailwind utility classes map seamlessly to #b59a6d theme */
+  --color-emerald-50: #FAF7F2;
+  --color-emerald-100: #F6F1E9;
+  --color-emerald-200: #EADDC9;
+  --color-emerald-300: #DEC7A5;
+  --color-emerald-400: #CBB189;
+  --color-emerald-500: #B59A6D;
+  --color-emerald-600: #9F8356;
+  --color-emerald-700: #7A633F;
+  --color-emerald-800: #5D4B2E;
+  --color-emerald-900: #43351F;
+  --color-emerald-950: #251D10;
+
+  /* Override teal palette so all teal-* gradient endpoints match the warm theme instead of blue-green */
+  --color-teal-50: #FAF6EE;
+  --color-teal-100: #F4ECE0;
+  --color-teal-200: #E7D7C1;
+  --color-teal-300: #D8C09E;
+  --color-teal-400: #C5A77B;
+  --color-teal-500: #A88B5B;
+  --color-teal-600: #8E7348;
+  --color-teal-700: #755E38;
+  --color-teal-800: #574426;
+  --color-teal-900: #3E3019;
+  --color-teal-950: #20170A;
+
+  /* Override green palette to avoid any accidental green tints */
+  --color-green-50: #FAF7F2;
+  --color-green-100: #F6F1E9;
+  --color-green-200: #EADDC9;
+  --color-green-300: #DEC7A5;
+  --color-green-400: #CBB189;
+  --color-green-500: #B59A6D;
+  --color-green-600: #9F8356;
+  --color-green-700: #7A633F;
+  --color-green-800: #5D4B2E;
+  --color-green-900: #43351F;
+  --color-green-950: #251D10;
+
   --font-poppins: "Poppins", sans-serif;
 }
 
@@ -166,7 +205,7 @@ body {
 
 .lmc-card:hover {
   border-color: var(--color-primary);
-  box-shadow: 0 12px 30px -4px rgba(46, 139, 87, 0.15);
+  box-shadow: 0 12px 30px -4px rgba(181, 154, 109, 0.25);
   transform: translateY(-2px);
 }
 

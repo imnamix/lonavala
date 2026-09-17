@@ -32,7 +32,7 @@ export function FaqSection() {
 
   return (
     <section id="faq" className="py-16 bg-slate-50 border-t border-slate-200/80">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
             <HelpCircle className="w-3.5 h-3.5 text-emerald-600" />

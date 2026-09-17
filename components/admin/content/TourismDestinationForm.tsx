@@ -475,9 +475,9 @@ export function TourismDestinationForm({
               </span>
             </div>
 
-            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
               {/* Visual Photo Preview Thumbnail */}
-              <div className="relative w-full md:w-44 h-28 rounded-2xl overflow-hidden bg-slate-900 border-2 border-border flex items-center justify-center shrink-0 shadow-2xs group">
+              <div className="md:col-span-4 relative w-full h-36 rounded-2xl overflow-hidden bg-slate-900 border-2 border-border flex items-center justify-center shrink-0 shadow-2xs group">
                 {uploadingCover ? (
                   <div className="flex flex-col items-center justify-center p-3 text-center">
                     <Loader2 className="w-7 h-7 animate-spin text-primary mb-1.5" />
@@ -513,7 +513,7 @@ export function TourismDestinationForm({
               </div>
 
               {/* Action Buttons & Cloudinary URL Path */}
-              <div className="flex-1 space-y-3">
+              <div className="md:col-span-8 space-y-3">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <input
                     ref={fileInputRef}
@@ -553,7 +553,7 @@ export function TourismDestinationForm({
                       title="Preview full cover photo"
                     >
                       <Eye className="w-4 h-4 text-primary" />
-                      <span>Preview Cover</span>
+                      <span>Preview</span>
                     </button>
                   )}
 
@@ -588,17 +588,20 @@ export function TourismDestinationForm({
                   )}
                 </div>
 
-                {/* URL Filename Preview Bar */}
-                <div className="bg-white px-3.5 py-2 rounded-xl border border-gray-200 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2 overflow-hidden min-w-0">
-                    <FileImage className="w-4 h-4 text-primary shrink-0" />
-                    <span className="font-mono text-gray-700 truncate text-[11px]">
-                      {destination.imageUrl || "No cover image uploaded"}
-                    </span>
+                {/* Direct URL Input for Manual Paste / Edit */}
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={destination.imageUrl}
+                      onChange={(e) => handleUpdate("imageUrl", e.target.value)}
+                      placeholder="e.g. https://res.cloudinary.com/... or paste image URL"
+                      className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl font-mono text-gray-700 text-xs focus:border-primary focus:outline-hidden"
+                    />
                   </div>
-                  <span className="text-[10px] text-gray-400 font-semibold shrink-0 ml-2">
-                    JPG / PNG / WebP / SVG
-                  </span>
+                  <p className="text-[10px] text-gray-400 font-medium">
+                    Supports JPG, PNG, WebP, SVG • High-resolution landscape format (16:9) recommended
+                  </p>
                 </div>
               </div>
             </div>

@@ -264,7 +264,7 @@ export function Hero() {
 
       {/* Subtle Micro Dot Pattern (Only when content is present) */}
       {hasContent && (
-        <div className="absolute inset-0 bg-[radial-gradient(var(--color-status-success)_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(var(--color-primary)_1px,transparent_1px)] [background-size:32px_32px] opacity-20 pointer-events-none" />
       )}
 
       {/* Carousel Navigation Arrows (Visible when > 1 slide) */}

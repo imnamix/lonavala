@@ -42,7 +42,7 @@ export default function HomePage() {
 
       {/* 12. FAQ & Newsletter */}
       <FaqSection />
-      <NewsletterSection />
+      {/* <NewsletterSection /> */}
     </div>
   );
 }

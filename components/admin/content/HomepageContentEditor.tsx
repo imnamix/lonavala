@@ -95,25 +95,25 @@ const COLOR_VARIANTS: {
   [key: string]: { label: string; bg: string; text: string; dot: string; border?: string };
 } = {
   Emerald: {
-    label: "Emerald (Primary)",
+    label: "Gold (Primary)",
     bg: "bg-emerald-600 hover:bg-emerald-700",
     text: "text-white",
     dot: "bg-emerald-600",
   },
   primary: {
-    label: "Emerald (Primary)",
+    label: "Gold (Primary)",
     bg: "bg-emerald-600 hover:bg-emerald-700",
     text: "text-white",
     dot: "bg-emerald-600",
   },
   Teal: {
-    label: "Teal (Green)",
+    label: "Bronze (Secondary)",
     bg: "bg-teal-600 hover:bg-teal-700",
     text: "text-white",
     dot: "bg-teal-600",
   },
   secondary: {
-    label: "Teal (Secondary)",
+    label: "Bronze (Secondary)",
     bg: "bg-teal-600 hover:bg-teal-700",
     text: "text-white",
     dot: "bg-teal-600",

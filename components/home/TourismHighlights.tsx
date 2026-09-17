@@ -89,7 +89,7 @@ export function TourismHighlights() {
                 className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-xl hover:border-emerald-600/60 hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between"
               >
                 <div>
-                  <div className="relative h-44 w-full overflow-hidden bg-slate-100">
+                  <Link href={`/tourism/${spot.id}`} className="block relative h-44 w-full overflow-hidden bg-slate-100 cursor-pointer">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={
@@ -112,12 +112,14 @@ export function TourismHighlights() {
                         <span className="truncate max-w-[180px]">{spot.distance}</span>
                       </div>
                     )}
-                  </div>
+                  </Link>
 
                   <div className="p-4">
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 mt-1 mb-1.5 group-hover:text-emerald-700 transition-colors line-clamp-1">
-                      {spot.name}
-                    </h3>
+                    <Link href={`/tourism/${spot.id}`}>
+                      <h3 className="font-bold text-sm sm:text-base text-slate-900 mt-1 mb-1.5 group-hover:text-emerald-700 transition-colors line-clamp-1 cursor-pointer">
+                        {spot.name}
+                      </h3>
+                    </Link>
                     <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-3">
                       {spot.description}
                     </p>
@@ -135,8 +137,8 @@ export function TourismHighlights() {
 
                 <div className="p-4 pt-0">
                   <Link
-                    href="/tourism"
-                    className="w-full py-2 px-3 rounded-xl bg-slate-50 hover:bg-gradient-to-r hover:from-emerald-700 hover:to-teal-700 hover:text-white text-emerald-800 font-bold text-xs flex items-center justify-center gap-1 transition-all border border-slate-200/80"
+                    href={`/tourism/${spot.id}`}
+                    className="w-full py-2 px-3 rounded-xl bg-slate-50 hover:bg-gradient-to-r hover:from-emerald-700 hover:to-teal-700 hover:text-white text-emerald-800 font-bold text-xs flex items-center justify-center gap-1 transition-all border border-slate-200/80 cursor-pointer"
                   >
                     <span>{dict.common?.details || "View Details"}</span>
                     <ArrowRight className="w-3 h-3" />

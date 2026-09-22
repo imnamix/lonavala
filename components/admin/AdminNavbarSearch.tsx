@@ -24,6 +24,8 @@ import {
   Settings,
   ArrowRight,
   Sparkles,
+  Scale,
+  Calendar,
 } from "lucide-react";
 
 export interface SearchableModule {
@@ -74,6 +76,42 @@ const MODULES_LIST: SearchableModule[] = [
     icon: Layers,
     keywords: ["standing committee", "committee", "committees", "chairman", "members", "council members", "statutory", "samiti"],
     description: "Manage statutory committees, appointed chairpersons, and member rosters",
+  },
+  {
+    id: "court-committee",
+    name: "Court Committee Hub",
+    category: "Governance",
+    href: "/admin/court",
+    icon: Scale,
+    keywords: ["court", "high court", "legal", "proceedings", "committee", "advocates", "law", "orders", "विधी", "न्यायालय", "न्यायालयीन"],
+    description: "Manage Hon. High Court committee members, legal officers, and judicial proceedings",
+  },
+  {
+    id: "court-members",
+    name: "Court Committee Members",
+    category: "Governance",
+    href: "/admin/court/members",
+    icon: Users,
+    keywords: ["court members", "legal committee", "advocates", "chairman", "corporators", "विधी समिती सदस्य"],
+    description: "Manage committee leadership, appointed corporators, and legal staff",
+  },
+  {
+    id: "court-proceedings",
+    name: "Court Proceedings & Orders",
+    category: "Governance",
+    href: "/admin/court/proceedings",
+    icon: Scale,
+    keywords: ["court proceedings", "court orders", "high court", "ngt", "lok adalat", "minutes", "न्यायालयीन कामकाज", "आदेश"],
+    description: "Manage High Court petitions, green tribunal matters, and proceeding minutes",
+  },
+  {
+    id: "court-sessions",
+    name: "Next Session",
+    category: "Governance",
+    href: "/admin/court/sessions",
+    icon: Calendar,
+    keywords: ["court session", "hearing schedule", "next hearing", "cause list", "bench", "सुनावणी", "वेळापत्रक"],
+    description: "Schedule and manage upcoming court hearings and previous sessions history",
   },
   {
     id: "council-resolutions",

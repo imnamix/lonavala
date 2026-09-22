@@ -27,6 +27,8 @@ import {
   HelpCircle,
   FileSpreadsheet,
   Briefcase,
+  Scale,
+  Calendar,
 } from "lucide-react";
 
 interface AdminSubMenuItem {
@@ -48,6 +50,16 @@ const ADMIN_MENU: AdminMenuItem[] = [
   { name: "Grievances", href: "/admin/grievances", icon: AlertCircle, badge: "3 New" },
   { name: "Councils", href: "/admin/council", icon: Landmark },
   { name: "Committees", href: "/admin/committees", icon: Layers },
+  {
+    name: "Court Committee",
+    href: "/admin/court",
+    icon: Scale,
+    children: [
+      { name: "Committee Members", href: "/admin/court/members", icon: Users },
+      { name: "Court Proceedings", href: "/admin/court/proceedings", icon: Scale },
+      { name: "Next Session", href: "/admin/court/sessions", icon: Calendar },
+    ],
+  },
   { name: "Resolutions", href: "/admin/resolutions", icon: FileSpreadsheet },
   {
     name: "Content",
@@ -77,6 +89,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({
     Content: true,
+    "Court Committee": true,
   });
 
   const toggleSubMenu = (menuName: string, e: React.MouseEvent) => {

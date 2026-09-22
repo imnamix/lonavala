@@ -246,7 +246,7 @@ export interface CourtCommitteeMember {
   marathiName: string;
   designation: string;
   role: string;
-  category?: "Leadership" | "Elected Corporator" | "Legal Officer" | "Legal Aid & Conciliation";
+  category?: "Leadership" | "Legal Officer" | "Committee Member";
   phone: string;
   email: string;
   ward?: string;
@@ -297,6 +297,37 @@ export interface LokAdalatEvent {
   documentsRequired: string[];
   contactPerson: string;
   status: "Upcoming" | "Completed" | "Registration Open";
+}
+
+export interface AdalatUpdate {
+  id: string;
+  subject: string;
+  marathiSubject?: string;
+  description: string;
+  marathiDescription?: string;
+  date: string;
+  minutes: string;
+  marathiMinutes?: string;
+  pdfUrl?: string;
+  fileSize?: string;
+  benchOfficers?: string;
+  venue?: string;
+  status?: "Completed" | "Upcoming" | "Minutes Published" | "In Progress" | "Order Passed";
+}
+
+export interface CourtSession {
+  id: string;
+  sessionTitle: string;
+  marathiSessionTitle?: string;
+  hearingDate: string;
+  time?: string;
+  courtForum: string;
+  presidingBench: string;
+  casesListed: string[];
+  sessionAgenda: string;
+  marathiSessionAgenda?: string;
+  status: "Scheduled" | "In Progress" | "Adjourned" | "Concluded";
+  noticePdfUrl?: string;
 }
 
 export interface LegalDocument {

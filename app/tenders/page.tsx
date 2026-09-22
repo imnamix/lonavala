@@ -1,17 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileText, Download, Search, Filter, ChevronLeft, ChevronRight, IndianRupee } from "lucide-react";
-import { TENDERS_LIST } from "@/data/mockData";
+import { getAllTenders, INITIAL_TENDERS } from "@/lib/services/tender.service";
+import { TenderItem } from "@/types";
 import { SearchBar } from "@/components/shared/SearchBar";
 
 export default function TendersPage() {
+  const [tenders, setTenders] = useState<TenderItem[]>(INITIAL_TENDERS);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
-  const filtered = TENDERS_LIST.filter((t) => {
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const data = await getAllTenders();
+        if (data && data.length > 0) {
+          setTenders(data);
+        }
+      } catch (e) {
+        console.error("Failed to load tenders on public page:", e);
+      }
+    }
+    loadData();
+  }, []);
+
+  const filtered = tenders.filter((t) => {
     const matchesSearch =
       t.tenderId.toLowerCase().includes(search.toLowerCase()) ||
       t.title.toLowerCase().includes(search.toLowerCase()) ||

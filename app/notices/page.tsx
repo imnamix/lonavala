@@ -1,18 +1,57 @@
 "use client";
 
-import { useState } from "react";
-import { Bell, Search, Filter } from "lucide-react";
-import { NOTICES_AND_CIRCULARS } from "@/data/mockData";
+import { useState, useEffect } from "react";
 import { NoticeCard } from "@/components/shared/NoticeCard";
 import { SearchBar } from "@/components/shared/SearchBar";
+import { getAllNotices, NoticeRecord } from "@/lib/services/notice.service";
+import { NoticeItem } from "@/types";
+import { RefreshCw, FileText } from "lucide-react";
 
 export default function NoticesPage() {
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<string>("All");
+  const [notices, setNotices] = useState<NoticeItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const tabs = ["All", "Notices", "Circulars", "Orders", "News", "Events"];
+  useEffect(() => {
+    async function loadNotices() {
+      try {
+        setLoading(true);
+        const records = await getAllNotices();
+        if (records && records.length > 0) {
+          // Filter to published notices for public page
+          const published = records.filter(
+            (r) => r.status === "Published" || !r.status
+          );
+          const mapped: NoticeItem[] = published.map((r: NoticeRecord) => ({
+            id: r.id,
+            title: r.title,
+            category: (r.category === "Gazettes"
+              ? "Notices"
+              : r.category) as NoticeItem["category"],
+            date: r.date,
+            department: r.department,
+            refNo: r.refNo,
+            isNew: r.isNew,
+            downloadSize: r.fileSize || "1.2 MB",
+            description: r.description.replace(/<[^>]*>?/gm, "").substring(0, 160) + "...",
+          }));
+          setNotices(mapped);
+        } else {
+          setNotices([]);
+        }
+      } catch (err) {
+        console.warn("Could not fetch notices from API:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadNotices();
+  }, []);
 
-  const filteredNotices = NOTICES_AND_CIRCULARS.filter((notice) => {
+  const tabs = ["All", "Notices", "Circulars", "Orders", "News"];
+
+  const filteredNotices = notices.filter((notice) => {
     const matchesSearch =
       notice.title.toLowerCase().includes(search.toLowerCase()) ||
       notice.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -65,7 +104,7 @@ export default function NoticesPage() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   activeTab === tab
                     ? "bg-primary text-white shadow-xs"
                     : "bg-white border border-border text-gray-700 hover:bg-primary-light hover:text-primary"
@@ -78,11 +117,26 @@ export default function NoticesPage() {
         </div>
 
         {/* Notices Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredNotices.map((notice) => (
-            <NoticeCard key={notice.id} notice={notice} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="p-16 text-center text-gray-500 text-xs space-y-2 bg-white rounded-3xl border border-border">
+            <RefreshCw className="w-6 h-6 animate-spin mx-auto text-primary" />
+            <p>Loading official notifications...</p>
+          </div>
+        ) : filteredNotices.length === 0 ? (
+          <div className="p-16 text-center bg-white rounded-3xl border border-border space-y-3">
+            <FileText className="w-10 h-10 text-gray-400 mx-auto" />
+            <p className="font-bold text-sm text-gray-700">No notices found</p>
+            <p className="text-xs text-gray-400">
+              No notices published yet or no notices match the current filter.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredNotices.map((notice) => (
+              <NoticeCard key={notice.id} notice={notice} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

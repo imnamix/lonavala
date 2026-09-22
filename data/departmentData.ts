@@ -1,9 +1,8 @@
 import { Department } from "@/types";
-import { DEPARTMENTS } from "@/data/mockData";
 
-export const INITIAL_DEPARTMENTS: Department[] = DEPARTMENTS;
+export const INITIAL_DEPARTMENTS: Department[] = [];
 
-const STORAGE_KEY = "lmc_departments_data";
+const STORAGE_KEY = "lmc_admin_departments_data_v2";
 
 export function getDepartments(): Department[] {
   if (typeof window === "undefined") {
@@ -31,7 +30,7 @@ export function saveDepartments(departments: Department[]): void {
 
 export function getDepartmentById(idOrSlug: string): Department | undefined {
   const departments = getDepartments();
-  return departments.find((d) => d.id === idOrSlug || d.slug === idOrSlug);
+  return departments.find((d) => d.id === idOrSlug || d.slug === idOrSlug || d.code === idOrSlug);
 }
 
 export function saveOrUpdateDepartment(dept: Department): Department[] {
@@ -50,7 +49,7 @@ export function saveOrUpdateDepartment(dept: Department): Department[] {
 
 export function deleteDepartmentById(id: string): Department[] {
   const departments = getDepartments();
-  const updated = departments.filter((d) => d.id !== id);
+  const updated = departments.filter((d) => d.id !== id && d.slug !== id);
   saveDepartments(updated);
   return updated;
 }

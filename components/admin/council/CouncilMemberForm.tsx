@@ -70,7 +70,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
     email: "",
     address: "",
     image: "",
-    tenure: "2022 - 2027",
+    tenure: "2024 - 2029",
     committee: "",
     message: "",
     active: true,
@@ -260,18 +260,16 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
             <button
               type="button"
               onClick={() => setActiveTab("form")}
-              className={`px-3 py-1.5 rounded-lg transition-colors ${
-                activeTab === "form" ? "bg-white text-primary shadow-xs" : "text-gray-500"
-              }`}
+              className={`px-3 py-1.5 rounded-lg transition-colors ${activeTab === "form" ? "bg-white text-primary shadow-xs" : "text-gray-500"
+                }`}
             >
               Form
             </button>
             <button
               type="button"
               onClick={() => setActiveTab("preview")}
-              className={`px-3 py-1.5 rounded-lg transition-colors ${
-                activeTab === "preview" ? "bg-white text-primary shadow-xs" : "text-gray-500"
-              }`}
+              className={`px-3 py-1.5 rounded-lg transition-colors ${activeTab === "preview" ? "bg-white text-primary shadow-xs" : "text-gray-500"
+                }`}
             >
               Preview
             </button>
@@ -309,9 +307,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left: Edit Form */}
         <div
-          className={`lg:col-span-7 space-y-6 ${
-            activeTab === "preview" ? "hidden lg:block" : "block"
-          }`}
+          className={`lg:col-span-7 space-y-6 ${activeTab === "preview" ? "hidden lg:block" : "block"
+            }`}
         >
           <form onSubmit={handleSave} className="space-y-6">
             {/* Validation alert banner */}
@@ -457,9 +454,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Smt. Surekha Nitin Jadhav"
-                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.name ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
-                    }`}
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${errors.name ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
+                      }`}
                   />
                 </div>
 
@@ -474,9 +470,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.marathiName}
                     onChange={(e) => setFormData({ ...formData, marathiName: e.target.value })}
                     placeholder="e.g. श्रीमती सुरेखा नितीन जाधव"
-                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.marathiName ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
-                    }`}
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${errors.marathiName ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
+                      }`}
                   />
                 </div>
 
@@ -496,7 +491,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     <option value="President">Council President (नगराध्यक्ष)</option>
                     <option value="Vice President">Council Vice President (उपनगराध्यक्ष)</option>
                     <option value="Corporator">Ward Corporator (नगरसेवक)</option>
-                    <option value="Officer">Chief Officer / Commissioner (मुख्याधिकारी)</option>
+                    <option value="Officer">Chief Officer (मुख्याधिकारी)</option>
                     <option value="Nominated">Nominated Council Member</option>
                   </select>
                 </div>
@@ -512,9 +507,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.designation}
                     onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
                     placeholder="e.g. President (नगराध्यक्ष) or Corporator - Ward 1"
-                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.designation ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
-                    }`}
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${errors.designation ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
+                      }`}
                   />
                 </div>
               </div>
@@ -553,7 +547,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     type="text"
                     value={formData.tenure}
                     onChange={(e) => setFormData({ ...formData, tenure: e.target.value })}
-                    placeholder="e.g. 2022 - 2027"
+                    placeholder="e.g. 2024 - 2029"
                     className="w-full px-3.5 py-2.5 bg-primary-surface border border-border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:border-primary focus:outline-hidden"
                   />
                 </div>
@@ -597,9 +591,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="e.g. +91 98220 11221 or +91 2114 273030"
-                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${
-                      errors.phone ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
-                    }`}
+                    className={`w-full px-3.5 py-2.5 bg-primary-surface border rounded-xl text-xs font-semibold text-gray-800 focus:bg-white focus:outline-hidden transition-all ${errors.phone ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"
+                      }`}
                   />
                 </div>
 
@@ -673,9 +666,8 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
 
         {/* Right: Citizen Portal Live Preview */}
         <div
-          className={`lg:col-span-5 space-y-5 ${
-            activeTab === "form" ? "hidden lg:block" : "block"
-          }`}
+          className={`lg:col-span-5 space-y-5 ${activeTab === "form" ? "hidden lg:block" : "block"
+            }`}
         >
           <div className="sticky top-20 space-y-4">
             <div className="flex items-center justify-between">
@@ -759,7 +751,7 @@ export function CouncilMemberForm({ memberId, isNew = false }: CouncilMemberForm
 
               {/* Tenure footer banner in preview */}
               <div className="bg-primary-light/50 -mx-6 -mb-6 p-3 px-6 border-t border-border flex items-center justify-between text-[11px]">
-                <span className="font-bold text-gray-600">Tenure: {formData.tenure || "2022 - 2027"}</span>
+                <span className="font-bold text-gray-600">Tenure: {formData.tenure || "2024 - 2029"}</span>
                 <span className="font-bold text-emerald-700">● Active Directory</span>
               </div>
             </div>

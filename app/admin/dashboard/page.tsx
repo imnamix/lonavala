@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   AlertCircle,
@@ -29,10 +29,31 @@ import {
   Cell,
 } from "recharts";
 import { getStoredGrievances } from "@/data/grievanceStore";
-import { DEPARTMENTS, NOTICES_AND_CIRCULARS } from "@/data/mockData";
+import { getAllNotices } from "@/lib/services/notice.service";
+import { getAllDepartments } from "@/lib/services/department.service";
 
 export default function AdminDashboardPage() {
   const grievances = getStoredGrievances();
+  const [noticesCount, setNoticesCount] = useState<number>(0);
+  const [departmentsCount, setDepartmentsCount] = useState<number>(0);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const notices = await getAllNotices();
+        setNoticesCount(notices.length);
+      } catch (err) {
+        console.warn("Could not fetch notices count for admin dashboard:", err);
+      }
+      try {
+        const depts = await getAllDepartments();
+        setDepartmentsCount(depts.length);
+      } catch (err) {
+        console.warn("Could not fetch departments count for admin dashboard:", err);
+      }
+    }
+    loadData();
+  }, []);
 
   const totalGrievances = grievances.length;
   const resolvedCount = grievances.filter(
@@ -67,8 +88,8 @@ export default function AdminDashboardPage() {
     },
     {
       title: "Municipal Departments",
-      value: DEPARTMENTS.length.toString(),
-      sub: "All wings active",
+      value: departmentsCount.toString(),
+      sub: "Configured wings",
       icon: Building2,
       color: "text-purple-600",
       bg: "bg-purple-50",
@@ -83,7 +104,7 @@ export default function AdminDashboardPage() {
     },
     {
       title: "Active Notices",
-      value: NOTICES_AND_CIRCULARS.length.toString(),
+      value: noticesCount.toString(),
       sub: "Published Gazettes",
       icon: Bell,
       color: "text-rose-600",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronDown, HelpCircle, Loader2 } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { FaqItemDto, getFaqs } from "@/lib/services/faq.service";
 
@@ -47,9 +47,16 @@ export function FaqSection() {
         </div>
 
         {loading ? (
-          <div className="py-12 flex flex-col items-center justify-center gap-2 text-gray-400">
-            <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <span className="text-xs font-semibold text-gray-500">Loading citizen FAQs...</span>
+          <div className="space-y-3">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs animate-pulse flex items-center justify-between"
+              >
+                <div className="h-5 bg-slate-200 rounded-md w-3/4" />
+                <div className="h-4 w-4 bg-slate-200 rounded-full" />
+              </div>
+            ))}
           </div>
         ) : faqs.length === 0 ? (
           <div className="p-8 text-center bg-white rounded-2xl border border-dashed border-gray-200 text-gray-400 text-xs">
@@ -72,9 +79,8 @@ export function FaqSection() {
                   >
                     <span className="pr-4">{item.question}</span>
                     <ChevronDown
-                      className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? "rotate-180 text-emerald-600" : ""
-                      }`}
+                      className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-emerald-600" : ""
+                        }`}
                     />
                   </button>
 

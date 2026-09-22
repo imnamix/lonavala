@@ -1,15 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Briefcase, Download, Calendar, CheckCircle2, FileText, ArrowRight, UserCheck, AlertCircle } from "lucide-react";
-import { RECRUITMENT_LIST } from "@/data/mockData";
+import { getAllRecruitments, INITIAL_RECRUITMENTS } from "@/lib/services/recruitment.service";
+import { RecruitmentVacancy } from "@/types";
 
 export default function RecruitmentPage() {
+  const [recruitments, setRecruitments] = useState<RecruitmentVacancy[]>(INITIAL_RECRUITMENTS);
   const [activeTab, setActiveTab] = useState<"Vacancies" | "Advertisements" | "Results" | "Documents">("Vacancies");
 
-  const vacancies = RECRUITMENT_LIST.filter((r) => r.status === "Active");
-  const results = RECRUITMENT_LIST.filter((r) => r.status === "Result Declared");
-  const archived = RECRUITMENT_LIST;
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const data = await getAllRecruitments();
+        if (data && data.length > 0) {
+          setRecruitments(data);
+        }
+      } catch (e) {
+        console.error("Failed to load recruitments on public page:", e);
+      }
+    }
+    loadData();
+  }, []);
+
+  const vacancies = recruitments.filter((r) => r.status === "Active");
+  const results = recruitments.filter((r) => r.status === "Result Declared");
+  const archived = recruitments;
 
   return (
     <div className="py-10">

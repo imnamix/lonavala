@@ -66,7 +66,7 @@ function mapDtoToMember(dto: CouncilMemberDto): CouncilMember {
     designation: dto.designation,
     roleCategory,
     ward: dto.ward,
-    tenure: dto.tenure || '2022 - 2027',
+    tenure: dto.tenure || '2024 - 2029',
     committee: dto.committee,
     phone: dto.phone || '',
     email: dto.email || '',

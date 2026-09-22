@@ -231,11 +231,10 @@ export function FaqTable() {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  selectedCategory === cat
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${selectedCategory === cat
                     ? "bg-primary text-white shadow-xs font-bold"
                     : "bg-gray-100 hover:bg-gray-200 text-gray-600"
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -277,7 +276,7 @@ export function FaqTable() {
                 onClick={handleOpenCreateModal}
                 className="px-3.5 py-1.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-hover cursor-pointer"
               >
-                + Add FAQ
+                Add FAQ
               </button>
             </div>
           </div>
@@ -305,9 +304,8 @@ export function FaqTable() {
                     <tr
                       key={faq.id}
                       onClick={() => handleOpenEditModal(faq)}
-                      className={`hover:bg-primary-light/50 transition-colors cursor-pointer group ${
-                        isDeleting ? "opacity-50 pointer-events-none" : ""
-                      }`}
+                      className={`hover:bg-primary-light/50 transition-colors cursor-pointer group ${isDeleting ? "opacity-50 pointer-events-none" : ""
+                        }`}
                     >
                       {/* Index */}
                       <td className="py-3.5 px-4 text-center whitespace-nowrap">
@@ -358,11 +356,10 @@ export function FaqTable() {
                           type="button"
                           disabled={isToggling}
                           onClick={(e) => handleToggleActive(faq.id, e)}
-                          className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors shadow-2xs ${
-                            isActive
+                          className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors shadow-2xs ${isActive
                               ? "bg-primary text-white hover:bg-primary-hover"
                               : "bg-gray-100 text-gray-400 hover:bg-gray-200"
-                          } ${isToggling ? "opacity-60 cursor-wait" : ""}`}
+                            } ${isToggling ? "opacity-60 cursor-wait" : ""}`}
                         >
                           {isToggling ? "..." : isActive ? "● Active" : "○ Inactive"}
                         </button>

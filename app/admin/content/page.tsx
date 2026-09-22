@@ -9,14 +9,16 @@ import {
   Compass,
   Layers,
   HelpCircle,
+  BarChart3,
 } from "lucide-react";
 import { HomepageContentEditor } from "@/components/admin/content/HomepageContentEditor";
 import { AboutContentEditor } from "@/components/admin/content/AboutContentEditor";
 import { ContactsContentEditor } from "@/components/admin/content/ContactsContentEditor";
 import { TourismTable } from "@/components/admin/content/TourismTable";
 import { FaqTable } from "@/components/admin/content/FaqTable";
+import { GlanceContentEditor } from "@/components/admin/content/GlanceContentEditor";
 
-type ContentSection = "homepage" | "about" | "contacts" | "tourism" | "faq";
+type ContentSection = "homepage" | "about" | "glance" | "contacts" | "tourism" | "faq";
 
 function ContentManagerContent() {
   const searchParams = useSearchParams();
@@ -24,13 +26,13 @@ function ContentManagerContent() {
   const sectionParam = searchParams.get("section") as ContentSection | null;
 
   const [activeSection, setActiveSection] = useState<ContentSection>(
-    sectionParam && ["homepage", "about", "contacts", "tourism", "faq"].includes(sectionParam)
+    sectionParam && ["homepage", "about", "glance", "contacts", "tourism", "faq"].includes(sectionParam)
       ? sectionParam
       : "homepage"
   );
 
   useEffect(() => {
-    if (sectionParam && ["homepage", "about", "contacts", "tourism", "faq"].includes(sectionParam)) {
+    if (sectionParam && ["homepage", "about", "glance", "contacts", "tourism", "faq"].includes(sectionParam)) {
       setActiveSection(sectionParam);
     }
   }, [sectionParam]);
@@ -56,6 +58,14 @@ function ContentManagerContent() {
       route: "/about",
       desc: "Historical legacy description, vision/mission statements & commissioner message",
       fieldsCount: "Rich Text",
+    },
+    {
+      id: "glance" as ContentSection,
+      name: "Council at a Glance",
+      icon: BarChart3,
+      route: "/ & /about",
+      desc: "Key metric cards, population, SLA resolution rate, tourists, awards & eco-zone stats",
+      fieldsCount: "6 Metrics",
     },
     {
       id: "contacts" as ContentSection,
@@ -98,7 +108,7 @@ function ContentManagerContent() {
               Website Content & Page Modules
             </h1>
             <p className="text-xs sm:text-sm text-emerald-100/80 leading-relaxed">
-              Manage public website pages, hero carousels, rich text descriptions, emergency helplines, tourist destinations, and citizen FAQs in real-time.
+              Manage public website pages, hero carousels, council glance metrics, rich text descriptions, emergency helplines, tourist destinations, and citizen FAQs in real-time.
             </p>
           </div>
 
@@ -112,7 +122,7 @@ function ContentManagerContent() {
       </div>
 
       {/* Section Switcher Tabs */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {SECTIONS.map((sec) => {
           const Icon = sec.icon;
           const isSelected = activeSection === sec.id;
@@ -167,6 +177,7 @@ function ContentManagerContent() {
       <div className="transition-all duration-200">
         {activeSection === "homepage" && <HomepageContentEditor />}
         {activeSection === "about" && <AboutContentEditor />}
+        {activeSection === "glance" && <GlanceContentEditor />}
         {activeSection === "contacts" && <ContactsContentEditor />}
         {activeSection === "tourism" && <TourismTable />}
         {activeSection === "faq" && <FaqTable />}

@@ -130,11 +130,10 @@ function PointIconDropdown({
                     onChange(iconKey);
                     setOpen(false);
                   }}
-                  className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
-                    isSelected
+                  className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${isSelected
                       ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   <span className="flex items-center gap-2 truncate">
                     <IconComp className="w-4 h-4 shrink-0 text-primary" />
@@ -542,11 +541,10 @@ export function TourismContentEditor() {
                   <tr
                     key={dest.id}
                     onClick={() => setSelectedDestId(dest.id)}
-                    className={`transition-colors cursor-pointer ${
-                      isSelected
+                    className={`transition-colors cursor-pointer ${isSelected
                         ? "bg-primary-light/60 font-semibold"
                         : "hover:bg-gray-50/80"
-                    }`}
+                      }`}
                   >
                     {/* Index & Thumbnail */}
                     <td className="py-3 px-4 whitespace-nowrap">
@@ -610,11 +608,10 @@ export function TourismContentEditor() {
                       <button
                         type="button"
                         onClick={(e) => handleToggleActive(dest.id, e)}
-                        className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${
-                          dest.active
+                        className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${dest.active
                             ? "bg-primary text-white hover:bg-primary-hover"
                             : "bg-gray-100 text-gray-400 hover:bg-gray-200"
-                        }`}
+                          }`}
                       >
                         {dest.active ? "● Active" : "○ Inactive"}
                       </button>
@@ -626,11 +623,10 @@ export function TourismContentEditor() {
                         <button
                           type="button"
                           onClick={() => setSelectedDestId(dest.id)}
-                          className={`p-1.5 rounded-lg border text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer ${
-                            isSelected
+                          className={`p-1.5 rounded-lg border text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer ${isSelected
                               ? "bg-primary text-white border-primary"
                               : "bg-white border-gray-200 text-gray-700 hover:bg-gray-100"
-                          }`}
+                            }`}
                           title="Edit destination details"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -867,7 +863,7 @@ export function TourismContentEditor() {
             />
           </div>
 
-            {/* Important Points (Icon + Text) */}
+          {/* Important Points (Icon + Text) */}
           <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-3">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
               <div>
@@ -976,7 +972,7 @@ export function TourismContentEditor() {
             </div>
           </div>
 
-        
+
           {/* Gallery Media Section */}
           <div className="p-4 rounded-2xl bg-primary-surface border border-border space-y-4">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
@@ -1004,7 +1000,7 @@ export function TourismContentEditor() {
                   className="px-3.5 py-1.5 rounded-xl bg-primary text-white hover:bg-primary-hover font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                 >
                   <Plus className="w-3.5 h-3.5" />
-                  <span>+ Add Media (Photo / Video)</span>
+                  <span>Add Media (Photo / Video)</span>
                 </button>
               </div>
             </div>
@@ -1017,7 +1013,7 @@ export function TourismContentEditor() {
                   <Video className="w-7 h-7" />
                 </div>
                 <p className="font-semibold text-gray-600">No gallery photos or videos uploaded yet</p>
-                <p className="text-[11px] text-gray-400">Click &quot;+ Add Media (Photo / Video)&quot; above to upload destination media</p>
+                <p className="text-[11px] text-gray-400">Click &quot;Add Media (Photo / Video)&quot; above to upload destination media</p>
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -1040,7 +1036,7 @@ export function TourismContentEditor() {
                             muted
                             playsInline
                             loop
-                            onMouseOver={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => {})}
+                            onMouseOver={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => { })}
                             onMouseOut={(e) => (e.currentTarget as HTMLVideoElement).pause()}
                           />
                         ) : (

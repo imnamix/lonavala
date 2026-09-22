@@ -96,11 +96,10 @@ function EmergencyIconDropdown({
                     onChange(iconKey);
                     setOpen(false);
                   }}
-                  className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
-                    isSelected
+                  className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${isSelected
                       ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   <span className="flex items-center gap-2 truncate">
                     <IconComp className="w-4 h-4 shrink-0 text-primary" />
@@ -263,7 +262,7 @@ export function ContactsContentEditor() {
           </div> */}
           <h2 className="text-xl font-extrabold text-text-primary mt-1">Contacts & Helpdesk Content</h2>
           <p className="text-xs text-gray-500">
-           Manage 24×7 emergency contacts, WhatsApp helpline, office details, timings, and Google Maps.
+            Manage 24×7 emergency contacts, WhatsApp helpline, office details, timings, and Google Maps.
           </p>
         </div>
 
@@ -494,7 +493,7 @@ export function ContactsContentEditor() {
             className="w-full py-3 rounded-2xl border-2 border-dashed border-primary/50 hover:border-primary bg-primary-light/40 hover:bg-primary-light text-primary font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
-            <span>+ Add Emergency Contact</span>
+            <span>Add Emergency Contact</span>
           </button>
         </div>
       </div>

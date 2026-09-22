@@ -52,7 +52,7 @@ export function EmergencyBanner({}: EmergencyBannerProps) {
 
   return (
     <div className="bg-slate-900 text-white text-xs border-b border-slate-800 py-1.5 px-3 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div className="max-w-[1536px] mx-auto flex flex-wrap items-center justify-between gap-2">
         {/* Left: Emergency Alert Broadcast */}
         <div className="flex items-center gap-2 overflow-hidden flex-1 min-w-0">
           <span className="flex items-center gap-1 bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-extrabold tracking-wider uppercase shrink-0 animate-pulse">

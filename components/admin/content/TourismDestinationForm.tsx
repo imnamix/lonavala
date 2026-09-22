@@ -110,11 +110,10 @@ function PointIconDropdown({
                     onChange(iconKey);
                     setOpen(false);
                   }}
-                  className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
-                    isSelected
+                  className={`w-full px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${isSelected
                       ? "bg-primary-light text-primary font-bold"
                       : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   <span className="flex items-center gap-2 truncate">
                     <IconComp className="w-4 h-4 shrink-0 text-primary" />
@@ -539,8 +538,8 @@ export function TourismDestinationForm({
                       {uploadingCover
                         ? "Uploading..."
                         : destination.imageUrl
-                        ? "Replace Cover Image"
-                        : "Upload Cover Image"}
+                          ? "Replace Cover Image"
+                          : "Upload Cover Image"}
                     </span>
                   </button>
 
@@ -674,7 +673,7 @@ export function TourismDestinationForm({
                 className="w-full py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-primary border-2 border-dashed border-emerald-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
-                <span>+ Add Important Point</span>
+                <span>Add Important Point</span>
               </button>
             </div>
           </div>
@@ -728,7 +727,7 @@ export function TourismDestinationForm({
                 className="w-full py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-primary border-2 border-dashed border-emerald-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
-                <span>+ Add Highlight Pair</span>
+                <span>Add Highlight Pair</span>
               </button>
             </div>
           </div>
@@ -768,7 +767,7 @@ export function TourismDestinationForm({
                   <Video className="w-7 h-7" />
                 </div>
                 <p className="font-semibold text-gray-600">No gallery photos or videos uploaded yet</p>
-                <p className="text-[11px] text-gray-400">Click &quot;+ Add Gallery Media (Image / Video)&quot; below to upload destination media</p>
+                <p className="text-[11px] text-gray-400">Click &quot;Add Gallery Media (Image / Video)&quot; below to upload destination media</p>
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -791,7 +790,7 @@ export function TourismDestinationForm({
                             muted
                             playsInline
                             loop
-                            onMouseOver={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => {})}
+                            onMouseOver={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => { })}
                             onMouseOut={(e) => (e.currentTarget as HTMLVideoElement).pause()}
                           />
                         ) : (
@@ -857,7 +856,7 @@ export function TourismDestinationForm({
                 ) : (
                   <Plus className="w-3.5 h-3.5" />
                 )}
-                <span>{uploadingGallery ? "Uploading media to Cloudinary..." : "+ Add Gallery Media (Image / Video)"}</span>
+                <span>{uploadingGallery ? "Uploading media to Cloudinary..." : "Add Gallery Media (Image / Video)"}</span>
               </button>
             </div>
           </div>

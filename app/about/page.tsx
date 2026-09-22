@@ -19,10 +19,143 @@ import {
   Sparkles,
   ArrowRight,
   ShieldCheck,
+  ChevronRight,
 } from "lucide-react";
 import { getAboutUsData, AboutUsData } from "@/lib/services/about.service";
 import { StatisticsSection } from "@/components/shared/StatisticsSection";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAutoTranslate } from "@/hooks/useAutoTranslation";
+
+function AboutPageSkeleton() {
+  return (
+    <div className="pt-0 pb-16 bg-slate-50/50">
+      {/* Header Banner Skeleton */}
+      <div className="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white border-b border-emerald-800/40 py-12 sm:py-16 mb-12 overflow-hidden">
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl space-y-4 animate-pulse">
+            {/* Breadcrumb Skeleton */}
+            <div className="flex items-center gap-2">
+              <div className="h-3.5 w-14 bg-white/20 rounded-md" />
+              <div className="h-3.5 w-3.5 bg-white/20 rounded-full" />
+              <div className="h-3.5 w-20 bg-white/30 rounded-md" />
+            </div>
+
+            {/* Badge Skeleton */}
+            <div className="h-7 w-48 bg-emerald-500/20 border border-emerald-400/30 rounded-full" />
+
+            {/* Title Skeleton */}
+            <div className="space-y-2">
+              <div className="h-9 sm:h-12 w-3/4 max-w-xl bg-white/20 rounded-xl" />
+            </div>
+
+            {/* Subtitle / Meta row Skeleton */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <div className="h-5 w-52 bg-emerald-400/20 rounded-md" />
+              <div className="h-2 w-2 rounded-full bg-emerald-400/30" />
+              <div className="h-5 w-44 bg-emerald-400/20 rounded-md" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* History Section Skeleton */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start animate-pulse">
+          <div className="lg:col-span-7 space-y-5">
+            <div className="h-6 w-36 bg-slate-200 rounded-full" />
+            <div className="h-9 w-4/5 bg-slate-200 rounded-xl" />
+            <div className="h-7 w-44 bg-slate-100 rounded-xl" />
+
+            <div className="space-y-3 pt-2">
+              <div className="h-4 bg-slate-200 rounded w-full" />
+              <div className="h-4 bg-slate-200 rounded w-11/12" />
+              <div className="h-4 bg-slate-200 rounded w-5/6" />
+              <div className="h-4 bg-slate-200 rounded w-full" />
+              <div className="h-4 bg-slate-200 rounded w-4/5" />
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-3xl bg-slate-200 border-4 border-white shadow-xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-tr from-slate-300 to-slate-200" />
+              <div className="absolute bottom-4 left-4 p-4 rounded-2xl bg-slate-800/40 w-44 h-16 space-y-1.5 backdrop-blur-xs">
+                <div className="h-5 w-24 bg-white/40 rounded" />
+                <div className="h-3 w-32 bg-white/30 rounded" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Vision & Mission Cards Skeleton */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-pulse">
+          {/* Vision */}
+          <div className="bg-white rounded-3xl border border-slate-200/80 p-8 shadow-xs space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-slate-100" />
+            <div className="h-6 w-36 bg-slate-200 rounded-lg" />
+            <div className="space-y-2.5">
+              <div className="h-4 bg-slate-100 rounded w-full" />
+              <div className="h-4 bg-slate-100 rounded w-11/12" />
+              <div className="h-4 bg-slate-100 rounded w-4/5" />
+            </div>
+          </div>
+
+          {/* Mission */}
+          <div className="bg-white rounded-3xl border border-slate-200/80 p-8 shadow-xs space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-slate-100" />
+            <div className="h-6 w-36 bg-slate-200 rounded-lg" />
+            <div className="space-y-3">
+              {[1, 2, 3].map((n) => (
+                <div key={n} className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-slate-200 shrink-0" />
+                  <div className="h-4 bg-slate-100 rounded w-5/6" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Commissioner's Message Skeleton */}
+        <section className="bg-gradient-to-br from-slate-50 via-white to-slate-50 border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xs animate-pulse">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-4 flex flex-col items-center text-center space-y-3">
+              <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-slate-200 border-4 border-white ring-4 ring-slate-100" />
+              <div className="h-5 w-40 bg-slate-200 rounded-lg" />
+              <div className="h-4 w-32 bg-slate-100 rounded-md" />
+            </div>
+
+            <div className="md:col-span-8 space-y-4">
+              <div className="h-6 w-44 bg-slate-200 rounded-full" />
+              <div className="h-8 w-3/4 bg-slate-200 rounded-xl" />
+              <div className="space-y-2.5 border-l-2 border-slate-200 pl-4 py-1">
+                <div className="h-4 bg-slate-100 rounded w-full" />
+                <div className="h-4 bg-slate-100 rounded w-11/12" />
+                <div className="h-4 bg-slate-100 rounded w-4/5" />
+              </div>
+              <div className="h-4 w-48 bg-slate-200 rounded pt-2" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div className="mt-16">
+        <StatisticsSection />
+      </div>
+    </div>
+  );
+}
+
+function MissionItem({ point, fallback }: { point: string; fallback?: string }) {
+  const translated = useAutoTranslate(point, fallback);
+  return (
+    <li className="flex items-start gap-3">
+      <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+      <span>{translated}</span>
+    </li>
+  );
+}
 
 export default function AboutPage() {
   const { dict, language } = useLanguage();
@@ -69,22 +202,11 @@ export default function AboutPage() {
     },
   ];
 
-  if (loading) {
-    return (
-      <div className="py-16 min-h-[60vh] flex flex-col items-center justify-center space-y-4">
-        <Loader2 className="w-10 h-10 text-emerald-600 animate-spin" />
-        <p className="text-sm font-semibold text-slate-600">
-          Loading About Us details...
-        </p>
-      </div>
-    );
-  }
-
   const about = data || {
-    title: "Lonavala Municipal Council",
+    title: "Lonavala Municipal Council (लोणावळा नगर परिषद)",
     establishedYear: "1877",
-    yearsOfService: "148+ Years",
-    elevation: "624 meters in the Sahyadri Western Ghats",
+    yearsOfService: "149+ Years",
+    elevation: "622 m (2,041 ft)",
     mediaUrl:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
     description:
@@ -95,9 +217,11 @@ export default function AboutPage() {
       "Deliver 100% door-to-door segregated waste processing and plastic-free tourism.",
       "Provide 24x7 treated potable water supply and eco-conscious underground sewerage.",
       "Enforce zero-tolerance transparency through time-bound online grievance redressal.",
+      "Preserve and develop eco-tourism trails, heritage viewpoints, and hill lakes with zero ecological degradation.",
+      "Maintain an accountable, corruption-free administrative ecosystem through transparent public e-tenders.",
     ],
     communique: {
-      officerName: "Shri. Pandit Patil (IAS/State Cadre)",
+      officerName: "Shri. Pandit Patil (State Cadre)",
       designation: "Chief Officer / Commissioner",
       phone: "+91 2114 273032",
       email: "co@lonavalamc.gov.in",
@@ -117,23 +241,113 @@ export default function AboutPage() {
       about.description.includes("<br") ||
       about.description.includes("<div>"));
 
+  // Dynamic & dictionary auto-translations
+  const translatedDesc = useAutoTranslate(
+    about.description,
+    dict?.aboutPage?.historyDescDefault
+  );
+  const translatedVision = useAutoTranslate(
+    about.vision,
+    dict?.aboutPage?.visionDefault
+  );
+  const translatedCommuniqueTitle = useAutoTranslate(
+    about.communique?.title,
+    dict?.aboutPage?.communiqueTitleDefault
+  );
+  const translatedCommuniqueBody = useAutoTranslate(
+    about.communique?.messageBody,
+    dict?.aboutPage?.communiqueBodyDefault
+  );
+  const translatedCommuniqueSignOff = useAutoTranslate(
+    about.communique?.signOff,
+    dict?.aboutPage?.communiqueSignOffDefault
+  );
+  const translatedOfficerName = useAutoTranslate(
+    about.communique?.officerName,
+    dict?.aboutPage?.communiqueOfficerNameDefault
+  );
+  const translatedOfficerDesignation = useAutoTranslate(
+    about.communique?.designation,
+    dict?.aboutPage?.communiqueDesignationDefault
+  );
+
+  const mainTitle =
+    language === "mr"
+      ? dict?.aboutPage?.councilName || "लोणावळा नगरपरिषद"
+      : dict?.aboutPage?.councilName || "Lonavala Municipal Council";
+
+  const secondaryTitle =
+    language === "mr"
+      ? dict?.aboutPage?.councilNameMr || "(Lonavala Municipal Council)"
+      : dict?.aboutPage?.councilNameMr || "(लोणावळा नगर परिषद)";
+
+  const elevationText =
+    language === "mr"
+      ? dict?.aboutPage?.elevation || "समुद्रसपाटीपासून ६२२ मीटर (२,०४१ फूट) उंचीवर"
+      : dict?.aboutPage?.elevation || "Located at 622 m (2,041 ft)";
+
+  const yearsText =
+    language === "mr"
+      ? dict?.aboutPage?.yearsOfService || "१४९+ वर्षांची अखंड जनसेवा"
+      : dict?.aboutPage?.yearsOfService || "149+ Years of Civic Service";
+
+  const missionList =
+    about.mission && about.mission.length > 0
+      ? about.mission
+      : dict?.aboutPage?.missionDefault || [
+          "Deliver 100% door-to-door segregated waste processing and plastic-free tourism.",
+          "Provide 24x7 treated potable water supply and eco-conscious underground sewerage.",
+          "Enforce zero-tolerance transparency through time-bound online grievance redressal.",
+        ];
+
+  if (loading) {
+    return <AboutPageSkeleton />;
+  }
+
   return (
-    <div className="py-8 bg-slate-50/50">
+    <div className="pt-0 pb-16 bg-slate-50/50">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-emerald-800 via-emerald-900 to-teal-950 text-white py-14 mb-12 shadow-inner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-400/30">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{dict?.council?.badge || "Council Profile"}</span>
+      <div className="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white border-b border-emerald-800/40 py-12 sm:py-16 mb-12 overflow-hidden">
+        {/* Decorative Background Glows */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-2 text-xs font-medium text-emerald-300/80 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">
+              {dict?.nav?.home || "Home"}
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-white font-semibold">
+              {dict?.aboutPage?.breadcrumb || "About Us"}
+            </span>
+          </div>
+
+          <div className="max-w-4xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-400/30">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <span>
+                {dict?.aboutPage?.badge || "Council Profile • नगरपरिषद परिचय"}
+              </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-              {about.title || "About Lonavala Municipal Council"}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span>{mainTitle}</span>
+              <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-emerald-300/90 font-sans">
+                {secondaryTitle}
+              </span>
             </h1>
-            <p className="text-sm sm:text-base text-emerald-100/90 leading-relaxed font-light">
-              {about.elevation ? `Located at ${about.elevation} • ` : ""}
-              {about.yearsOfService ? `${about.yearsOfService} of Civic Service` : ""}
-            </p>
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-sm sm:text-base text-slate-200 leading-relaxed font-normal pt-1">
+              <span className="inline-flex items-center gap-1.5 text-emerald-300 font-medium">
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{elevationText}</span>
+              </span>
+              <span className="text-emerald-400/60">•</span>
+              <span className="inline-flex items-center gap-1.5 text-emerald-300 font-medium">
+                <Calendar className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{yearsText}</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -144,34 +358,38 @@ export default function AboutPage() {
           <div className="lg:col-span-7 space-y-5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200">
               <History className="w-4 h-4" />
-              <span>Historical Legacy</span>
+              <span>
+                {dict?.aboutPage?.historyBadge || "Historical Legacy"}
+              </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
-              {about.title || "Over a Century of Hill-Station Stewardship"}
+              {dict?.aboutPage?.historyTitle ||
+                "Over a Century of Hill-Station Stewardship"}
             </h2>
 
-            {about.elevation && (
-              <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/60">
-                <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Elevation: {about.elevation}</span>
-              </div>
-            )}
+            <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/60">
+              <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>
+                {dict?.aboutPage?.historyElevation ||
+                  (about.elevation
+                    ? `Elevation: ${about.elevation}`
+                    : "Elevation: 622 m (2,041 ft)")}
+              </span>
+            </div>
 
             {/* Description Text / HTML */}
             {hasHtmlDescription ? (
               <div
                 className="prose prose-slate max-w-none text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 prose-p:leading-relaxed prose-headings:text-slate-900 prose-headings:font-bold prose-strong:text-slate-900 prose-ul:list-disc prose-ul:pl-5 prose-li:my-1 break-words"
-                dangerouslySetInnerHTML={{ __html: about.description }}
+                dangerouslySetInnerHTML={{ __html: translatedDesc || about.description }}
               />
             ) : (
               <div className="text-sm sm:text-base text-slate-600 leading-relaxed space-y-4">
-                {about.description ? (
-                  <p className="whitespace-pre-line">{about.description}</p>
-                ) : (
-                  <p>
-                    Lonavala was discovered as a hill retreat in 1871 and formally constituted as a Municipal Municipality in 1877. Perched in the Sahyadri mountains of the Western Ghats, Lonavala serves as a vital ecological and recreational gateway.
-                  </p>
-                )}
+                <p className="whitespace-pre-line leading-relaxed">
+                  {translatedDesc ||
+                    dict?.aboutPage?.historyDescDefault ||
+                    about.description}
+                </p>
               </div>
             )}
           </div>
@@ -183,7 +401,7 @@ export default function AboutPage() {
                   about.mediaUrl ||
                   "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80"
                 }
-                alt={about.title || "Lonavala Historical Borghat"}
+                alt={mainTitle}
                 fill
                 unoptimized={about.mediaUrl ? about.mediaUrl.startsWith("http") : false}
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -195,10 +413,13 @@ export default function AboutPage() {
               {/* Establishment Badge securely inside image container */}
               <div className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5 bg-gradient-to-r from-emerald-950/90 to-teal-950/90 backdrop-blur-md text-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-emerald-400/30">
                 <div className="text-xl sm:text-2xl font-black tracking-tight">
-                  {about.establishedYear ? `Est. ${about.establishedYear}` : "Est. 1877"}
+                  {dict?.aboutPage?.estLabel ||
+                    (about.establishedYear
+                      ? `Est. ${about.establishedYear}`
+                      : "Est. 1877")}
                 </div>
                 <div className="text-xs text-emerald-200 font-medium">
-                  {about.yearsOfService || "148+ Years of Civic Service"}
+                  {yearsText}
                 </div>
               </div>
             </div>
@@ -213,10 +434,13 @@ export default function AboutPage() {
               <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-800 mb-5 shadow-xs">
                 <Eye className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Our Vision</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                {dict?.aboutPage?.visionTitle || "Our Vision"}
+              </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                {about.vision ||
-                  "To transform Lonavala into India's leading carbon-neutral, clean, and digitally advanced eco-tourism hill station, while preserving its pristine Sahyadri biodiversity and ensuring dignified civic amenities for every resident."}
+                {translatedVision ||
+                  dict?.aboutPage?.visionDefault ||
+                  about.vision}
               </p>
             </div>
           </div>
@@ -226,31 +450,17 @@ export default function AboutPage() {
             <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-800 mb-5 shadow-xs">
               <Target className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Our Mission</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">
+              {dict?.aboutPage?.missionTitle || "Our Mission"}
+            </h3>
             <ul className="space-y-3 text-sm text-slate-600">
-              {about.mission && about.mission.length > 0 ? (
-                about.mission.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>{point}</span>
-                  </li>
-                ))
-              ) : (
-                <>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Deliver 100% door-to-door segregated waste processing and plastic-free tourism.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Provide 24x7 treated potable water supply and eco-conscious underground sewerage.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Enforce zero-tolerance transparency through time-bound online grievance redressal.</span>
-                  </li>
-                </>
-              )}
+              {missionList.map((point, idx) => (
+                <MissionItem
+                  key={idx}
+                  point={point}
+                  fallback={dict?.aboutPage?.missionDefault?.[idx]}
+                />
+              ))}
             </ul>
           </div>
         </section>
@@ -266,7 +476,7 @@ export default function AboutPage() {
                       about.communique.mediaUrl ||
                       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
                     }
-                    alt={about.communique.officerName || "Chief Officer"}
+                    alt={translatedOfficerName || "Chief Officer"}
                     fill
                     unoptimized={
                       about.communique.mediaUrl
@@ -278,10 +488,12 @@ export default function AboutPage() {
                   />
                 </div>
                 <h4 className="font-extrabold text-slate-900 text-base sm:text-lg">
-                  {about.communique.officerName}
+                  {translatedOfficerName ||
+                    dict?.aboutPage?.communiqueOfficerNameDefault}
                 </h4>
                 <p className="text-xs text-emerald-700 font-bold mt-0.5">
-                  {about.communique.designation}
+                  {translatedOfficerDesignation ||
+                    dict?.aboutPage?.communiqueDesignationDefault}
                 </p>
 
                 <div className="mt-3 space-y-1 text-xs text-slate-500">
@@ -303,113 +515,37 @@ export default function AboutPage() {
               <div className="md:col-span-8 space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
                   <Quote className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>{about.communique.subtitle || "Chief Officer's Communiqué"}</span>
+                  <span>
+                    {dict?.aboutPage?.communiqueBadge ||
+                      about.communique.subtitle ||
+                      "Chief Officer's Communiqué"}
+                  </span>
                 </div>
                 <h3 className="text-xl sm:text-3xl font-extrabold text-slate-900">
-                  {about.communique.title || "Advancing Citizen-Centric e-Governance"}
+                  {translatedCommuniqueTitle ||
+                    dict?.aboutPage?.communiqueTitleDefault ||
+                    about.communique.title}
                 </h3>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed italic border-l-2 border-emerald-500 pl-4">
-                  &ldquo;{about.communique.messageBody}&rdquo;
+                  &ldquo;
+                  {translatedCommuniqueBody ||
+                    dict?.aboutPage?.communiqueBodyDefault ||
+                    about.communique.messageBody}
+                  &rdquo;
                 </p>
-                {about.communique.signOff && (
+                {(translatedCommuniqueSignOff ||
+                  dict?.aboutPage?.communiqueSignOffDefault ||
+                  about.communique.signOff) && (
                   <div className="pt-2 text-xs sm:text-sm font-bold text-slate-800">
-                    {about.communique.signOff}
+                    {translatedCommuniqueSignOff ||
+                      dict?.aboutPage?.communiqueSignOffDefault ||
+                      about.communique.signOff}
                   </div>
                 )}
               </div>
             </div>
           </section>
         )}
-
-        {/* Organization Chart */}
-        {/* <section className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
-              Hierarchy & Administration
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-              Organizational Chart
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Structure of the General Body and Administrative Executive Wings
-            </p>
-          </div>
-
-          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs overflow-x-auto">
-            <div className="min-w-[680px] flex flex-col items-center text-center space-y-6">
-              <div className="bg-gradient-to-r from-emerald-700 to-teal-800 text-white px-6 py-3.5 rounded-2xl shadow-md font-bold text-sm w-80">
-                General Body & Municipal President
-                <div className="text-[11px] text-emerald-200 font-normal mt-0.5">
-                  Smt. Surekha Nitin Jadhav
-                </div>
-              </div>
-
-              <div className="w-0.5 h-6 bg-slate-300" />
-
-              <div className="bg-white border-2 border-emerald-600 text-slate-900 px-6 py-3.5 rounded-2xl shadow-xs font-bold text-sm w-80">
-                Chief Officer / Commissioner
-                <div className="text-[11px] text-emerald-700 font-semibold mt-0.5">
-                  {about.communique?.officerName || "Shri. Pandit Patil (State Cadre)"}
-                </div>
-              </div>
-
-              <div className="w-0.5 h-6 bg-slate-300" />
-
-              <div className="grid grid-cols-4 gap-4 w-full">
-                <div className="bg-emerald-50/50 border border-emerald-100 p-3.5 rounded-2xl">
-                  <div className="font-bold text-xs text-slate-900">Health & Sanitation</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">Dr. Sandeep Deshmukh</div>
-                </div>
-                <div className="bg-emerald-50/50 border border-emerald-100 p-3.5 rounded-2xl">
-                  <div className="font-bold text-xs text-slate-900">Public Works (PWD)</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">Er. Mahesh Kulkarni</div>
-                </div>
-                <div className="bg-emerald-50/50 border border-emerald-100 p-3.5 rounded-2xl">
-                  <div className="font-bold text-xs text-slate-900">Water Supply</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">Er. Rameshwar Kale</div>
-                </div>
-                <div className="bg-emerald-50/50 border border-emerald-100 p-3.5 rounded-2xl">
-                  <div className="font-bold text-xs text-slate-900">Town Planning</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">Ar. Sneha Joshi</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
-        {/* Image Gallery */}
-        {/* <section className="space-y-6">
-          <div className="text-center max-w-xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-              Lonavala Municipal Gallery
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Glimpses of our scenic hill station landscapes and municipal infrastructure
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {galleryImages.map((img, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs group hover:shadow-md transition-all"
-              >
-                <div className="relative h-48 w-full overflow-hidden">
-                  <Image
-                    src={img.src}
-                    alt={img.caption}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    sizes="25vw"
-                  />
-                </div>
-                <div className="p-3 text-center text-xs font-semibold text-slate-800">
-                  {img.caption}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section> */}
       </div>
 
       <div className="mt-16">

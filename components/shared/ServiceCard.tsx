@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { CitizenService } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAutoTranslate, CATEGORY_TRANSLATIONS } from "@/hooks/useAutoTranslation";
 
 const iconMap: Record<string, React.ReactNode> = {
   Receipt: <Receipt className="w-7 h-7 text-emerald-700 group-hover:text-white transition-colors" />,
@@ -252,22 +253,30 @@ export function ServiceCard({
 
   const serviceKey = serviceKeyMap[service.id];
   const localizedItem = serviceKey ? dict.services.items[serviceKey] : null;
-  const title = localizedItem?.title || service.title;
+  const autoTitle = useAutoTranslate(service.title, (service as any).titleMr);
+  const title = localizedItem?.title || autoTitle;
+
+  const rawCat = service.category.split("&")[0].trim();
+  const autoCat = useAutoTranslate(rawCat);
+  const displayedCategory =
+    language === "mr" && CATEGORY_TRANSLATIONS[rawCat]
+      ? CATEGORY_TRANSLATIONS[rawCat]
+      : autoCat;
 
   const subServicesData = SUB_SERVICES_MAP[service.id];
   const subServices = subServicesData
     ? language === "mr"
       ? subServicesData.mr
       : language === "hi"
-      ? subServicesData.hi
-      : subServicesData.en
+        ? subServicesData.hi
+        : subServicesData.en
     : [
-        "Online Application Submission",
-        "Document Verification",
-        "Payment & Instant Receipt",
-        "Status Tracking & Download",
-        "Digital Certificate Issuance",
-      ];
+      "Online Application Submission",
+      "Document Verification",
+      "Payment & Instant Receipt",
+      "Status Tracking & Download",
+      "Digital Certificate Issuance",
+    ];
 
   // Determine flyout side: Left or Right based on grid column position
   const isRightHalf = index % 4 >= 2;
@@ -299,24 +308,22 @@ export function ServiceCard({
             {title}
           </h3>
           <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-            {service.category.split("&")[0]}
+            {displayedCategory}
           </p>
         </div>
       </Link>
 
       {/* 2. Sub-Services Cards (Outside the Card Stack as per reference drawing) */}
       <div
-        className={`hidden sm:flex flex-col gap-2 w-64 md:w-72 absolute top-0 pointer-events-none group-hover/card:pointer-events-auto opacity-0 scale-95 group-hover/card:opacity-100 group-hover/card:scale-100 transition-all duration-300 ease-out z-50 ${
-          isRightHalf
+        className={`hidden sm:flex flex-col gap-2 w-64 md:w-72 absolute top-0 pointer-events-none group-hover/card:pointer-events-auto opacity-0 scale-95 group-hover/card:opacity-100 group-hover/card:scale-100 transition-all duration-300 ease-out z-50 ${isRightHalf
             ? "right-full mr-3.5 origin-right"
             : "left-full ml-3.5 origin-left"
-        }`}
+          }`}
       >
         {/* Invisible Bridge to prevent mouse flickering */}
         <div
-          className={`absolute top-0 bottom-0 w-4 ${
-            isRightHalf ? "-right-4" : "-left-4"
-          }`}
+          className={`absolute top-0 bottom-0 w-4 ${isRightHalf ? "-right-4" : "-left-4"
+            }`}
         />
 
         {subServices.map((subItem, sIdx) => (

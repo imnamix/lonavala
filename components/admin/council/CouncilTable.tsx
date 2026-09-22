@@ -298,11 +298,10 @@ export function CouncilTable() {
                           <button
                             type="button"
                             onClick={(e) => handleToggleActive(member.id, e)}
-                            className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${
-                              isActive
+                            className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${isActive
                                 ? "bg-primary text-white hover:bg-primary-hover"
                                 : "bg-gray-100 text-gray-400 hover:bg-gray-200"
-                            }`}
+                              }`}
                             title="Click to toggle member active status on public portal"
                           >
                             {isActive ? "● Active" : "○ Inactive"}
@@ -395,7 +394,7 @@ export function CouncilTable() {
                   </span>
                   <h4 className="text-lg font-bold text-text-primary">{selectedMember.name}</h4>
                   <p className="text-xs text-primary font-semibold">{selectedMember.marathiName}</p>
-                  
+
                   {selectedMember.ward && (
                     <p className="text-xs text-gray-600 flex items-center justify-center sm:justify-start gap-1">
                       <MapPin className="w-3 h-3 text-primary" />
@@ -431,7 +430,7 @@ export function CouncilTable() {
                 </div>
                 <div>
                   <span className="text-[10px] text-gray-400 font-bold uppercase block">Tenure</span>
-                  <span className="font-semibold text-gray-800">{selectedMember.tenure || "2022 - 2027"}</span>
+                  <span className="font-semibold text-gray-800">{selectedMember.tenure || "2024 - 2029"}</span>
                 </div>
                 <div>
                   <span className="text-[10px] text-gray-400 font-bold uppercase block">Portal Status</span>

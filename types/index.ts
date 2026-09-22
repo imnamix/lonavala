@@ -35,22 +35,41 @@ export interface Grievance {
   updatedAt: string;
 }
 
+export interface DepartmentServiceItem {
+  title: string;
+  link?: string;
+}
+
+export interface DepartmentAdditionalInfo {
+  title: string;
+  description: string;
+}
+
 export interface Department {
   id: string;
+  code?: string;
   name: string;
   marathiName: string;
   slug: string;
   icon: string;
   headOfficer: string;
+  headOfficerImage?: string;
   designation: string;
   email: string;
   phone: string;
   location: string;
   responsibilities: string[];
-  services: string[];
-  documents: { title: string; size: string; type: string }[];
+  services: (DepartmentServiceItem | string)[];
+  documents: { title: string; fileUrl: string; url?: string; fileName?: string; size?: string; type?: string }[];
   overview: string;
   stats: { label: string; value: string }[];
+  additionalInfo?: DepartmentAdditionalInfo[];
+  clerkName?: string;
+  clerkPhone?: string;
+  clerkMobile?: string;
+  clerkEmail?: string;
+  isActive?: boolean;
+  displayOrder?: number;
 }
 
 export interface CitizenService {
@@ -102,6 +121,12 @@ export interface CouncilMember {
   roleCategory?: "President" | "Vice President" | "Corporator" | "Officer" | "Nominated";
 }
 
+export interface ProjectGalleryItem {
+  id?: string;
+  url: string;
+  title: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -116,6 +141,7 @@ export interface Project {
   description: string;
   image: string;
   highlights: string[];
+  gallery?: ProjectGalleryItem[];
 }
 
 export interface NoticeItem {
@@ -130,30 +156,70 @@ export interface NoticeItem {
   description: string;
 }
 
+export type TenderStatus = "Live" | "Under Evaluation" | "Awarded" | "Closed" | "Cancelled";
+
 export interface TenderItem {
   id: string;
   tenderId: string;
   title: string;
+  marathiTitle?: string;
   department: string;
+  category?: string;
   deadline: string;
-  estimatedCost: string;
-  status: "Live" | "Under Evaluation" | "Awarded" | "Closed";
-  downloadUrl: string;
-  fileSize: string;
+  openingDate?: string;
   publishedDate: string;
+  estimatedCost: string;
+  earnestMoneyDeposit?: string;
+  tenderFee?: string;
+  status: "Live" | "Under Evaluation" | "Awarded" | "Closed" | "Cancelled";
+  downloadUrl: string;
+  fileName?: string;
+  fileSize: string;
+  externalPortalUrl?: string;
+  description?: string;
+  eligibilityCriteria?: string[];
+  awardedTo?: string;
+  awardedAmount?: string;
+  awardDate?: string;
+  completionPeriod?: string;
+  contactPerson?: string;
+  contactPhone?: string;
+  contactEmail?: string;
+  isNew?: boolean;
 }
+
+export type RecruitmentStatus = "Active" | "Scrutiny" | "Exam / Interview" | "Result Declared" | "Archived" | "Cancelled";
 
 export interface RecruitmentVacancy {
   id: string;
   advertisementNo: string;
   postName: string;
+  marathiPostName?: string;
   department: string;
+  grade?: "Grade A" | "Grade B" | "Grade C" | "Grade D";
   vacancies: number;
+  categoryBreakdown?: string;
   qualification: string;
+  experience?: string;
+  ageLimit?: string;
   lastDate: string;
-  status: "Active" | "Scrutiny" | "Result Declared" | "Archived";
+  publishedDate?: string;
+  examDate?: string;
+  status: "Active" | "Scrutiny" | "Exam / Interview" | "Result Declared" | "Archived" | "Cancelled";
   downloadUrl: string;
+  fileName?: string;
+  fileSize?: string;
   payScale: string;
+  applicationFee?: string;
+  applyUrl?: string;
+  selectionProcess?: string;
+  instructions?: string;
+  resultsUrl?: string;
+  resultsFileName?: string;
+  selectedCandidatesCount?: number;
+  contactEmail?: string;
+  contactPhone?: string;
+  isNew?: boolean;
 }
 
 export interface DownloadDocument {
@@ -245,5 +311,37 @@ export interface LegalDocument {
   description: string;
 }
 
+export interface StandingCommittee {
+  id: string | number;
+  name: string;
+  marathiName?: string;
+  description?: string;
+  chairmanId?: number | null;
+  chairman?: CouncilMember | null;
+  memberIds: number[];
+  members?: CouncilMember[];
+  isActive?: boolean;
+  displayOrder?: number;
+  createdDate?: string;
+  updatedDate?: string;
+}
 
+export interface CouncilResolution {
+  id: string | number;
+  resolutionNumber?: string;
+  title: string;
+  marathiTitle?: string;
+  meetingType: string;
+  resolutionDate?: string;
+  durationFrom?: string;
+  durationTo?: string;
+  description?: string;
+  fileUrl?: string;
+  fileName?: string;
+  fileSize?: string;
+  isActive?: boolean;
+  displayOrder?: number;
+  createdDate?: string;
+  updatedDate?: string;
+}
 

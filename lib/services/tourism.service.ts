@@ -62,7 +62,7 @@ export interface CreateTourismSpotPayload {
   galleryMedia?: { mediaUrl: string; mediaType?: string; sortOrder?: number }[];
 }
 
-export interface UpdateTourismSpotPayload extends Partial<CreateTourismSpotPayload> {}
+export interface UpdateTourismSpotPayload extends Partial<CreateTourismSpotPayload> { }
 
 export function mapDtoToDestination(dto: TourismSpotDto): TourismDestination {
   return {

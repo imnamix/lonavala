@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { getHomepageData, HeroSlide, HomepageData } from "@/lib/services/homepage.service";
+import { useAutoTranslate, useBatchTranslate } from "@/hooks/useAutoTranslation";
 
 const ICON_MAP: { [key: string]: any } = {
   AlertCircle,
@@ -125,6 +126,29 @@ export function Hero() {
   // Filter active slides from API
   const activeSlides = (homepageData?.slides || []).filter((s) => s.active !== false);
   const slidesCount = activeSlides.length;
+  const currentSlide: HeroSlide | undefined =
+    slidesCount > 0 ? activeSlides[activeSlideIndex % slidesCount] : undefined;
+
+  const showButtons = currentSlide?.showButtons !== false;
+  const activeButtons = (currentSlide?.buttons || []).filter((b) => b.active !== false);
+
+  const showTags = currentSlide?.showTags !== false;
+  const activeTags = (currentSlide?.tags || []).filter((t) => t.active !== false);
+
+  // Unconditionally call translation hooks at top level
+  const badgeText = useAutoTranslate(currentSlide?.badgeEn, currentSlide?.badgeMr);
+  const headlineText = useAutoTranslate(currentSlide?.headlineEn, currentSlide?.headlineMr);
+  const taglineText = useAutoTranslate(currentSlide?.taglineEn, currentSlide?.taglineMr);
+
+  const translatedButtonNames = useBatchTranslate(
+    activeButtons.map((b, idx) => ({ ...b, id: b.id || `btn-${idx}` })),
+    (b) => b.name
+  );
+
+  const translatedTagNames = useBatchTranslate(
+    activeTags.map((t, idx) => ({ ...t, id: t.id || `tag-${idx}` })),
+    (t) => t.name
+  );
 
   // Auto-advance slides every 5 seconds if more than 1 slide exists
   useEffect(() => {
@@ -137,12 +161,56 @@ export function Hero() {
     return () => clearInterval(timer);
   }, [slidesCount, isPaused]);
 
-  // If no dynamic data or no active slides, DO NOT show banner
-  if (loading || !homepageData || slidesCount === 0) {
-    return null;
+  if (loading) {
+    return (
+      <section className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[680px] flex flex-col justify-between overflow-hidden bg-slate-950 animate-pulse group/hero">
+        {/* Background gradient overlay skeleton */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
+
+        {/* Center content skeleton */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 my-auto w-full">
+          <div className="flex flex-col items-center text-center">
+            {/* Badge skeleton */}
+            <div className="h-7 w-44 sm:w-52 bg-slate-800/90 rounded-full mb-6 border border-emerald-500/20" />
+
+            {/* Headline skeleton */}
+            <div className="h-10 sm:h-14 lg:h-16 w-3/4 max-w-2xl bg-slate-800/90 rounded-2xl mb-3" />
+            <div className="h-8 sm:h-12 lg:h-14 w-1/2 max-w-lg bg-slate-800/80 rounded-2xl mb-6" />
+
+            {/* Tagline skeleton */}
+            <div className="h-4 sm:h-5 w-4/5 max-w-xl bg-slate-800/60 rounded-lg mb-2" />
+            <div className="h-4 sm:h-5 w-3/5 max-w-md bg-slate-800/60 rounded-lg mb-8" />
+
+            {/* Action buttons skeleton */}
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <div className="h-12 w-44 bg-emerald-900/40 rounded-xl border border-emerald-500/30" />
+              <div className="h-12 w-36 bg-slate-800/80 rounded-xl border border-slate-700/50" />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom indicators skeleton */}
+        <div className="relative z-10 w-full pb-8">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-8 h-2.5 bg-emerald-500/40 rounded-full" />
+            <div className="w-2.5 h-2.5 bg-slate-800 rounded-full" />
+            <div className="w-2.5 h-2.5 bg-slate-800 rounded-full" />
+          </div>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/10 pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-12">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-4 w-28 bg-slate-800/60 rounded-md" />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
   }
 
-  const currentSlide: HeroSlide = activeSlides[activeSlideIndex % slidesCount];
+  // If no dynamic data or no active slides, DO NOT show banner
+  if (!homepageData || slidesCount === 0 || !currentSlide) {
+    return null;
+  }
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -161,22 +229,6 @@ export function Hero() {
       setActiveSlideIndex((prev) => (prev - 1 + slidesCount) % slidesCount);
     }
   };
-
-  // Resolve localized dynamic text for current slide
-  const badgeText =
-    language === "mr"
-      ? currentSlide.badgeMr || currentSlide.badgeEn
-      : currentSlide.badgeEn || currentSlide.badgeMr;
-
-  const headlineText =
-    language === "mr"
-      ? currentSlide.headlineMr || currentSlide.headlineEn
-      : currentSlide.headlineEn || currentSlide.headlineMr;
-
-  const taglineText =
-    language === "mr"
-      ? currentSlide.taglineMr || currentSlide.taglineEn
-      : currentSlide.taglineEn || currentSlide.taglineMr;
 
   const mediaUrl = currentSlide.mediaUrl;
   const isVideoMedia =
@@ -201,12 +253,6 @@ export function Hero() {
       : alignment === "right"
         ? "ml-auto"
         : "mx-auto";
-
-  const showButtons = currentSlide.showButtons !== false;
-  const activeButtons = (currentSlide.buttons || []).filter((b) => b.active !== false);
-
-  const showTags = currentSlide.showTags !== false;
-  const activeTags = (currentSlide.tags || []).filter((t) => t.active !== false);
 
   // Check if current slide has any overlaid text / buttons
   const hasContent = Boolean(
@@ -305,10 +351,10 @@ export function Hero() {
             {headlineText && (
               <h1
                 className={`text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl drop-shadow-md transition-all duration-300 ${alignment === "center"
-                    ? "text-center mx-auto"
-                    : alignment === "right"
-                      ? "text-right ml-auto"
-                      : "text-left mr-auto"
+                  ? "text-center mx-auto"
+                  : alignment === "right"
+                    ? "text-right ml-auto"
+                    : "text-left mr-auto"
                   }`}
               >
                 {headlineText}
@@ -328,10 +374,10 @@ export function Hero() {
             {showButtons && activeButtons.length > 0 && (
               <div
                 className={`mt-8 flex flex-wrap items-center gap-4 ${alignment === "center"
-                    ? "justify-center"
-                    : alignment === "right"
-                      ? "justify-end"
-                      : "justify-start"
+                  ? "justify-center"
+                  : alignment === "right"
+                    ? "justify-end"
+                    : "justify-start"
                   }`}
               >
                 {activeButtons.map((btn, bIdx) => {
@@ -339,6 +385,11 @@ export function Hero() {
                   const colorClass =
                     (btn.color && BUTTON_COLOR_CLASSES[btn.color]) || BUTTON_COLOR_CLASSES.Emerald;
                   const isExternal = btn.url?.startsWith("http");
+                  const btnId = btn.id || `btn-${bIdx}`;
+                  const btnName =
+                    language === "mr"
+                      ? translatedButtonNames[btnId] || btn.name
+                      : btn.name;
 
                   return (
                     <Link
@@ -349,7 +400,7 @@ export function Hero() {
                       className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base hover:-translate-y-0.5 transition-all ${colorClass}`}
                     >
                       <IconComp className="w-5 h-5" />
-                      <span>{btn.name}</span>
+                      <span>{btnName}</span>
                       {isExternal && <ExternalLink className="w-3.5 h-3.5 opacity-80" />}
                     </Link>
                   );
@@ -374,8 +425,8 @@ export function Hero() {
                 onClick={() => setActiveSlideIndex(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`transition-all rounded-full cursor-pointer ${idx === activeSlideIndex % slidesCount
-                    ? "w-8 h-2.5 bg-emerald-400 shadow-md ring-1 ring-white/40"
-                    : "w-2.5 h-2.5 bg-white/60 hover:bg-white shadow-xs"
+                  ? "w-8 h-2.5 bg-emerald-400 shadow-md ring-1 ring-white/40"
+                  : "w-2.5 h-2.5 bg-white/60 hover:bg-white shadow-xs"
                   }`}
               />
             ))}
@@ -387,10 +438,16 @@ export function Hero() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/15 pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs text-emerald-100 font-medium">
             {activeTags.map((tag, tIdx) => {
               const TagIconComponent = (tag.icon && ICON_MAP[tag.icon]) || TagIcon;
+              const tagId = tag.id || `tag-${tIdx}`;
+              const tagName =
+                language === "mr"
+                  ? translatedTagNames[tagId] || tag.name
+                  : tag.name;
+
               return (
                 <div key={tag.id || tIdx} className="flex items-center gap-2">
                   <TagIconComponent className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>{tag.name}</span>
+                  <span>{tagName}</span>
                 </div>
               );
             })}
@@ -400,3 +457,5 @@ export function Hero() {
     </section>
   );
 }
+
+

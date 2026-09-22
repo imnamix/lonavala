@@ -105,7 +105,7 @@ export interface Translations {
     cm: { name: string; position: string; role: string };
     dcm1: { name: string; position: string; role: string };
     dcm2: { name: string; position: string; role: string };
-    mla: { name: string; position: string; role: string };
+    mos: { name: string; position: string; role: string };
   };
   council: {
     badge: string;
@@ -211,7 +211,6 @@ export interface Translations {
     aboutTitle: string;
     aboutSub: string;
     aboutDesc: string;
-    address: string;
     officeHours: string;
     colCitizenServices: string;
     colGrievance: string;
@@ -227,6 +226,29 @@ export interface Translations {
     hyperlinkPolicy: string;
     rtiAct: string;
     sitemap: string;
+  };
+  aboutPage: {
+    breadcrumb: string;
+    badge: string;
+    councilName: string;
+    councilNameMr: string;
+    elevation: string;
+    yearsOfService: string;
+    historyBadge: string;
+    historyTitle: string;
+    historyElevation: string;
+    historyDescDefault: string;
+    estLabel: string;
+    visionTitle: string;
+    visionDefault: string;
+    missionTitle: string;
+    missionDefault: string[];
+    communiqueOfficerNameDefault: string;
+    communiqueDesignationDefault: string;
+    communiqueBadge: string;
+    communiqueTitleDefault: string;
+    communiqueBodyDefault: string;
+    communiqueSignOffDefault: string;
   };
 }
 
@@ -254,7 +276,7 @@ export const translations: Record<Language, Translations> = {
       electedCouncil: "Elected Council",
       electedCouncilDesc: "President, Corporators & Ward details",
       departments: "Departments",
-      court: "Court",
+      court: "Hon. High Court Committee",
       services: "Services",
       grievance: "Grievance",
       registerGrievance: "Register Grievance",
@@ -299,7 +321,8 @@ export const translations: Record<Language, Translations> = {
       councilName: "Lonavala Municipal Council",
       tagline:
         "Empowering citizens with rapid doorstep e-services, transparent 5-step grievance redressal, and eco-friendly Sahyadri hill-station governance.",
-      searchPlaceholder: "Search citizen services, tax payment, forms, tenders...",
+      searchPlaceholder:
+        "Search citizen services, tax payment, forms, tenders...",
       searchBtn: "Search",
       payTax: "Pay Property Tax",
       fileGrievance: "File Grievance",
@@ -363,7 +386,7 @@ export const translations: Record<Language, Translations> = {
         },
       },
     },
-  stateLeadership: {
+    stateLeadership: {
       badge: "State & Regional Leadership",
       title: "Key Dignitaries & People's Representatives",
       subtitle:
@@ -375,18 +398,18 @@ export const translations: Record<Language, Translations> = {
       },
       dcm1: {
         name: "Shri. Eknath Shinde",
-        position: "Hon'ble Deputy Chief Minister, Maharashtra State",
+        position: "Hon'ble Deputy Chief Minister (Urban Development & Housing)",
         role: "Deputy Chief Minister",
       },
       dcm2: {
-        name: "Shri. Ajit Pawar",
-        position: "Hon'ble Deputy Chief Minister, Maharashtra State",
+        name: "Smt. Sunetra Ajit Pawar",
+        position: "Hon'ble Deputy Chief Minister",
         role: "Deputy Chief Minister",
       },
-      mla: {
-        name: "Shri. Sunil Shelke",
-        position: "Hon'ble Member of Legislative Assembly (MLA), Maval-Lonavala",
-        role: "Local MLA",
+      mos: {
+        name: "Smt. Madhuri Misal",
+        position: "Hon'ble Minister of State (Urban Development)",
+        role: "Minister of State",
       },
     },
     council: {
@@ -397,9 +420,9 @@ export const translations: Record<Language, Translations> = {
       presidentDesignation: "President (नगराध्यक्ष)",
       presidentQuote:
         "Ensuring sustainable hill-station infrastructure, transparent governance, and doorstep services for every citizen.",
-      tenure: "Tenure: 2022 - 2027",
+      tenure: "Tenure: 2024 - 2029",
       vpDesignation: "Vice President (उपनगराध्यक्ष)",
-      coDesignation: "Chief Officer / Commissioner (मुख्याधिकारी)",
+      coDesignation: "Chief Officer  (मुख्याधिकारी)",
       viewAllMembers: "View All Corporators & Standing Committees",
     },
     tourism: {
@@ -522,7 +545,8 @@ export const translations: Record<Language, Translations> = {
         "Common queries regarding property tax schedules, water connections, tourism rules, and grievance procedures.",
       items: [
         {
-          question: "How can I pay my Property Tax online and claim the early rebate?",
+          question:
+            "How can I pay my Property Tax online and claim the early rebate?",
           answer:
             "Visit the Services page, select 'Property Tax', enter your Assessment ID or Ward number, review arrears, and pay via Net Banking, UPI, or Credit Card. Payments completed before June 30 receive an automatic 5% rebate.",
         },
@@ -532,12 +556,14 @@ export const translations: Record<Language, Translations> = {
             "Citizens can register grievances via the 5-step Grievance portal or Maha-Lonavala 311 app. Upload a photo, select your ward and category, and submit. You will receive an SMS with a tracking token and guaranteed resolution within 3 to 7 days.",
         },
         {
-          question: "What are the timings and entry rules for Bhushi Dam and Tiger Point?",
+          question:
+            "What are the timings and entry rules for Bhushi Dam and Tiger Point?",
           answer:
             "Bhushi Dam is accessible daily from 09:00 AM to 05:00 PM during the monsoon. Tiger Point remains open until 06:30 PM. Swimming beyond demarcated safety barriers is strictly prohibited by order of the Sub-Divisional Magistrate.",
         },
         {
-          question: "How can I obtain a digitised QR-coded Birth or Death certificate?",
+          question:
+            "How can I obtain a digitised QR-coded Birth or Death certificate?",
           answer:
             "Search by date of event and parent/deceased name in the Health Department portal. Verified certificates can be downloaded instantly with a state government digital signature without visiting the municipal council office.",
         },
@@ -549,16 +575,16 @@ export const translations: Record<Language, Translations> = {
         "Stay informed with weekly municipal updates, property tax rebate announcements, monsoon hill station safety advisories, and council decisions.",
       placeholder: "Enter your email address...",
       subscribeBtn: "Subscribe",
-      thankYou: "Thank you! You have subscribed to the official LMC Civic Bulletin.",
-      privacyNotice: "We respect your privacy. No spam. You may unsubscribe anytime.",
+      thankYou:
+        "Thank you! You have subscribed to the official LMC Civic Bulletin.",
+      privacyNotice:
+        "We respect your privacy. No spam. You may unsubscribe anytime.",
     },
     footer: {
       aboutTitle: "Lonavala Municipal Council",
       aboutSub: "लोणावळा नगरपरिषद",
       aboutDesc:
         "Governing body for the hill-station of Lonavala in Pune district, Maharashtra. Committed to eco-sensitive tourism, modern infrastructure, sustainable waste management, and transparent citizen-centric e-governance.",
-      address:
-        "Administrative Building, Old NH-4, Lonavala, Dist. Pune, Maharashtra - 410401",
       officeHours:
         "Office Hours: Mon - Sat: 09:45 AM - 05:45 PM (2nd & 4th Sat Holiday)",
       colCitizenServices: "Citizen Services",
@@ -576,6 +602,38 @@ export const translations: Record<Language, Translations> = {
       hyperlinkPolicy: "Hyperlink Policy",
       rtiAct: "RTI Act 2005",
       sitemap: "Sitemap",
+    },
+    aboutPage: {
+      breadcrumb: "About Us",
+      badge: "Council Profile",
+      councilName: "Lonavala Municipal Council",
+      councilNameMr: "(लोणावळा नगर परिषद)",
+      elevation: "Located at 622 m (2,041 ft)",
+      yearsOfService: "149+ Years of Civic Service",
+      historyBadge: "Historical Legacy",
+      historyTitle: "Over a Century of Hill-Station Stewardship",
+      historyElevation: "Elevation: 622 m (2,041 ft)",
+      historyDescDefault:
+        "Lonavala was discovered as a hill retreat in 1871 and formally constituted as a Municipality in 1877. Perched in the Sahyadri mountains of the Western Ghats, Lonavala serves as a vital ecological and recreational gateway. Established during the British era, the council has continuously safeguarded the Sahyadri ecosystem while providing essential municipal services across all electoral wards.",
+      estLabel: "Est. 1877",
+      visionTitle: "Our Vision",
+      visionDefault:
+        "To transform Lonavala into India's leading carbon-neutral, clean, and digitally advanced eco-tourism hill station, while preserving its pristine Sahyadri biodiversity and ensuring dignified civic amenities for every resident.",
+      missionTitle: "Our Mission",
+      missionDefault: [
+        "Deliver 100% door-to-door segregated waste processing and plastic-free tourism.",
+        "Provide 24x7 treated potable water supply and eco-conscious underground sewerage.",
+        "Enforce zero-tolerance transparency through time-bound online grievance redressal.",
+        "Preserve and develop eco-tourism trails, heritage viewpoints, and hill lakes with zero ecological degradation.",
+        "Maintain an accountable, corruption-free administrative ecosystem through transparent public e-tenders.",
+      ],
+      communiqueOfficerNameDefault: "Shri. Pandit Patil (State Cadre)",
+      communiqueDesignationDefault: "Chief Officer / Commissioner",
+      communiqueBadge: "Chief Officer's Communiqué",
+      communiqueTitleDefault: "Advancing Citizen-Centric e-Governance",
+      communiqueBodyDefault:
+        "It gives me immense pride to welcome you to the official digital portal of Lonavala Municipal Council. Lonavala has evolved from a serene Sahyadri hill retreat to one of Western India's most visited tourist and residential destinations. Through our digitized portal, we guarantee transparent governance, swift grievance resolution, and paperless citizen services.",
+      communiqueSignOffDefault: "— Office of the Chief Officer, LMC Lonavala",
     },
   },
   mr: {
@@ -601,7 +659,7 @@ export const translations: Record<Language, Translations> = {
       electedCouncil: "लोकप्रतिनिधी व नगरसेवक",
       electedCouncilDesc: "नगराध्यक्ष, उपनगराध्यक्ष व प्रभाग सदस्य",
       departments: "विभाग",
-      court: "न्यायालय",
+      court: "मा. उच्च न्यायालय समिती",
       services: "नागरी सेवा",
       grievance: "तक्रार निवारण",
       registerGrievance: "तक्रार नोंदवा",
@@ -710,7 +768,7 @@ export const translations: Record<Language, Translations> = {
         },
       },
     },
-  stateLeadership: {
+    stateLeadership: {
       badge: "राज्य व प्रादेशिक नेतृत्व",
       title: "प्रमुख शासनकर्ते व लोकप्रतिनिधी",
       subtitle:
@@ -722,18 +780,18 @@ export const translations: Record<Language, Translations> = {
       },
       dcm1: {
         name: "श्री. एकनाथ शिंदे",
-        position: "मा. उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        position: "मा. उपमुख्यमंत्री (नगरविकास व गृहनिर्माण)",
         role: "उपमुख्यमंत्री",
       },
       dcm2: {
-        name: "श्री. अजित पवार",
-        position: "मा. उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        name: "श्रीमती सुनेत्रा अजित पवार",
+        position: "मा. उपमुख्यमंत्री",
         role: "उपमुख्यमंत्री",
       },
-      mla: {
-        name: "श्री. सुनील शेळके",
-        position: "मा. आमदार, मावळ-लोणावळा विधानसभा मतदारसंघ",
-        role: "स्थानिक आमदार",
+      mos: {
+        name: "श्रीमती. माधुरी मिसाळ",
+        position: "मा. राज्यमंत्री (नगरविकास)",
+        role: "राज्यमंत्री",
       },
     },
     council: {
@@ -841,10 +899,16 @@ export const translations: Record<Language, Translations> = {
         "पारदर्शक, गतिमान आणि पर्यावरणपूरक नागरी प्रशासनाचे प्रमुख टप्पे.",
       citizensServed: { label: "नागरिकांना सेवा", sub: "५ प्रभागांमध्ये" },
       resolutionSla: { label: "तक्रार निवारण दर", sub: "सरासरी: ३ दिवस" },
-      annualTourists: { label: "वार्षिक पर्यटक", sub: "सह्याद्रीचे प्रवेशद्वार" },
+      annualTourists: {
+        label: "वार्षिक पर्यटक",
+        sub: "सह्याद्रीचे प्रवेशद्वार",
+      },
       digitalServices: { label: "डिजिटल सेवा", sub: "१००% ऑनलाइन" },
       cleanRank: { label: "स्वच्छ शहर रँक", sub: "स्वच्छ सर्वेक्षण" },
-      protectedArea: { label: "संरक्षित हरित क्षेत्र", sub: "पर्यावरण संवेदनशील क्षेत्र" },
+      protectedArea: {
+        label: "संरक्षित हरित क्षेत्र",
+        sub: "पर्यावरण संवेदनशील क्षेत्र",
+      },
     },
     appPromo: {
       badge: "नागरिक मोबाईल ॲप",
@@ -884,7 +948,8 @@ export const translations: Record<Language, Translations> = {
             "भुशी डॅम पावसाळ्यात सकाळी ०९:०० ते संध्याकाळी ०५:०० पर्यंत सुरू असतो. टायगर पॉईंट संध्याकाळी ०६:३० पर्यंत खुला राहतो. सुरक्षेच्या दृष्टीने कठडे ओलांडून पाण्यात जाण्यास सक्त मनाई आहे.",
         },
         {
-          question: "डिजिटल क्यूआर कोड असलेले जन्म किंवा मृत्यू प्रमाणपत्र कसे मिळवावे?",
+          question:
+            "डिजिटल क्यूआर कोड असलेले जन्म किंवा मृत्यू प्रमाणपत्र कसे मिळवावे?",
           answer:
             "आरोग्य विभागाच्या पोर्टलवर घटनेची तारीख व नाव शोधून अधिकृत डिजिटल स्वाक्षरी असलेले प्रमाणपत्र त्वरित डाउनलोड करू शकता. कार्यालयात येण्याची आवश्यकता नाही.",
         },
@@ -897,15 +962,14 @@ export const translations: Record<Language, Translations> = {
       placeholder: "आपला ईमेल पत्ता प्रविष्ट करा...",
       subscribeBtn: "सदस्यता घ्या",
       thankYou: "धन्यवाद! आपण अधिकृत नागरी बुलेटिनची सदस्यता घेतली आहे.",
-      privacyNotice: "आम्ही आपल्या गोपनीयतेचा आदर करतो. आपण कधीही सदस्यता रद्द करू शकता.",
+      privacyNotice:
+        "आम्ही आपल्या गोपनीयतेचा आदर करतो. आपण कधीही सदस्यता रद्द करू शकता.",
     },
     footer: {
       aboutTitle: "लोणावळा नगरपरिषद",
       aboutSub: "लोणावळा नगरपरिषद • महाराष्ट्र शासन",
       aboutDesc:
         "महाराष्ट्र शासनाच्या अखत्यारीतील लोणावळा पर्यटन शहराचे प्रशासन. पर्यावरणपूरक पर्यटन, आधुनिक पायाभूत सुविधा आणि पारदर्शक ई-प्रशासनासाठी कटिबद्ध.",
-      address:
-        "प्रशासकीय इमारत, जुना राष्ट्रीय महामार्ग क्र. ४, लोणावळा, जि. पुणे, महाराष्ट्र - ४१०४०१",
       officeHours:
         "कार्यालयीन वेळ: सोम - शनि: सकाळी ०९:४५ ते सायं ०५:४५ (२ रा व ४ था शनिवार सुट्टी)",
       colCitizenServices: "नागरी सेवा",
@@ -916,13 +980,44 @@ export const translations: Record<Language, Translations> = {
       emergencyControlRoom: "२४x७ नियंत्रण कक्ष",
       emailHelpdesk: "ईमेल मदत कक्ष",
       tollFreeNumber: "टोल-फ्री हेल्पलाइन",
-      copyright:
-        "© २०२६ लोणावळा नगरपरिषद, महाराष्ट्र शासन. सर्व हक्क राखीव.",
+      copyright: "© २०२६ लोणावळा नगरपरिषद, महाराष्ट्र शासन. सर्व हक्क राखीव.",
       privacyPolicy: "गोपनीयता धोरण",
       termsOfUse: "वापराच्या अटी",
       hyperlinkPolicy: "हायपरलिंक धोरण",
       rtiAct: "माहिती अधिकार २००५",
       sitemap: "साइटमॅप",
+    },
+    aboutPage: {
+      breadcrumb: "नगरपरिषदेविषयी",
+      badge: "परिषद परिचय • माहिती",
+      councilName: "लोणावळा नगरपरिषद",
+      councilNameMr: "(Lonavala Municipal Council)",
+      elevation: "समुद्रसपाटीपासून ६२२ मीटर (२,०४१ फूट) उंचीवर",
+      yearsOfService: "१४९+ वर्षांची अखंड जनसेवा",
+      historyBadge: "ऐतिहासिक वारसा",
+      historyTitle: "शतकोत्तर गौरवशाली परंपरा व पर्यावरण संवर्धन",
+      historyElevation: "उंची: ६२२ मीटर (२,०४१ फूट)",
+      historyDescDefault:
+        "लोणावळा हे १८७१ मध्ये एक निसर्गरम्य पर्यटन स्थळ म्हणून विकसित झाले आणि १८७७ मध्ये औपचारिकपणे नगरपरिषद म्हणून स्थापित झाले. पश्चिम घाटातील सह्याद्रीच्या कुशीत वसलेले लोणावळा हे पर्यटनाचे व जैवविविधतेचे एक अत्यंत महत्त्वाचे केंद्र आहे. स्थापनेपासूनच नगरपरिषदेने सह्याद्रीच्या पर्यावरणाचे रक्षण करत सर्व प्रभागांमध्ये उत्कृष्ट नागरी पायाभूत सुविधा पुरवल्या आहेत.",
+      estLabel: "स्थापना १८७७",
+      visionTitle: "आमचे ध्येय (Vision)",
+      visionDefault:
+        "सह्याद्रीची समृद्ध जैवविविधता जपत, लोणावळ्याला देशातील अग्रगण्य कार्बन-न्यूट्रल, स्वच्छ, डिजिटल व पर्यावरणपूरक पर्यटन आणि राहण्यायोग्य हिल स्टेशन बनवणे.",
+      missionTitle: "आमचे उद्दिष्ट (Mission)",
+      missionDefault: [
+        "१००% घरोघरी कचरा संकलन, वर्गीकरण, वैज्ञानिक प्रक्रिया आणि प्लास्टिकमुक्त पर्यटन राबवणे.",
+        "२४x७ शुद्ध पिण्याच्या पाण्याचा पुरवठा आणि पर्यावरणपूरक भूमिगत मलनिस्सारण व्यवस्था प्रदान करणे.",
+        "वेळोवेळी ऑनलाइन तक्रार निवारणाद्वारे पारदर्शक, गतिमान व नागरिकाभिमुख ई-प्रशासन सुनिश्चित करणे.",
+        "पर्यावरणाचा समतोल राखत भुशी डॅम, तुंगार्ली, वळवण तलाव व ऐतिहासिक पर्यटन स्थळांचे संवर्धन करणे.",
+        "पारदर्शक ई-निविदा आणि लोकाभिमुख कारभारातून जबाबदार व भ्रष्टाचारमुक्त प्रशासकीय व्यवस्था कायम ठेवणे.",
+      ],
+      communiqueOfficerNameDefault: "श्री. पंडित पाटील (राज्य संवर्ग)",
+      communiqueDesignationDefault: "मुख्याधिकारी / प्रशासक",
+      communiqueBadge: "मुख्याधिकाऱ्यांचे मनोगत",
+      communiqueTitleDefault: "नागरिकाभिमुख ई-प्रशासनाचा संकल्प",
+      communiqueBodyDefault:
+        "लोणावळा नगरपरिषदेच्या अधिकृत डिजिटल पोर्टलवर आपले सहर्ष स्वागत करताना मला अत्यंत अभिमान वाटतो. सह्याद्रीच्या कुशीत वसलेले लोणावळा हे पश्चिम भारतातील अग्रगण्य पर्यटन व निवासी केंद्र बनले आहे. या पोर्टलद्वारे आम्ही पारदर्शक कारभार, जलद तक्रार निवारण आणि कागदविरहित नागरी सेवा पुरवण्यासाठी कटिबद्ध आहोत.",
+      communiqueSignOffDefault: "— मुख्याधिकारी कार्यालय, लोणावळा नगरपरिषद",
     },
   },
   hi: {
@@ -948,7 +1043,7 @@ export const translations: Record<Language, Translations> = {
       electedCouncil: "निर्वाचित परिषद व पार्षद",
       electedCouncilDesc: "अध्यक्ष, उपाध्यक्ष एवं वार्ड पार्षद",
       departments: "विभाग",
-      court: "न्यायालय",
+      court: "मा. उच्च न्यायालय समिति",
       services: "नागरिक सेवाएं",
       grievance: "शिकायत निवारण",
       registerGrievance: "शिकायत दर्ज करें",
@@ -993,7 +1088,8 @@ export const translations: Record<Language, Translations> = {
       councilName: "लोनावला नगर परिषद",
       tagline:
         "त्वरित नागरिक ई-सेवाओं, पारदर्शी ५-चरणीय शिकायत निवारण और सह्याद्री के पर्यावरण-अनुकूल शासन के साथ नागरिकों का सशक्तिकरण।",
-      searchPlaceholder: "नागरिक सेवाएं, कर भुगतान, जन्म प्रमाण पत्र, निविदाएं खोजें...",
+      searchPlaceholder:
+        "नागरिक सेवाएं, कर भुगतान, जन्म प्रमाण पत्र, निविदाएं खोजें...",
       searchBtn: "खोजें",
       payTax: "संपत्ति कर भरें",
       fileGrievance: "शिकायत दर्ज करें",
@@ -1057,7 +1153,7 @@ export const translations: Record<Language, Translations> = {
         },
       },
     },
-  stateLeadership: {
+    stateLeadership: {
       badge: "राज्य एवं क्षेत्रीय नेतृत्व",
       title: "प्रमुख शासनकर्ता एवं जनप्रतिनिधि",
       subtitle:
@@ -1069,18 +1165,18 @@ export const translations: Record<Language, Translations> = {
       },
       dcm1: {
         name: "श्री एकनाथ शिंदे",
-        position: "माननीय उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        position: "माननीय उपमुख्यमंत्री (नगर विकास एवं आवास)",
         role: "उपमुख्यमंत्री",
       },
       dcm2: {
-        name: "श्री अजित पवार",
-        position: "माननीय उपमुख्यमंत्री, महाराष्ट्र राज्य",
+        name: "श्रीमती सुनेत्रा अजित पवार",
+        position: "माननीय उपमुख्यमंत्री",
         role: "उपमुख्यमंत्री",
       },
-      mla: {
-        name: "श्री सुनील शेळके",
-        position: "माननीय विधायक, मावल-लोनावला विधानसभा क्षेत्र",
-        role: "स्थानीय विधायक",
+      mos: {
+        name: "श्रीमती माधुरी मिसाळ",
+        position: "माननीय राज्यमंत्री (नगर विकास)",
+        role: "राज्यमंत्री",
       },
     },
     council: {
@@ -1188,10 +1284,16 @@ export const translations: Record<Language, Translations> = {
         "पारदर्शी, त्वरित और पर्यावरण-अनुकूल नागरिक प्रशासन के प्रमुख मील के पत्थर।",
       citizensServed: { label: "नागरिक सेवाएं", sub: "५ वार्डों में" },
       resolutionSla: { label: "शिकायत निवारण दर", sub: "औसत: ३ दिन" },
-      annualTourists: { label: "वार्षिक पर्यटक", sub: "सह्याद्री का प्रवेश द्वार" },
+      annualTourists: {
+        label: "वार्षिक पर्यटक",
+        sub: "सह्याद्री का प्रवेश द्वार",
+      },
       digitalServices: { label: "डिजिटल सेवाएं", sub: "१००% ऑनलाइन" },
       cleanRank: { label: "स्वच्छ शहर रैंक", sub: "स्वच्छ सर्वेक्षण" },
-      protectedArea: { label: "संरक्षित हरित क्षेत्र", sub: "पर्यावरण संवेदनशील क्षेत्र" },
+      protectedArea: {
+        label: "संरक्षित हरित क्षेत्र",
+        sub: "पर्यावरण संवेदनशील क्षेत्र",
+      },
     },
     appPromo: {
       badge: "नागरिक मोबाइल ऐप",
@@ -1216,7 +1318,8 @@ export const translations: Record<Language, Translations> = {
         "संपत्ति कर, जल कर, पर्यटन नियम और शिकायत निवारण से संबंधित सभी उत्तर।",
       items: [
         {
-          question: "मैं संपत्ति कर ऑनलाइन कैसे भर सकता हूं और छूट कैसे मिलेगी?",
+          question:
+            "मैं संपत्ति कर ऑनलाइन कैसे भर सकता हूं और छूट कैसे मिलेगी?",
           answer:
             "नागरिक सेवा पृष्ठ पर जाकर 'संपत्ति कर' चुनें, अपना वार्ड एवं संपत्ति संख्या दर्ज करें और नेट बैंकिंग, यूपीआई या कार्ड से भुगतान करें। ३० जून से पहले भुगतान करने पर ५% की सीधी छूट मिलती है।",
         },
@@ -1231,7 +1334,8 @@ export const translations: Record<Language, Translations> = {
             "भुशी बांध मानसून में सुबह ०९:०० से शाम ०५:०० बजे तक खुला रहता है। टाइगर पॉइंट शाम ०६:३० बजे तक खुला रहता है। सुरक्षा की दृष्टि से रेलिंग पार कर पानी में जाना सख्त मना है।",
         },
         {
-          question: "डिजिटल क्यूआर कोड युक्त जन्म या मृत्यु प्रमाण पत्र कैसे प्राप्त करें?",
+          question:
+            "डिजिटल क्यूआर कोड युक्त जन्म या मृत्यु प्रमाण पत्र कैसे प्राप्त करें?",
           answer:
             "स्वास्थ्य विभाग के पोर्टल पर घटना की तिथि व नाम खोजकर आधिकारिक डिजिटल हस्ताक्षर युक्त प्रमाण पत्र तुरंत डाउनलोड कर सकते हैं। कार्यालय आने की आवश्यकता नहीं है।",
         },
@@ -1244,15 +1348,14 @@ export const translations: Record<Language, Translations> = {
       placeholder: "अपना ईमेल पता दर्ज करें...",
       subscribeBtn: "सदस्यता लें",
       thankYou: "धन्यवाद! आपने आधिकारिक नागरिक बुलेटिन की सदस्यता ले ली है।",
-      privacyNotice: "हम आपकी गोपनीयता का सम्मान करते हैं। आप कभी भी अनसब्सक्राइब कर सकते हैं।",
+      privacyNotice:
+        "हम आपकी गोपनीयता का सम्मान करते हैं। आप कभी भी अनसब्सक्राइब कर सकते हैं।",
     },
     footer: {
       aboutTitle: "लोनावला नगर परिषद",
       aboutSub: "लोनावला नगर परिषद • महाराष्ट्र सरकार",
       aboutDesc:
         "महाराष्ट्र सरकार के अंतर्गत लोनावला पर्यटन शहर का प्रशासन। पर्यावरण-अनुकूल पर्यटन, आधुनिक बुनियादी ढांचा और पारदर्शी ई-प्रशासन के लिए समर्पित।",
-      address:
-        "प्रशासनिक भवन, पुराना राष्ट्रीय राजमार्ग क्र. ४, लोनावला, जिला पुणे, महाराष्ट्र - ४१०४०१",
       officeHours:
         "कार्यालय समय: सोम - शनि: सुबह ०९:४५ से शाम ०५:४५ (दूसरा एवं चौथा शनिवार अवकाश)",
       colCitizenServices: "नागरिक सेवाएं",
@@ -1270,6 +1373,38 @@ export const translations: Record<Language, Translations> = {
       hyperlinkPolicy: "हाइपरलिंक नीति",
       rtiAct: "सूचना का अधिकार २००५",
       sitemap: "साइटमैप",
+    },
+    aboutPage: {
+      breadcrumb: "नगर परिषद के बारे में",
+      badge: "परिषद परिचय • जानकारी",
+      councilName: "लोनावला नगर परिषद",
+      councilNameMr: "(Lonavala Municipal Council)",
+      elevation: "समुद्र तल से ६२२ मीटर (२,०४१ फीट) ऊंचाई पर",
+      yearsOfService: "१४९+ वर्षों की निरंतर जनसेवा",
+      historyBadge: "ऐतिहासिक विरासत",
+      historyTitle: "एक सदी से अधिक की गौरवशाली परंपरा व पर्यावरण संरक्षण",
+      historyElevation: "ऊंचाई: ६२२ मीटर (२,०४१ फीट)",
+      historyDescDefault:
+        "लोनावला को १८७१ में एक हिल स्टेशन के रूप में विकसित किया गया और १८७७ में औपचारिक रूप से नगरपालिका के रूप में स्थापित किया गया। पश्चिमी घाट के सह्याद्री पर्वतमाला में स्थित लोनावला पर्यटन और जैव विविधता का एक महत्वपूर्ण केंद्र है।",
+      estLabel: "स्थापना १८७७",
+      visionTitle: "हमारा विजन",
+      visionDefault:
+        "सह्याद्री की जैव विविधता का संरक्षण करते हुए, लोनावला को भारत का अग्रणी कार्बन-न्यूट्रल, स्वच्छ, डिजिटल और पर्यावरण-अनुकूल पर्यटन हिल स्टेशन बनाना।",
+      missionTitle: "हमारा मिशन",
+      missionDefault: [
+        "१००% घर-घर कचरा संग्रहण, पृथक्करण और प्लास्टिक मुक्त पर्यटन सुनिश्चित करना।",
+        "२४x७ शुद्ध पेयजल आपूर्ति और भूमिगत सीवरेज प्रणाली प्रदान करना।",
+        "समयबद्ध ऑनलाइन शिकायत निवारण के माध्यम से पारदर्शी ई-प्रशासन सुनिश्चित करना।",
+        "पारिस्थितिकी संतुलन बनाए रखते हुए ऐतिहासिक पर्यटन स्थलों और झीलों का संरक्षण करना।",
+        "पारदर्शी ई-निविदाओं के माध्यम से जवाबदेह प्रशासनिक व्यवस्था बनाए रखना।",
+      ],
+      communiqueOfficerNameDefault: "श्री पंडित पाटिल (राज्य संवर्ग)",
+      communiqueDesignationDefault: "मुख्याधिकारी / प्रशासक",
+      communiqueBadge: "मुख्याधिकारी का संदेश",
+      communiqueTitleDefault: "नागरिक केंद्रित ई-प्रशासन का संकल्प",
+      communiqueBodyDefault:
+        "लोनावला नगर परिषद के आधिकारिक डिजिटल पोर्टल पर आपका स्वागत करते हुए मुझे अत्यंत गर्व हो रहा है। इस पोर्टल के माध्यम से हम पारदर्शी प्रशासन, त्वरित शिकायत निवारण और पेपरलेस नागरिक सेवाएं प्रदान करने के लिए प्रतिबद्ध हैं।",
+      communiqueSignOffDefault: "— मुख्याधिकारी कार्यालय, लोनावला नगर परिषद",
     },
   },
 };

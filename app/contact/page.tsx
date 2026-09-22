@@ -23,12 +23,13 @@ import {
   MessageSquare,
   Loader2,
 } from "lucide-react";
-import { DEPARTMENTS } from "@/data/mockData";
 import {
   getContactsData,
   EmergencyContact,
   MunicipalHq,
 } from "@/lib/services/contacts.service";
+import { getAllDepartments } from "@/lib/services/department.service";
+import { Department } from "@/types";
 
 const ICON_MAP: { [key: string]: any } = {
   ShieldAlert,
@@ -83,11 +84,13 @@ export default function ContactPage() {
     mapEmbedUrl: "",
   });
 
+  const [departmentsList, setDepartmentsList] = useState<Department[]>([]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    department: DEPARTMENTS[0].name,
+    department: "General Administration",
     message: "",
   });
 
@@ -111,7 +114,24 @@ export default function ContactPage() {
         setLoading(false);
       }
     }
+
+    async function loadDepts() {
+      try {
+        const depts = await getAllDepartments({ isActive: true });
+        if (depts && depts.length > 0) {
+          setDepartmentsList(depts);
+          setFormData((prev) => ({
+            ...prev,
+            department: prev.department === "General Administration" ? depts[0].name : prev.department,
+          }));
+        }
+      } catch (err) {
+        console.warn("Could not load departments for contact dropdown:", err);
+      }
+    }
+
     loadContacts();
+    loadDepts();
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -279,11 +299,15 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                       className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl focus:outline-hidden focus:border-primary"
                     >
-                      {DEPARTMENTS.map((d) => (
-                        <option key={d.id} value={d.name}>
-                          {d.name}
-                        </option>
-                      ))}
+                      {departmentsList.length > 0 ? (
+                        departmentsList.map((d) => (
+                          <option key={d.id} value={d.name}>
+                            {d.name}
+                          </option>
+                        ))
+                      ) : (
+                        <option value="General Administration">General Administration</option>
+                      )}
                     </select>
                   </div>
                 </div>

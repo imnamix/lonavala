@@ -197,7 +197,7 @@ export function TourismTable() {
                     <Compass className="w-8 h-8 mx-auto mb-2 text-gray-300" />
                     <p className="font-semibold text-gray-600">No tourism destinations found</p>
                     <p className="text-[11px] text-gray-400 mt-0.5">
-                      {searchQuery ? "Try refining your search query" : "Click '+ Add Destination' to create one"}
+                      {searchQuery ? "Try refining your search query" : "Click 'Add Destination' to create one"}
                     </p>
                   </td>
                 </tr>
@@ -210,9 +210,8 @@ export function TourismTable() {
                     <tr
                       key={dest.id}
                       onClick={() => router.push(`/admin/content/tourism/${dest.id}`)}
-                      className={`hover:bg-primary-light/50 transition-colors cursor-pointer group ${
-                        isDeleting ? "opacity-50 pointer-events-none" : ""
-                      }`}
+                      className={`hover:bg-primary-light/50 transition-colors cursor-pointer group ${isDeleting ? "opacity-50 pointer-events-none" : ""
+                        }`}
                     >
                       {/* Index & Thumbnail */}
                       <td className="py-3.5 px-4 whitespace-nowrap">
@@ -279,11 +278,10 @@ export function TourismTable() {
                           type="button"
                           disabled={isToggling}
                           onClick={(e) => handleToggleActive(dest.id, e)}
-                          className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${
-                            dest.active
+                          className={`text-[10px] font-bold px-2.5 py-1 rounded-full cursor-pointer transition-colors ${dest.active
                               ? "bg-primary text-white hover:bg-primary-hover"
                               : "bg-gray-100 text-gray-400 hover:bg-gray-200"
-                          } ${isToggling ? "opacity-60 cursor-wait" : ""}`}
+                            } ${isToggling ? "opacity-60 cursor-wait" : ""}`}
                         >
                           {isToggling ? "..." : dest.active ? "● Active" : "○ Inactive"}
                         </button>

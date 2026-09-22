@@ -121,11 +121,11 @@ export function AboutContentEditor() {
           data.mission && data.mission.length > 0
             ? data.mission
             : [
-                "Deliver 100% door-to-door segregated waste processing and plastic-free tourism.",
-                "Provide 24x7 treated potable water supply and eco-conscious underground sewerage.",
-                "Enforce zero-tolerance transparency through time-bound online grievance redressal.",
-                "Promote green building regulations and protect Sahyadri forest watersheds.",
-              ],
+              "Deliver 100% door-to-door segregated waste processing and plastic-free tourism.",
+              "Provide 24x7 treated potable water supply and eco-conscious underground sewerage.",
+              "Enforce zero-tolerance transparency through time-bound online grievance redressal.",
+              "Promote green building regulations and protect Sahyadri forest watersheds.",
+            ],
       });
 
       setCommunique({
@@ -620,7 +620,7 @@ export function AboutContentEditor() {
                 type="text"
                 value={communique.designation}
                 onChange={(e) => setCommunique({ ...communique, designation: e.target.value })}
-                placeholder="e.g. Chief Officer / Commissioner (मुख्याधिकारी)"
+                placeholder="e.g. Chief Officer  (मुख्याधिकारी)"
                 className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl"
               />
             </div>
@@ -819,8 +819,8 @@ export function AboutContentEditor() {
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-primary-light flex items-center justify-center text-primary font-bold">
                   {previewModalUrl.includes("/video/") ||
-                  previewModalUrl.endsWith(".mp4") ||
-                  previewModalUrl.endsWith(".webm") ? (
+                    previewModalUrl.endsWith(".mp4") ||
+                    previewModalUrl.endsWith(".webm") ? (
                     <Video className="w-4 h-4" />
                   ) : (
                     <ImageIcon className="w-4 h-4" />

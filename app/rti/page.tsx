@@ -21,7 +21,7 @@ export default function RtiRtsPage() {
     {
       role: "First Appellate Authority (प्रथम अपिलीय अधिकारी)",
       name: "Shri. Pandit Patil",
-      designation: "Chief Officer / Commissioner",
+      designation: "Chief Officer ",
       phone: "+91 2114 273032",
       email: "co@lonavalamc.gov.in",
       location: "Office of the Chief Officer, LMC Administrative Building",

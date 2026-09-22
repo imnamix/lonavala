@@ -51,7 +51,7 @@ export default function AdminUsersPage() {
     { module: "Dashboard KPI View", superAdmin: true, contentAdmin: true, grievanceOfficer: true, deptOfficer: true, readOnly: true },
     { module: "Manage Grievance Tickets", superAdmin: true, contentAdmin: false, grievanceOfficer: true, deptOfficer: true, readOnly: false },
     { module: "Assign Grievance Officers", superAdmin: true, contentAdmin: false, grievanceOfficer: true, deptOfficer: false, readOnly: false },
-    { module: "Publish Public Notices & Gazettes", superAdmin: true, contentAdmin: true, grievanceOfficer: false, deptOfficer: false, readOnly: false },
+    { module: "Publish Public Notices", superAdmin: true, contentAdmin: true, grievanceOfficer: false, deptOfficer: false, readOnly: false },
     { module: "Edit Department Profiles", superAdmin: true, contentAdmin: true, grievanceOfficer: false, deptOfficer: false, readOnly: false },
     { module: "Modify Project Progress", superAdmin: true, contentAdmin: true, grievanceOfficer: false, deptOfficer: true, readOnly: false },
     { module: "Export Financial Analytics", superAdmin: true, contentAdmin: false, grievanceOfficer: false, deptOfficer: false, readOnly: false },

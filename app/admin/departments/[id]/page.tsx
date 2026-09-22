@@ -1,10 +1,7 @@
 import { DepartmentForm } from "@/components/admin/departments/DepartmentForm";
-import { INITIAL_DEPARTMENTS } from "@/data/departmentData";
 
 export function generateStaticParams() {
-  return INITIAL_DEPARTMENTS.map((dept) => ({
-    id: dept.slug,
-  }));
+  return [];
 }
 
 interface PageProps {

@@ -29,7 +29,7 @@ async function request<T>(
   const url = `${API_BASE_URL}${cleanEndpoint}`;
 
   const isFormData = typeof FormData !== 'undefined' && options.body instanceof FormData;
-  
+
   let authToken: string | null = null;
   if (typeof window !== 'undefined') {
     authToken = localStorage.getItem('lmc_admin_token');

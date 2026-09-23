@@ -17,7 +17,7 @@ export function PublicLayoutWrapper({ children }: { children: React.ReactNode })
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 text-slate-900">
       <Navbar />
-      <main className="grow pt-[76px] sm:pt-[84px]">{children}</main>
+      <main className="grow pt-[88px] sm:pt-[96px]">{children}</main>
       <Footer />
       <WhatsAppVisitor />
       <ScrollToTop />

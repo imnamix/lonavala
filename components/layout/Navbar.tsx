@@ -188,8 +188,8 @@ export function Navbar() {
               </div>
             </Link>
 
-            {/* Middle: Desktop Nav Links - Centered */}
-            <div className="hidden lg:flex items-center justify-center flex-1 min-w-0 mx-1 xl:mx-2 gap-0.5 xl:gap-1">
+            {/* Middle: Desktop Nav Links - Centered (visible on xl screens and above) */}
+            <div className="hidden xl:flex items-center justify-center flex-1 min-w-0 mx-2 2xl:mx-4 gap-1 2xl:gap-2">
               {navLinks.map((link) => {
                 if (link.dropdown) {
                   const isCurrentGroup = link.dropdown.some(
@@ -203,7 +203,7 @@ export function Navbar() {
                       onMouseLeave={() => setOpenDropdown(null)}
                     >
                       <button
-                        className={`h-9 inline-flex items-center gap-1 px-2 xl:px-2.5 text-[11px] xl:text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 ${
+                        className={`h-9 inline-flex items-center gap-1 px-2.5 2xl:px-3 text-xs 2xl:text-sm font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 cursor-pointer ${
                           isCurrentGroup || openDropdown === link.name
                             ? "text-emerald-800 bg-emerald-50/90 font-bold"
                             : "text-slate-700 hover:text-emerald-700 hover:bg-slate-100/80"
@@ -250,7 +250,7 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`h-9 inline-flex items-center px-2 xl:px-2.5 text-[11px] xl:text-xs rounded-xl transition-all whitespace-nowrap shrink-0 ${
+                    className={`h-9 inline-flex items-center px-2.5 2xl:px-3 text-xs 2xl:text-sm rounded-xl transition-all whitespace-nowrap shrink-0 ${
                       isActive
                         ? "text-emerald-800 bg-emerald-50 font-bold border border-emerald-200/70 shadow-2xs"
                         : "text-slate-700 font-semibold hover:text-emerald-700 hover:bg-slate-100/80"
@@ -263,7 +263,7 @@ export function Navbar() {
             </div>
 
             {/* Right Action Icons & Buttons */}
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-2 shrink-0 ml-auto xl:ml-0">
               {/* Citizen Portal / Dashboard Button */}
               <Link
                 href={citizen ? "/citizen/dashboard" : "/login"}
@@ -290,10 +290,10 @@ export function Navbar() {
                 )}
               </Link>
 
-              {/* Mobile Hamburger Button */}
+              {/* Mobile / Tablet Hamburger Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden h-9 w-9 inline-flex items-center justify-center rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-hidden"
+                className="xl:hidden h-9 w-9 inline-flex items-center justify-center rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-hidden cursor-pointer"
                 aria-label="Toggle Navigation Menu"
               >
                 {mobileMenuOpen ? (
@@ -306,9 +306,9 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu Drawer */}
+        {/* Mobile / Tablet Menu Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white/98 backdrop-blur-2xl border-b border-slate-200 shadow-2xl max-h-[85vh] overflow-y-auto px-4 pt-3 pb-6 animate-in slide-in-from-top-4 duration-200">
+          <div className="xl:hidden bg-white/98 backdrop-blur-2xl border-b border-slate-200 shadow-2xl max-h-[85vh] overflow-y-auto px-4 pt-3 pb-6 animate-in slide-in-from-top-4 duration-200">
             <div className="space-y-1">
               {navLinks.map((link) => {
                 if (link.dropdown) {

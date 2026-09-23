@@ -219,11 +219,10 @@ export function StateLeadership() {
               style={{
                 transitionDelay: `${index * 140}ms`,
               }}
-              className={`bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 py-3.5 px-4 sm:py-4 sm:px-5 text-center flex flex-col items-center justify-center transition-all duration-700 ease-out transform ${
-                isVisible
+              className={`bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 py-3.5 px-4 sm:py-4 sm:px-5 text-center flex flex-col items-center justify-center transition-all duration-700 ease-out transform ${isVisible
                   ? "opacity-100 translate-y-0 scale-100"
                   : "opacity-0 translate-y-8 scale-95"
-              } hover:shadow-2xl hover:-translate-y-2 group cursor-default`}
+                } hover:shadow-2xl hover:-translate-y-2 group cursor-default`}
             >
               {/* Dignitary Portrait with Classic Gold Frame */}
               <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-[120px] md:h-[120px] relative border-[3.5px] sm:border-[4px] border-[#B89658] bg-slate-50 shadow-sm mb-2.5 sm:mb-3 overflow-hidden rounded-xs group-hover:border-[#c9a765] group-hover:shadow-md transition-all duration-300">
@@ -255,11 +254,10 @@ export function StateLeadership() {
         {/* 2. Side-by-Side Row: Sunil Shelke (Left 66%) & Important Updates (Right 33% Compact) */}
         <div
           style={{ transitionDelay: "560ms" }}
-          className={`mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch transition-all duration-700 ease-out transform ${
-            isVisible
+          className={`mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch transition-all duration-700 ease-out transform ${isVisible
               ? "opacity-100 translate-y-0 scale-100"
               : "opacity-0 translate-y-8 scale-95"
-          }`}
+            }`}
         >
           {/* LEFT: Local MLA Sunil Shelke Profile Card (66% Width) */}
           <div className="lg:col-span-8 bg-white rounded-3xl shadow-xl shadow-slate-900/10 border border-slate-100 p-5 sm:p-6 flex flex-col justify-between hover:shadow-2xl transition-all">

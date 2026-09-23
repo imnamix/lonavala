@@ -34,6 +34,10 @@ export function Footer() {
         .join(", ")
     : "";
 
+  const officeHoursText = hq?.workingHours
+    ? `${hq.workingHours}${hq.workingHoursNote ? ` ${hq.workingHoursNote.startsWith("(") ? hq.workingHoursNote : `(${hq.workingHoursNote})`}` : ""}`
+    : "";
+
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-emerald-600/30 relative overflow-hidden">
       {/* Subtle background ambient radial gradient */}
@@ -67,15 +71,20 @@ export function Footer() {
             </p>
             <div className="pt-2 text-xs text-slate-400 space-y-2">
               {address && (
-                <p className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                  {address}
+                <p className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <span>{address}</span>
                 </p>
               )}
-              <p className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
-                {dict.footer.officeHours}
-              </p>
+              {officeHoursText && (
+                <p className="flex items-start gap-2">
+                  <Clock className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-slate-300 font-semibold">Office Hours:</strong>{" "}
+                    {officeHoursText}
+                  </span>
+                </p>
+              )}
             </div>
           </div>
 

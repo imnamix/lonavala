@@ -28,17 +28,23 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import { getStoredGrievances } from "@/data/grievanceStore";
+import { getAllGrievances, GrievanceItem } from "@/lib/services/citizen.service";
 import { getAllNotices } from "@/lib/services/notice.service";
 import { getAllDepartments } from "@/lib/services/department.service";
 
 export default function AdminDashboardPage() {
-  const grievances = getStoredGrievances();
+  const [grievances, setGrievances] = useState<GrievanceItem[]>([]);
   const [noticesCount, setNoticesCount] = useState<number>(0);
   const [departmentsCount, setDepartmentsCount] = useState<number>(0);
 
   useEffect(() => {
     async function loadData() {
+      try {
+        const res = await getAllGrievances();
+        setGrievances(res.data || []);
+      } catch (err) {
+        console.warn("Could not fetch grievances for admin dashboard:", err);
+      }
       try {
         const notices = await getAllNotices();
         setNoticesCount(notices.length);
@@ -57,9 +63,10 @@ export default function AdminDashboardPage() {
 
   const totalGrievances = grievances.length;
   const resolvedCount = grievances.filter(
-    (g) => g.status === "Resolved" || g.status === "Closed"
+    (g) => g.status === "RESOLVED" || g.status === "CLOSED"
   ).length;
   const openCount = totalGrievances - resolvedCount;
+
 
   const topCards = [
     {
@@ -347,15 +354,15 @@ export default function AdminDashboardPage() {
               <div key={g.id} className="py-3.5 flex items-start justify-between gap-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-primary">{g.refNumber}</span>
+                    <span className="font-mono font-bold text-primary">{g.ticketNumber}</span>
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
                       {g.status}
                     </span>
-                    <span className="text-[10px] font-semibold text-gray-500">{g.department}</span>
+                    <span className="text-[10px] font-semibold text-gray-500">{g.assignedDepartment || g.category}</span>
                   </div>
                   <h4 className="font-bold text-text-primary leading-snug">{g.title}</h4>
                   <div className="text-[11px] text-gray-500 truncate">
-                    Citizen: {g.citizenName} ({g.citizenMobile}) • {g.ward}
+                    Citizen: {g.citizen?.name || "Citizen"} {g.citizen?.phone ? `(${g.citizen.phone})` : ""} • {g.address || `Ward ${g.wardNumber || 1}`}
                   </div>
                 </div>
 

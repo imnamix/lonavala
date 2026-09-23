@@ -25,11 +25,10 @@ export default function HomePage() {
       {/* 4. Quick Citizen Services (8 icon cards) */}
       <QuickServices />
 
-
-      {/* 4. Tourism Highlights */}
+      {/* 5. Tourism Highlights */}
       <TourismHighlights />
 
-      {/* 5, 6, 7. Important Notices, Latest News & Events */}
+      {/* 7. Important Notices, Latest News & Events */}
       <NoticeBoard />
 
       {/* 8. Ongoing Projects */}

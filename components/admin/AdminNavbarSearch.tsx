@@ -26,6 +26,7 @@ import {
   Sparkles,
   Scale,
   Calendar,
+  Megaphone,
 } from "lucide-react";
 
 export interface SearchableModule {
@@ -48,6 +49,15 @@ const MODULES_LIST: SearchableModule[] = [
     icon: LayoutDashboard,
     keywords: ["dashboard", "home", "analytics", "overview", "stats", "metrics"],
     description: "Main administrative overview and portal summary",
+  },
+  {
+    id: "important-updates",
+    name: "Important Updates & Tags",
+    category: "Announcements & Alerts",
+    href: "/admin/updates",
+    icon: Megaphone,
+    keywords: ["updates", "tag", "announcement", "alert", "notice", "marquee", "banner", "breaking", "important"],
+    description: "Manage homepage tags, alerts, and click action behaviors",
   },
   {
     id: "grievances",

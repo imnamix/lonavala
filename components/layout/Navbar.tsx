@@ -22,13 +22,37 @@ import {
 } from "lucide-react";
 import { EmergencyBanner } from "./EmergencyBanner";
 import { useLanguage } from "@/context/LanguageContext";
+import {
+  isCitizenLoggedIn,
+  getCitizenData,
+  CitizenProfile,
+} from "@/lib/services/citizen.service";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [citizen, setCitizen] = useState<CitizenProfile | null>(null);
   const pathname = usePathname();
   const { dict } = useLanguage();
+
+  useEffect(() => {
+    const updateCitizen = () => {
+      if (isCitizenLoggedIn()) {
+        setCitizen(getCitizenData());
+      } else {
+        setCitizen(null);
+      }
+    };
+    updateCitizen();
+
+    window.addEventListener("citizen-auth-change", updateCitizen);
+    window.addEventListener("storage", updateCitizen);
+    return () => {
+      window.removeEventListener("citizen-auth-change", updateCitizen);
+      window.removeEventListener("storage", updateCitizen);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,11 +121,7 @@ export function Navbar() {
           href: "/tenders",
           desc: dict.nav.tendersDesc,
         },
-        {
-          name: dict.nav.recruitment,
-          href: "/recruitment",
-          desc: dict.nav.recruitmentDesc,
-        },
+       
         {
           name: dict.nav.ongoingProjects,
           href: "/projects",
@@ -244,15 +264,30 @@ export function Navbar() {
 
             {/* Right Action Icons & Buttons */}
             <div className="flex items-center gap-2 shrink-0">
-              {/* Citizen Login Button */}
+              {/* Citizen Portal / Dashboard Button */}
               <Link
-                href="/login"
-                className="inline-flex h-9 items-center gap-1.5 px-3 sm:px-3.5 text-xs font-bold rounded-xl border border-slate-300 bg-white hover:bg-emerald-50 hover:border-emerald-300 text-slate-700 hover:text-emerald-700 transition-all shadow-2xs active:scale-95 shrink-0 whitespace-nowrap"
+                href={citizen ? "/citizen/dashboard" : "/login"}
+                className={`inline-flex h-9 items-center gap-1.5 px-3 sm:px-3.5 text-xs font-bold rounded-xl border transition-all shadow-2xs active:scale-95 shrink-0 whitespace-nowrap ${
+                  citizen
+                    ? "border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100/80"
+                    : "border-slate-300 bg-white hover:bg-emerald-50 hover:border-emerald-300 text-slate-700 hover:text-emerald-700"
+                }`}
               >
-                <UserCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                {citizen?.profilePicture ? (
+                  <img
+                    src={citizen.profilePicture}
+                    alt={citizen.name || "Citizen"}
+                    className="w-4 h-4 rounded-full object-cover shrink-0 border border-emerald-300"
+                  />
+                ) : (
+                  <UserCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                )}
                 <span className="inline whitespace-nowrap">
-                  {dict.nav.citizenPortal}
+                  {citizen ? (citizen.name ? citizen.name.split(" ")[0] : "Citizen Panel") : dict.nav.citizenPortal}
                 </span>
+                {citizen && (
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
+                )}
               </Link>
 
               {/* Mobile Hamburger Button */}
@@ -317,6 +352,17 @@ export function Navbar() {
               })}
 
               <div className="pt-3 border-t border-slate-200 mt-2 space-y-2">
+                <Link
+                  href={citizen ? "/citizen/dashboard" : "/login"}
+                  className={`flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold rounded-xl border ${
+                    citizen
+                      ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                      : "bg-white text-slate-700 border-slate-300"
+                  }`}
+                >
+                  <UserCheck className="w-4 h-4 text-emerald-600" />
+                  <span>{citizen ? `Citizen Panel (${citizen.name || citizen.phone})` : dict.nav.citizenPortal}</span>
+                </Link>
                 <Link
                   href="/grievance/register"
                   className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold rounded-xl bg-gradient-to-r from-emerald-700 to-teal-700 text-white shadow-sm"

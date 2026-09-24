@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { CouncilMember } from "@/types";
 import { getCouncilMembers } from "@/lib/services/council.service";
 import { useLanguage } from "@/context/LanguageContext";
-
+import { getCachedData } from "@/lib/swr-cache";
 import { useAutoTranslate } from "@/hooks/useAutoTranslation";
 
 function CouncilLeaderCard({
@@ -75,13 +75,17 @@ function CouncilLeaderCard({
 
 export function CouncilOverview() {
   const { dict, language } = useLanguage();
-  const [members, setMembers] = useState<CouncilMember[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [members, setMembers] = useState<CouncilMember[]>(() => {
+    return getCachedData<CouncilMember[]>("council_members_active=true") || [];
+  });
+  const [loading, setLoading] = useState<boolean>(() => {
+    const cached = getCachedData<CouncilMember[]>("council_members_active=true");
+    return !cached || cached.length === 0;
+  });
 
   useEffect(() => {
     async function load() {
       try {
-        setLoading(true);
         const live = await getCouncilMembers({ active: true });
         if (live && live.length > 0) {
           setMembers(live);
@@ -95,94 +99,78 @@ export function CouncilOverview() {
     load();
   }, []);
 
-  const defaultPresident: CouncilMember = {
-    id: "pres-default",
-    name: "Rajendra Babanrao Sonavane",
-    marathiName: "श्री. राजेंद्र बबनराव सोनावणे",
-    designation: "Council President (नगराध्यक्ष)",
-    roleCategory: "President",
-    ward: "Municipal Council",
-    tenure: "2024 - 2029",
-    phone: "9422350846",
-    email: "sonavanerajendra1961@gmail.com",
-    image: "https://res.cloudinary.com/mpo7ijbf/image/upload/v1789642075/lonavala/council/Rajendra_Sonavane__President__1789642073359.jpg",
-    active: true,
-  };
+  // Dynamically find President, Vice President, and Chief Officer from live database records
+  const president = members.find(
+    (m) =>
+      m.roleCategory === "President" ||
+      (m.designation?.toLowerCase().includes("president") &&
+        !m.designation?.toLowerCase().includes("vice")) ||
+      (m.designation?.toLowerCase().includes("नगराध्यक्ष") &&
+        !m.designation?.toLowerCase().includes("उपनगराध्यक्ष"))
+  );
 
-  const defaultVicePresident: CouncilMember = {
-    id: "vp-default",
-    name: "Devidas Bhausaheb Kadu",
-    marathiName: "श्री. देवीदास भाऊसाहेब कडू",
-    designation: "Council Vice President (उपनगराध्यक्ष)",
-    roleCategory: "Vice President",
-    ward: "Municipal Council",
-    tenure: "2024 - 2029",
-    phone: "7798777077",
-    email: "deva7077@gmail.com",
-    image: "https://res.cloudinary.com/mpo7ijbf/image/upload/v1789642098/lonavala/council/Devidas_Kadu_-_Vicepresident__1789642095196.jpg",
-    active: true,
-  };
+  const vicePresident = members.find(
+    (m) =>
+      m.roleCategory === "Vice President" ||
+      m.designation?.toLowerCase().includes("vice president") ||
+      m.designation?.toLowerCase().includes("vicepresident") ||
+      m.designation?.toLowerCase().includes("उपनगराध्यक्ष")
+  );
 
-  const defaultChiefOfficer: CouncilMember = {
-    id: "co-default",
-    name: "Shri. Pandit Patil",
-    marathiName: "श्री. पंडित पाटील",
-    designation: "Chief Officer (मुख्याधिकारी)",
-    roleCategory: "Officer",
-    ward: "Municipal Administration",
-    tenure: "Current",
-    phone: "+91 2114 273032",
-    email: "co@lonavalamc.gov.in",
-    image: "",
-    active: true,
-  };
+  const chiefOfficer = members.find(
+    (m) =>
+      m.roleCategory === "Officer" ||
+      m.designation?.toLowerCase().includes("chief officer") ||
+      m.designation?.toLowerCase().includes("commissioner") ||
+      m.designation?.toLowerCase().includes("मुख्याधिकारी") ||
+      m.designation?.toLowerCase().includes("आयुक्त")
+  );
 
-  const president =
-    members.find(
-      (m) =>
-        m.roleCategory === "President" ||
-        (m.designation?.toLowerCase().includes("president") &&
-          !m.designation?.toLowerCase().includes("vice")) ||
-        (m.designation?.toLowerCase().includes("नगराध्यक्ष") &&
-          !m.designation?.toLowerCase().includes("उपनगराध्यक्ष"))
-    ) || defaultPresident;
+  const leaders: { data: CouncilMember; role: string; badgeBg: string }[] = [];
 
-  const vicePresident =
-    members.find(
-      (m) =>
-        m.roleCategory === "Vice President" ||
-        m.designation?.toLowerCase().includes("vice president") ||
-        m.designation?.toLowerCase().includes("vicepresident") ||
-        m.designation?.toLowerCase().includes("उपनगराध्यक्ष")
-    ) || defaultVicePresident;
-
-  const chiefOfficer =
-    members.find(
-      (m) =>
-        m.roleCategory === "Officer" ||
-        m.designation?.toLowerCase().includes("chief officer") ||
-        m.designation?.toLowerCase().includes("commissioner") ||
-        m.designation?.toLowerCase().includes("मुख्याधिकारी") ||
-        m.designation?.toLowerCase().includes("आयुक्त")
-    ) || defaultChiefOfficer;
-
-  const leaders = [
-    {
+  if (president) {
+    leaders.push({
       data: president,
       role: dict.council.presidentDesignation,
       badgeBg: "bg-emerald-100/90 text-emerald-900 border-emerald-200",
-    },
-    {
+    });
+  }
+
+  if (vicePresident) {
+    leaders.push({
       data: vicePresident,
       role: dict.council.vpDesignation,
       badgeBg: "bg-teal-100/90 text-teal-900 border-teal-200",
-    },
-    {
+    });
+  }
+
+  if (chiefOfficer) {
+    leaders.push({
       data: chiefOfficer,
       role: dict.council.coDesignation,
       badgeBg: "bg-blue-100/90 text-blue-900 border-blue-200",
-    },
-  ];
+    });
+  }
+
+  // If specific named leadership roles are not found, dynamically display top active members from DB
+  if (leaders.length === 0 && members.length > 0) {
+    members.slice(0, 3).forEach((m, idx) => {
+      leaders.push({
+        data: m,
+        role: m.designation || "Council Member",
+        badgeBg:
+          idx === 0
+            ? "bg-emerald-100/90 text-emerald-900 border-emerald-200"
+            : idx === 1
+            ? "bg-teal-100/90 text-teal-900 border-teal-200"
+            : "bg-blue-100/90 text-blue-900 border-blue-200",
+      });
+    });
+  }
+
+  if (!loading && leaders.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-16 bg-white border-y border-slate-200/80">

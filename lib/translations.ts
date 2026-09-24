@@ -804,7 +804,7 @@ export const translations: Record<Language, Translations> = {
         "शाश्वत पर्यटन पायाभूत सुविधा, पारदर्शक प्रशासन आणि प्रत्येक नागरिकाला घरपोच सेवा देण्यासाठी आम्ही कटिबद्ध आहोत.",
       tenure: "कार्यकाळ: २०२२ - २०२७",
       vpDesignation: "उपनगराध्यक्ष",
-      coDesignation: "मुख्याधिकारी / आयुक्त",
+      coDesignation: "मुख्याधिकारी",
       viewAllMembers: "सर्व नगरसेवक व विषय समित्या पहा",
     },
     tourism: {
@@ -1189,7 +1189,7 @@ export const translations: Record<Language, Translations> = {
         "टिकाऊ पर्यटन बुनियादी ढांचा, पारदर्शी प्रशासन और हर नागरिक को घर तक सेवाएं प्रदान करने के लिए हम प्रतिबद्ध हैं।",
       tenure: "कार्यकाल: २०२२ - २०२७",
       vpDesignation: "उपाध्यक्ष (उपनगराध्यक्ष)",
-      coDesignation: "मुख्याधिकारी / आयुक्त",
+      coDesignation: "मुख्याधिकारी",
       viewAllMembers: "सभी पार्षद एवं समितियां देखें",
     },
     tourism: {
